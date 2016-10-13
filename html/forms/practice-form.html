@@ -1,9 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
+  <title>Practice Form</title>
 </head>
 <body>
-
+  <form action="success.html" method="post">
+    <div>
+      <label>What is your name?</label>
+      <input type="text" name="name">
+    </div>
+    <div>
+      <label>Are you a boy or a girl?</label>
+      <select name="gender">
+        <option value="boy">Boy</option>
+        <option value="girl">Girl</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+    <div>
+      <label>Tell me a story</label>
+      <textarea name="story">Write your story here</textarea>
+    </div>
+    <div>
+      <label>What is your email address?</label>
+      <input type="email" name="email">
+    </div>
+    <div>
+      <label>What is your password?</label>
+      <input type="password" name="password">
+    </div>
+    <button type="submit">Ready to go!</button>
+  </form>
 </body>
 </html>
