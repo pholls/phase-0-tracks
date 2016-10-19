@@ -8,10 +8,11 @@
   position: absolute;
   top: 170px;
   left: 385px;
+  z-index: 1;
 }
 
 #glasses {
   position: absolute;
-  top: 170px;
-  left: 375px;
+  top: 310px;
+  left: 450px;
 }
