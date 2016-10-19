@@ -1,15 +1,17 @@
 #octopus {
-  position: absolute;
-  margin: 200px 50%;
+  position: relative;
+  margin: 200px 400px;
   z-index: -1;
 }
 
 #hat {
-  position: relative;
-  top: 150px;
-  left: 375px;
+  position: absolute;
+  top: 170px;
+  left: 385px;
 }
 
 #glasses {
-  position: relative;
+  position: absolute;
+  top: 170px;
+  left: 375px;
 }
