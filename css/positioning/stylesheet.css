@@ -1,4 +1,15 @@
 #octopus {
-  margin-top: 150px;
-  margin-left: 300px;
+  position: absolute;
+  margin: 200px 50%;
+  z-index: -1;
+}
+
+#hat {
+  position: relative;
+  top: 150px;
+  left: 375px;
+}
+
+#glasses {
+  position: relative;
 }
