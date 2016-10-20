@@ -19,8 +19,6 @@ body {
 }
 
 #external-links {
-/*  position: fixed;
-  right: 0px; */
   width: 20%;
   display: inline-block;
   vertical-align: top;
@@ -60,8 +58,8 @@ figcaption {
   }
 }
 
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 360px) {
   h1 {
-    font-size: ;
+    font-size: .85em;
   }
 }
