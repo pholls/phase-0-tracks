@@ -24,12 +24,14 @@ body {
   width: 20%;
   display: inline-block;
   vertical-align: top;
+  padding-right: 15px;
 }
 
 main {
   width: 75%;
   display: inline-block;
   vertical-align: top;
+  min-width: 300px;
 }
 
 /* you're welcome to edit the
@@ -49,8 +51,17 @@ figcaption {
   text-align: right;
 }
 
-@media screen and (max-width: 500px) {
-  body {
-    background-color: hotpink;
+@media screen and (max-width: 415px) {
+  #external-links {
+    width: 100%;
+  }
+  main {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  h1 {
+    font-size: ;
   }
 }
