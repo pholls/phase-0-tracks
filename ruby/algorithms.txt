@@ -55,7 +55,7 @@ When Google Chrome is open:
     -read article
   when reached the bottom of the article:
     -close tab
-    -click next artile tab that is furthest to the left
+    -click next article tab that is furthest to the left
   when there are no more article tabs:
       -close Google Chrome
 end
