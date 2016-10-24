@@ -26,12 +26,12 @@ Once inside the elevator:
     -Wait until the doors open
   -When the doors open:
     -Look for the current floor number
-    -If current floor number = the floor number you wanted:
-      -Exit elevator.
-      -End
     -If current floor number < the floor number you wanted:
       -Wait until door closes.
       -Wait until door opens.
     -If current floor number > the floor number you wanted:
       -Wait until door closes.
       -Wait until door opens.
+    -If current floor number = the floor number you wanted:
+      -Exit elevator.
+      -End
