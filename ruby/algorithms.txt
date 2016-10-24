@@ -1,8 +1,28 @@
 If the door is open:
   -Enter the elevator
-  If you can not see the buttons:
-  -Turn until you can see the buttons
+  If you cannot see the buttons:
+    -Turn until you can see the buttons
 If the door is not open:
-  -Push a button.
+  -Push the button next to the door.
   -Wait until the door is open
   -Enter the elevator.
+  If you cannot see the buttons:
+    -Turn until you can see the buttons
+Once inside the elevator:
+  -Until the number on the button = the number of the floor you want to go to:
+    -Do not push the button
+    -Locate the next button (the current number + 1)
+  -If the button number = the floor number you want
+    -push the button
+    -Wait until the doors open
+  -When the doors open:
+    -Look for the current floor number
+    -If current floor number = the floor number you wanted:
+      -Exit elevator.
+      -End
+    -If current floor number < the floor number you wanted:
+      -Wait until door closes.
+      -Wait until door opens.
+    -If current floor number > the floor number you wanted:
+      -Wait until door closes.
+      -Wait until door opens.
