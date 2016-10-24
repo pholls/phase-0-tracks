@@ -37,7 +37,7 @@ Once inside the elevator:
       -Exit elevator.
       -End
 
-#My Everyday Algorithm:
+#My Everyday Algorithm (Reading New Articles on Cracked.com):
 If Google Chrome is not open:
   -open Google Chrome
 When Google Chrome is open:
