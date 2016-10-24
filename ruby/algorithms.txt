@@ -1,0 +1,8 @@
+If the door is open:
+  -Enter the elevator
+  If you can not see the buttons:
+  -Turn until you can see the buttons
+If the door is not open:
+  -Push a button.
+  -Wait until the door is open
+  -Enter the elevator.
