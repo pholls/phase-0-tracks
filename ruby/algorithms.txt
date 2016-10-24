@@ -1,0 +1,62 @@
+#Robot Elevator Algorithm:
+If the door is open:
+  -Enter the elevator
+  If you cannot see the buttons:
+    -Turn until you can see the buttons
+If the door is not open:
+  -Push the button next to the door.
+  -Wait until the door is open
+  -Enter the elevator.
+  If you cannot see the buttons:
+    -Turn until you can see the buttons
+Once inside the elevator:
+  -Until the number on the button = the number of the floor you want to go to:
+    -Do not push the button
+    -Locate the next button (the current number + 1):
+      -Look to the right of the current button.
+      -If this button = current button +1, continue.
+      -If there is no button to the right of current button:
+        -Return to current button
+        -look above the current button.
+          -If new button = current button +1, continue.
+          -If new button = current button + >1, look to the left of new button.
+            -until left_of_new_button = current button +1, move left.
+  -If the button number = the floor number you want
+    -push the button
+    -Wait until the doors close
+    -Wait until the doors open
+  -When the doors open:
+    -Look for the current floor number
+    -If current floor number < the floor number you wanted:
+      -Wait until door closes.
+      -Wait until door opens.
+    -If current floor number > the floor number you wanted:
+      -Wait until door closes.
+      -Wait until door opens.
+    -If current floor number = the floor number you wanted:
+      -Exit elevator.
+      -End
+
+#My Everyday Algorithm:
+If Google Chrome is not open:
+  -open Google Chrome
+When Google Chrome is open:
+  -Click "new tab"
+  -Open "cracked.com"
+  -Click "Articles"
+  -Scroll down
+  -Look at publication date of each article
+  -If publication date = today's date:
+    -right click on the link of the article
+    -select "open in new tab"
+  -If publication date < today's date
+    -close "cracked.com/articles"
+  Navigate to article tab that is furthest to the left
+    -read article
+  when reached the bottom of the article:
+    -close tab
+    -click next article tab that is furthest to the left
+  when there are no more article tabs:
+      -close Google Chrome
+end
+
