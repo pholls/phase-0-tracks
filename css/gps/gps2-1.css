@@ -1,0 +1,46 @@
+header {
+  background-color: blue;
+  font-family: Helvetica;
+  border-bottom: 2px solid black;
+}
+
+.column-1 {
+  display: inline-block;
+  width: 45%;
+  background-color: red;
+  vertical-align: top;
+  font-family: Arial;
+  margin-top: 10px;
+}
+
+.column-2 {
+  display: inline-block;
+  width: 45%;
+  background-color: purple;
+  font-family: Times New Roman;
+  margin-top: 10px;
+}
+
+footer {
+  background-color: green;
+  border-top: 2px solid black;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+body {
+  background-image: url(http://netdna.webdesignerdepot.com/uploads/2015/03/featured5-1024x502.jpg);
+  background-attachment: fixed;
+}
+
+header, footer {
+  background-color: yellow;
+}
+
+.column-1 h2 {
+  color: pink;
+}
+
+a:hover {
+  color: yellow;
+}
