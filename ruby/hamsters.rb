@@ -11,12 +11,13 @@ fur_color = gets.chomp
 puts "Is it a good candidate for adoption? (y/n)"
 good_candidate = gets.chomp
 
-estimated_age = nil
 puts "What is its estimated age?"
 estimated_age = gets.chomp
 
-if estimated_age != nil
+if estimated_age != ""
   estimated_age.to_i
+else
+  estimated_age = nil
 end
 
 puts ''
@@ -33,5 +34,5 @@ end
 if estimated_age != nil
   puts hamster_name + " is about " + estimated_age + " years old."
 else
-  puts "We don't know how old your hamster is."
+  print "We don't know how old your hamster is."
 end
