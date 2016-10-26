@@ -13,14 +13,10 @@ garlic_bread = gets.chomp
 puts "Would you like to enroll in the company’s health insurance? (y/n)"
 insurance = gets.chomp
 
-if insurance == "yes"
-  insurance = "y"
-elsif insurance == "no"
-  insurance = "n"
-elsif insurance == "Yes"
-  insurance = "y"
-elsif insurance == "No"
-  insurance = "n"
+if insurance == "yes" || insurance == "y" || insurance == "Yes"
+  insurance = true
+elsif insurance == "no" || insurance == "n" || insurance == "No"
+  insurance = false
 end
 
 if garlic_bread == "yes"
@@ -33,7 +29,10 @@ elsif garlic_bread == "No"
   garlic_bread = "n"
 end
 
-if (2016 - birth_year.to_i) = age.to_i
+if ((2016 - birth_year.to_i) = age.to_i) && insurance
   result = "Probably not a vampire."
 elsif (2016 - birth_year.to_i) = (age.to_i - 1)
   result = "Probably not a vampire."
+else
+
+    
