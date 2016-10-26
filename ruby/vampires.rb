@@ -16,6 +16,12 @@ end
 puts "Our company cafeteria serves garlic bread. Should we order some for you? (y/n)"
 garlic_bread = gets.chomp
 
+if garlic_bread.downcase == "yes" || garlic_bread.downcase == "y"
+  garlic_bread = true
+else
+  garlic_bread = false
+end
+
 puts "Would you like to enroll in the company’s health insurance? (y/n)"
 insurance = gets.chomp
 
@@ -24,13 +30,6 @@ if insurance.downcase == "yes" || insurance.downcase == "y"
 else
   insurance = false
 end
-
-if garlic_bread.downcase == "yes" || garlic_bread.downcase == "y"
-  garlic_bread = true
-else
-  garlic_bread = false
-end
-
 
 result = "Results inconclusive."
 if valid_age && (insurance || garlic_bread)
