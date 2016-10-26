@@ -36,13 +36,22 @@ until employee_number.to_i == number do
   else
     insurance = false
   end
+
+  allergy = ''
+  until allergy.downcase == 'done'
+    puts "Please list your allergies. Type \'done\' when finished."
+    allergy = gets.chomp
+    if allergy.downcase == "sunshine"
+      break
+    end
+  end
   
   result = "Results inconclusive."
   if valid_age && (insurance || garlic_bread)
     result = "Probably not a vampire."
   end
   
-  if valid_age == false && (!garlic_bread || !insurance)
+  if (valid_age == false && (!garlic_bread || !insurance)) || allergy.downcase == "sunshine"
     result = "Probably a vampire."
   end
   
