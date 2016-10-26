@@ -19,14 +19,10 @@ elsif insurance == "no" || insurance == "n" || insurance == "No"
   insurance = false
 end
 
-if garlic_bread == "yes"
-  garlic_bread = "y"
-elsif garlic_bread == "no"
-  garlic_bread = "n"
-elsif garlic_bread == "Yes"
-  garlic_bread = "y"
-elsif garlic_bread == "No"
-  garlic_bread = "n"
+if garlic_bread == "yes" || garlic_bread == "y" || garlic_bread == "Yes"
+  garlic_bread = true
+elsif garlic_bread == "no" || garlic_bread == "n" || garlic_bread == "No"
+  garlic_bread = false
 end
 
 if ((2016 - birth_year.to_i) = age.to_i) && insurance
