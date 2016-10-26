@@ -68,3 +68,5 @@ until employee_number.to_i == number do
 
   number += 1;
 end
+
+puts "Actually, never mind! \nWhat do these questions have to do with anything? \nLet's all be friends."
