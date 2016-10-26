@@ -32,3 +32,8 @@ elsif garlic_bread == "Yes"
 elsif garlic_bread == "No"
   garlic_bread = "n"
 end
+
+if (2016 - birth_year.to_i) = age.to_i
+  result = "Probably not a vampire."
+elsif (2016 - birth_year.to_i) = (age.to_i - 1)
+  result = "Probably not a vampire."
