@@ -25,7 +25,9 @@ elsif garlic_bread == "no" || garlic_bread == "n" || garlic_bread == "No"
   garlic_bread = false
 end
 
-if ((2016 - birth_year.to_i) = age.to_i) || ((2016 - birth_year.to_i) = (age.to_i - 1)) && (insurance || garlic_bread)
+if ((2016 - birth_year.to_i) = age.to_i) || ((2016 - birth_year.to_i) = (age.to_i + 1)) && (insurance || garlic_bread)
   result = "Probably not a vampire."
-else
+elsif !((2016 - birth_year.to_i) = age.to_i) || ((2016 - birth_year.to_i) = (age.to_i + 1)) && (!garlic_bread && !insurance)
+  result = "Probably a vampire."
+  
   
