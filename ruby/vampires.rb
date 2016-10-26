@@ -7,27 +7,46 @@ age = gets.chomp
 puts "What year were you born?"
 birth_year = gets.chomp
 
+if ((2016 - birth_year.to_i) == age.to_i) || ((2016 - birth_year.to_i) == (age.to_i + 1))
+  valid_age = true
+else
+  valid_age = false
+end
+
 puts "Our company cafeteria serves garlic bread. Should we order some for you? (y/n)"
 garlic_bread = gets.chomp
 
 puts "Would you like to enroll in the company’s health insurance? (y/n)"
 insurance = gets.chomp
 
-if insurance == "yes" || insurance == "y" || insurance == "Yes"
+if insurance.downcase == "yes" || insurance.downcase == "y"
   insurance = true
-elsif insurance == "no" || insurance == "n" || insurance == "No"
+else
   insurance = false
 end
 
-if garlic_bread == "yes" || garlic_bread == "y" || garlic_bread == "Yes"
+if garlic_bread.downcase == "yes" || garlic_bread.downcase == "y"
   garlic_bread = true
-elsif garlic_bread == "no" || garlic_bread == "n" || garlic_bread == "No"
+else
   garlic_bread = false
 end
 
-if ((2016 - birth_year.to_i) = age.to_i) || ((2016 - birth_year.to_i) = (age.to_i + 1)) && (insurance || garlic_bread)
+
+result = "Results inconclusive."
+if valid_age && (insurance || garlic_bread)
   result = "Probably not a vampire."
-elsif !((2016 - birth_year.to_i) = age.to_i) || ((2016 - birth_year.to_i) = (age.to_i + 1)) && (!garlic_bread && !insurance)
+end
+
+if valid_age == false && (!garlic_bread || !insurance)
   result = "Probably a vampire."
-  
-  
+end
+
+if valid_age == false && (!garlic_bread && !insurance)
+  result = "Almost certainly a vampire."
+end
+
+if (employee_name.downcase == "drake cula") || (employee_name.downcase == "tu fang")
+  result = "Definitely a vampire."
+end
+    
+puts result
