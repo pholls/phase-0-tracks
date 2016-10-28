@@ -11,6 +11,9 @@ def encrypt(password)
     if password[number] == " "
       encrypted_password += " "
       number += 1
+    elsif password[number] == "z"
+      encrypted_password += "a"
+      number += 1
     end
     encrypted_password += password[number].next
     number += 1
@@ -18,7 +21,8 @@ def encrypt(password)
   puts encrypted_password
 end
 
-encrypt("pass word")
+# test code:
+# encrypt("pass word")
 
 # Decrypt (takes encrypted string as an argument):
 # Break the string into individual letters
@@ -42,4 +46,11 @@ def decrypt(password)
   puts decrypted_password
 end
 
-decrypt("qbtt xpse")
+# test code:
+# decrypt("qbtt xpse")
+
+#Release 3 Driver Code:
+encrypt("abc")
+encrypt("zed")
+decrypt("bcd")
+decrypt("afe")
