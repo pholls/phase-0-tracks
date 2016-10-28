@@ -26,3 +26,20 @@ encrypt("pass word")
 # Loop until the whole string has been reversed one letter back
 # end
 
+def decrypt(password)
+  number = 0
+  decrypted_password = ""
+  alphabet = "abcdefghijklmnopqrstuvwxyz"
+  until number == password.length
+    if password[number] == " "
+      decrypted_password += " "
+      number += 1
+    else
+    decrypted_password += alphabet[(alphabet.index(password[number]) - 1)]
+    number += 1
+    end
+  end
+  puts decrypted_password
+end
+
+decrypt("qbtt xpse")
