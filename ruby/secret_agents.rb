@@ -62,3 +62,30 @@ end
 # This works because we added a line at the end of the method to return the variable.
 # Without this line, it returned `nil` and the method did not work in a nested call.
 # We received a NoMethodError. Now it works.
+
+# Release 5 Pseudocode:
+# puts "encrypt or decrypt"
+  #input = gets.chomp
+# if/else statement for encrypt or decrypt
+# ask for the password to encrypt or decrypt
+  # call proper method based on input
+  # print result
+# exit
+
+puts "Greetings, Secret Agent.\nEncrypt or decrypt a password?"
+encryption = gets.chomp
+
+until encryption.downcase == "encrypt" || encryption.downcase == "decrypt"
+  puts "Invalid input."
+  puts "Encrypt or decrypt?"
+  encryption = gets.chomp
+end
+
+puts "What is the password?"
+password = gets.chomp
+if encryption.downcase == "encrypt"
+  encrypt(password)
+elsif encryption.downcase == "decrypt"
+  decrypt(password)
+end
+
