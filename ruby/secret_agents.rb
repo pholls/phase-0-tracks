@@ -64,10 +64,14 @@ end
 # We received a NoMethodError. Now it works.
 
 # Release 5 Pseudocode:
-# puts "encrypt or decrypt"
-  #input = gets.chomp
-# if/else statement for encrypt or decrypt
-# ask for the password to encrypt or decrypt
+# ask the user if they want to "encrypt or decrypt"
+# if the user says encrypt
+  # run encrypt method
+# if the user says decrypt
+  # run decrypt method
+# if the user says something else
+  # say "invalid input"
+# ask for the password
   # call proper method based on input
   # print result
 # exit
