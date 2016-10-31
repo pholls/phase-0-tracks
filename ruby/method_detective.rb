@@ -10,7 +10,7 @@
 # .swapcase! returns the same result, but the bang means it modifies 
 # the receiver in place: that is, it overwrites the input with the output.
 
-# "zom".<???>
+"zom".gsub("o", "oo")
 # => “zoom”
 
 "enhance".center(15)
@@ -26,7 +26,7 @@
 "the usual" << " suspects"
 #=> "the usual suspects"
 
-# " suspects".<???>
+" suspects".insert(0, "the usual")
 # => "the usual suspects"
 
 "The case of the disappearing last letter".chop
@@ -42,7 +42,7 @@
 # "Elementary,    my   dear        Watson!".<???>
 # => "Elementary, my dear Watson!"
 
-# "z".<???>
+"z".ord
 # => 122 
 # (What is the significance of the number 122 in relation to the character z?)
 
