@@ -17,3 +17,7 @@ famous_roles = {
 oscar_categories.each do |category|
   puts category
 end
+
+famous_roles.each do |actor, role|
+  puts "#{actor} played #{role}"
+end
