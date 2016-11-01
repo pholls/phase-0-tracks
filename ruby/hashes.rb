@@ -19,3 +19,25 @@
   # skip if input is 'none'
 # print hash to the screen
 
+client_info = {}
+puts "What is the client's name?"
+client_info[:name] = gets.chomp
+
+puts "What is the client's age?"
+client_info[:age] = gets.chomp.to_i
+
+puts "How many children are in the client's household?"
+client_info[:children] = gets.chomp.to_i
+
+puts "Does the client prefer a \'retro\' aesthetic? (y/n)"
+input = gets.chomp
+if input == "y"
+  client_info[:retro] = true
+else
+  client_info[:retro] = false
+end
+
+puts "What is the client's general decor theme?"
+client_info[:decor] = gets.chomp
+
+p client_info 
