@@ -30,14 +30,24 @@ puts "How many children are in the client's household?"
 client_info[:children] = gets.chomp.to_i
 
 puts "Does the client prefer a \'retro\' aesthetic? (y/n)"
-input = gets.chomp
-if input == "y"
+retro = gets.chomp
+if retro == "y"
   client_info[:retro] = true
 else
   client_info[:retro] = false
 end
 
 puts "What is the client's general decor theme?"
-client_info[:decor] = gets.chomp
+client_info[:decor_theme] = gets.chomp
 
-p client_info 
+p client_info
+
+puts "Please review the information.\nWould you like to update anything?\nType the name of the value to update (or 'none')."
+update = gets.chomp
+if update != "none"
+  puts "What is the updated value?"
+  new_value = gets.chomp
+  client_info[update.to_sym] = new_value
+end
+
+p client_info
