@@ -21,3 +21,15 @@ end
 famous_roles.each do |actor, role|
   puts "#{actor} played #{role}"
 end
+
+puts "Pre-map data structures:"
+p oscar_categories
+p famous_roles
+
+oscar_categories.map! do |category|
+  category.upcase
+end
+
+puts "Post-map data structures:"
+p oscar_categories
+p famous_roles
