@@ -6,3 +6,14 @@ def my_method
 end
 
 my_method { |variable| puts "When a computer wakes up, it says #{variable}" }
+
+oscar_categories = ["Best Picture", "Best Editing", "Best Director"]
+
+famous_roles = {
+  George_Clooney: "Danny Ocean"
+  Keanu_Reeves: "Neo"
+}
+
+oscar_categories.each do
+  puts oscar_categories
+end
