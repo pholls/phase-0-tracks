@@ -33,3 +33,49 @@ end
 puts "Post-map data structures:"
 p oscar_categories
 p famous_roles
+
+#########################
+
+sample_ary = ["a", "b", "c", "d", "e"]
+sample_hash = {
+  sky: "blue",
+  sea: "green",
+  trees: "tall",
+  dirt: "dirty"
+}
+
+puts "Pre-modified data:"
+p sample_ary
+p sample_hash
+
+puts "Modified data: #delete_if"
+p sample_ary.delete_if { |letter| letter > "d" }
+p sample_hash.delete_if { |key, value| value == "dirty"}
+
+sample_ary = ["a", "b", "c", "d", "e"]
+sample_hash = {
+  sky: "blue",
+  sea: "green",
+  trees: "tall",
+  dirt: "dirty"
+}
+
+puts "Modified data: #keep_if"
+p sample_ary.keep_if { |letter| letter > "d" }
+p sample_hash.keep_if { |key, value| value == "dirty" }
+
+sample_ary = ["a", "b", "c", "d", "e"]
+sample_hash = {
+  sky: "blue",
+  sea: "green",
+  trees: "tall",
+  dirt: "dirty"
+}
+
+
+
+
+
+
+
+
