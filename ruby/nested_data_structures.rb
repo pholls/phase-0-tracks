@@ -49,14 +49,13 @@ p school[:basement][:boiler_room][0]
 
 puts "The poem #{school[:second_floor][:english_classroom][2][:wilfred_owen]} was written by Wilfred Owen"
 
-# Expected the following code to print by iterating over third level (contents)
-# Instead, received NoMethodError.
-
 # puts "Print by iterating over third level (contents)"
-# school.each do |floor|
-#   floor.each do |room|
-#     room.each do |contents|
-#       p contents
-#     end
-#   end
-# end
+school.each do |floor|
+  floor.each do |room|
+    if room.is_a?(Hash)
+      room.each do |contents|
+        p contents
+      end
+    end
+  end
+end
