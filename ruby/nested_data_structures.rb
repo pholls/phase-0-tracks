@@ -17,26 +17,27 @@ school = {
   }
 }
 
-puts "Access school/first_floor/science_classroom"
+# puts "Access school/first_floor/science_classroom"
 p school[:first_floor][:science_classroom]
 
-puts "Access school/second_floor/math_classroom at index 1"
+# puts "Access school/second_floor/math_classroom at index 1"
 p school[:second_floor][:math_classroom][1]
 
-puts "Access school/basement/boiler_room at index 0"
+# puts "Access school/basement/boiler_room at index 0"
 p school[:basement][:boiler_room][0]
 
-puts "Access school/second_floor/english_classroom at index 2"
+# puts "Access school/second_floor/english_classroom at index 2"
 p school[:second_floor][:english_classroom][2]
 
-puts "Print by iterating over second level (rooms)"
+# puts "Print by iterating over second level (rooms)"
 school.each do |floor|
   floor.each do |room|
     p room
   end
 end
 
-puts "Access the value associated with the key :robert_frost in the English english_classroom on the second floor"
+# puts "Access the value associated with the key :robert_frost in the 
+# English english_classroom on the second floor"
 p school[:second_floor][:english_classroom][2][:robert_frost]
 
 # Call Array#reverse! on school[:basement][:boiler_room] to
