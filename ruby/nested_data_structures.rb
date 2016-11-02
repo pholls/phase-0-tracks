@@ -36,17 +36,7 @@ school.each do |floor|
   end
 end
 
-# Expected the following code to print by iterating over third level (contents)
-# Instead, received NoMethodError.
-#
-# school.each do |floor|
-#   floor.each do |room|
-#     room.each do |contents|
-#       p contents
-#     end
-#   end
-# end
-
+puts "Access the value associated with the key :robert_frost in the English english_classroom on the second floor"
 p school[:second_floor][:english_classroom][2][:robert_frost]
 
 # Call Array#reverse! on school[:basement][:boiler_room] to
@@ -55,3 +45,15 @@ school[:basement][:boiler_room].reverse!
 
 # Print the new result to see how the data have changed
 p school[:basement][:boiler_room][0]
+
+# Expected the following code to print by iterating over third level (contents)
+# Instead, received NoMethodError.
+
+# puts "Print by iterating over third level (contents)"
+# school.each do |floor|
+#   floor.each do |room|
+#     room.each do |contents|
+#       p contents
+#     end
+#   end
+# end
