@@ -9,7 +9,7 @@ school = {
   },
   second_floor: {
     math_classroom: ["Desk", "Textbook", "Calculator"],
-    english_classroom: ["Poetry", "Novela", anthology: {
+    english_classroom: ["Poetry", "Novela", {
       robert_frost: "The Road Not Taken",
       edgar_allan_poe: "The Raven",
       wilfred_owen: "Dulce Et Decorum Est"
@@ -47,7 +47,7 @@ end
 #   end
 # end
 
-p school[:second_floor][:english_classroom][2][:anthology][:robert_frost]
+p school[:second_floor][:english_classroom][2][:robert_frost]
 
 # Call Array#reverse! on school[:basement][:boiler_room] to
 # reverse the order of the elements within
