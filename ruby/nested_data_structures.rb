@@ -47,6 +47,8 @@ school[:basement][:boiler_room].reverse!
 # Print the new result to see how the data have changed
 p school[:basement][:boiler_room][0]
 
+puts "The poem #{school[:second_floor][:english_classroom][2][:wilfred_owen]} was written by Wilfred Owen"
+
 # Expected the following code to print by iterating over third level (contents)
 # Instead, received NoMethodError.
 
@@ -58,5 +60,3 @@ p school[:basement][:boiler_room][0]
 #     end
 #   end
 # end
-
-puts "The poem #{school[:second_floor][:english_classroom][2][:wilfred_owen]} was written by Wilfred Owen"
