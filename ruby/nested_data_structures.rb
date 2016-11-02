@@ -17,9 +17,6 @@ school = {
   }
 }
 
-puts "Print school"
-p school
-
 puts "Access school/first_floor/science_classroom"
 p school[:first_floor][:science_classroom]
 
@@ -32,11 +29,6 @@ p school[:basement][:boiler_room][0]
 puts "Access school/second_floor/english_classroom at index 2"
 p school[:second_floor][:english_classroom][2]
 
-puts "Print by iterating over first level (floors)"
-school.each do |floor|
-  p floor
-end
-
 puts "Print by iterating over second level (rooms)"
 school.each do |floor|
   floor.each do |room|
@@ -44,7 +36,9 @@ school.each do |floor|
   end
 end
 
-# puts "Print by iterating over third level (contents)"
+# Expected the following code to print by iterating over third level (contents)
+# Instead, received NoMethodError.
+#
 # school.each do |floor|
 #   floor.each do |room|
 #     room.each do |contents|
@@ -53,12 +47,11 @@ end
 #   end
 # end
 
-# Why does the below return "nil"? Expected => "The Road Not Taken"
-p school[:second_floor][:english_classroom][2][:robert_frost]
+p school[:second_floor][:english_classroom][2][:anthology][:robert_frost]
 
 # Call Array#reverse! on school[:basement][:boiler_room] to
 # reverse the order of the elements within
 school[:basement][:boiler_room].reverse!
 
-# Print the new result to see how the data has changed
+# Print the new result to see how the data have changed
 p school[:basement][:boiler_room][0]
