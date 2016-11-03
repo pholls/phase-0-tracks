@@ -16,8 +16,6 @@
 # Append the strings together as an alias name
 # Print the result
 
-consonants = "bcdfghjklmnpqrstvwxyz"
-
 def next_vowel(vowel)
 all_vowels = ["a", "e", "i", "o", "u"]
   if all_vowels[all_vowels.index(vowel) + 1] == nil
@@ -27,12 +25,31 @@ all_vowels = ["a", "e", "i", "o", "u"]
   end
 end
 
-p next_vowel("a")
+# Driver code:
+# p next_vowel("a")
+# p next_vowel("e")
+# p next_vowel("i")
+# p next_vowel("o")
+# p next_vowel("u")
 
-p next_vowel("e")
+def next_consonant(consonant)
+all_consonants = "bcdfghjklmnpqrstvwxyz"
+  if all_consonants[all_consonants.index(consonant) + 1] == nil
+    all_consonants[0]
+  else
+    all_consonants[all_consonants.index(consonant) + 1]
+  end
+end
 
-p next_vowel("i")
+# Driver code:
+# p next_consonant("d")
+# p next_consonant("f")
+# p next_consonant("g")
+# p next_consonant("h")
+# p next_consonant("j")
+# p next_consonant("z")
+# p next_consonant("l")
+# p next_consonant("m")
 
-p next_vowel("o")
 
-p next_vowel("u")
+
