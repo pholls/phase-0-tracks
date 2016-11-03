@@ -62,9 +62,13 @@ puts "Welcome to the ALIAS GENERATOR 3000(R)
 Enter your first and last name to receive an Official Secret Agent alias (C).
 (Type 'quit' when finished.)"
 user_name = gets.chomp
+
 loop do
   if user_name.downcase == "quit"
     break
+  elsif user_name == ""
+    puts "Invalid input. Try again"
+    user_name = gets.chomp
   else
     p split_name(user_name)
     puts "Enter another name."
