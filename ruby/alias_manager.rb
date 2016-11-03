@@ -52,7 +52,7 @@ end
 # p next_consonant("l")
 # p next_consonant("m")
 
-def change_name(name)
+def change_letters(name)
   all_vowels = "aeiou"
   all_consonants = "bcdfghjklmnpqrstvwxyz"
   new_name = ""
@@ -66,14 +66,17 @@ def change_name(name)
   new_name
 end
 
-# def splitname(string)
-#   string.split(' ') { |name|  }
-# end
+# This method needs to split the string into an array,
+# and call change_letters on each one.
+def split_name(string)
+  string.split(' ')
+end
 
-real_name = "Felicia Torres"
+p split_name("Felicia Torres")
+# real_name = "Felicia Torres"
 
-first_name = change_name(real_name.split(' ')[1].downcase)
-last_name = change_name(real_name.split(' ')[0].downcase)
+# first_name = change_letters(real_name.split(' ')[1].downcase)
+# last_name = change_letters(real_name.split(' ')[0].downcase)
 
-full_alias = first_name.capitalize + " " + last_name.capitalize
-puts full_alias
+# full_alias = first_name.capitalize + " " + last_name.capitalize
+# puts full_alias
