@@ -16,6 +16,7 @@
 # Append the strings together as an alias name
 # Print the result
 
+# I treat "y" as a consonant in this program
 def next_vowel(vowel)
   all_vowels = "aeiou"
   if all_vowels[all_vowels.index(vowel) + 1] == nil
@@ -25,13 +26,6 @@ def next_vowel(vowel)
   end
 end
 
-# Driver code:
-# p next_vowel("a")
-# p next_vowel("e")
-# p next_vowel("i")
-# p next_vowel("o")
-# p next_vowel("u")
-
 def next_consonant(consonant)
   all_consonants = "bcdfghjklmnpqrstvwxyz"
   if all_consonants[all_consonants.index(consonant) + 1] == nil
@@ -40,17 +34,6 @@ def next_consonant(consonant)
     all_consonants[all_consonants.index(consonant) + 1]
   end
 end
-
-# Driver code:
-# p next_consonant("b")
-# p next_consonant("d")
-# p next_consonant("f")
-# p next_consonant("g")
-# p next_consonant("h")
-# p next_consonant("j")
-# p next_consonant("z")
-# p next_consonant("l")
-# p next_consonant("m")
 
 # Maybe this method does too much at once and is repetitive.
 def change_letters(name)
@@ -74,4 +57,7 @@ def split_name(string)
 end
 
 p split_name("Felicia Torres")
+p split_name("Pat Holland")
+p split_name("Zzyzx California")
+
 
