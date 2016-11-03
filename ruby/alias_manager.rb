@@ -52,6 +52,7 @@ end
 # p next_consonant("l")
 # p next_consonant("m")
 
+# Maybe this method does too much at once and is repetitive.
 def change_letters(name)
   all_vowels = "aeiou"
   all_consonants = "bcdfghjklmnpqrstvwxyz"
@@ -66,8 +67,6 @@ def change_letters(name)
   new_name
 end
 
-# This method needs to split the string into an array,
-# and call change_letters on each one.
 def split_name(string)
   first_name = change_letters(string.split(' ')[1].downcase)
   last_name = change_letters(string.split(' ')[0].downcase)
