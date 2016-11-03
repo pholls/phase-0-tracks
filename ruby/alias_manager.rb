@@ -17,7 +17,7 @@
 # Print the result
 
 def next_vowel(vowel)
-  all_vowels = ["a", "e", "i", "o", "u"]
+  all_vowels = "aeiou"
   if all_vowels[all_vowels.index(vowel) + 1] == nil
     all_vowels[0]
   else
@@ -33,7 +33,7 @@ end
 # p next_vowel("u")
 
 def next_consonant(consonant)
-all_consonants = "bcdfghjklmnpqrstvwxyz"
+  all_consonants = "bcdfghjklmnpqrstvwxyz"
   if all_consonants[all_consonants.index(consonant) + 1] == nil
     all_consonants[0]
   else
@@ -52,22 +52,28 @@ end
 # p next_consonant("l")
 # p next_consonant("m")
 
-def iterate(name)
-  all_vowels = ["a", "e", "i", "o", "u"]
+def change_name(name)
+  all_vowels = "aeiou"
   all_consonants = "bcdfghjklmnpqrstvwxyz"
-  changed_name = ""
+  new_name = ""
   name.each_char do |letter|
     if all_vowels.include?(letter)
-      changed_name << next_vowel(letter)
+      new_name << next_vowel(letter)
     elsif all_consonants.include?(letter)
-      changed_name << next_consonant(letter)
+      new_name << next_consonant(letter)
     end
   end
-  changed_name
+  new_name
 end
 
-p iterate("pat")
+# def splitname(string)
+#   string.split(' ') { |name|  }
+# end
 
-# name_array = input.split(' ')
-# Firstname = name_array[0].downcase
-# Lastname = name_array[1].downcase
+real_name = "Felicia Torres"
+
+first_name = change_name(real_name.split(' ')[1].downcase)
+last_name = change_name(real_name.split(' ')[0].downcase)
+
+full_alias = first_name.capitalize + " " + last_name.capitalize
+puts full_alias
