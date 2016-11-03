@@ -56,8 +56,6 @@ def split_name(string)
   full_alias = first_name.capitalize + " " + last_name.capitalize
 end
 
-p split_name("Felicia Torres")
-p split_name("Pat Holland")
-p split_name("Zzyzx California")
-
-
+puts "ALIAS GENERATOR 3000(R)
+Enter your full name to receive an Official Secret Agent alias (C).
+(Type 'quit' when finished.)"
