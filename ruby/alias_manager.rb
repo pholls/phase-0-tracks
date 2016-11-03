@@ -69,14 +69,10 @@ end
 # This method needs to split the string into an array,
 # and call change_letters on each one.
 def split_name(string)
-  string.split(' ')
+  first_name = change_letters(string.split(' ')[1].downcase)
+  last_name = change_letters(string.split(' ')[0].downcase)
+  full_alias = first_name.capitalize + " " + last_name.capitalize
 end
 
 p split_name("Felicia Torres")
-# real_name = "Felicia Torres"
 
-# first_name = change_letters(real_name.split(' ')[1].downcase)
-# last_name = change_letters(real_name.split(' ')[0].downcase)
-
-# full_alias = first_name.capitalize + " " + last_name.capitalize
-# puts full_alias
