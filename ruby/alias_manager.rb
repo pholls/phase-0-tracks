@@ -50,12 +50,24 @@ def change_letters(name)
   new_name
 end
 
+# I used .first and .last instead [0] and [1] to allow for three or more names:
+# The program still only returns the first and last name as the alias.
 def split_name(string)
-  first_name = change_letters(string.split(' ')[1].downcase)
-  last_name = change_letters(string.split(' ')[0].downcase)
+  first_name = change_letters(string.split(' ').last.downcase)
+  last_name = change_letters(string.split(' ').first.downcase)
   full_alias = first_name.capitalize + " " + last_name.capitalize
 end
 
-puts "ALIAS GENERATOR 3000(R)
-Enter your full name to receive an Official Secret Agent alias (C).
-(Type 'quit' when finished.)"
+p split_name("Felicia Henandez Torres")
+# puts "Welcome to the ALIAS GENERATOR 3000(R)
+# Enter your first and last name to receive an Official Secret Agent alias (C).
+# (Type 'quit' when finished.)"
+# input = gets.chomp
+# if input.downcase == "quit"
+#   puts "Operation Complete."
+# else
+#   loop do puts split_name(input)
+#   puts "Enter another name (or 'quit')."
+#   break if input.downcase == "quit"
+#   end
+# end
