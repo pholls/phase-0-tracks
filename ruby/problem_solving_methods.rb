@@ -14,8 +14,10 @@ def search_array(array, number)
   b
 end
 
-# Driver Code
-array = [42, 89, 23, 1]
+# # Driver Code
+# array = [42, 89, 23, 1]
+
+p search_array(array, 89)
 p search_array(array, 9)
 
 # define a method "fib" that takes an integer as an argument
@@ -42,3 +44,28 @@ p fib(1)
 p fib(100).last == 218922995834555169026
 p fib(0)
 
+# declare an array of unsorted integers
+# define a method to sort the integers from smallest to largest
+# iterate over the array
+  # store the value at the current position in a temporary variable
+  # set j = current position in array - 1
+  # loop over each position until we find one that has a value greater than our current one
+  # swap the values
+  # repeat until j = -1
+  # put temporary value back into our swapped position
+
+def insertion_sort(array)
+  for i in 1..array.length - 1
+    temporary = array[i]
+    j = i - 1
+    while j >= 0 && array[j] > temporary
+      array[j + 1] = array[j]
+      j -= 1
+    end
+    array[j + 1] = temporary
+  end
+  array
+end
+
+array = [42, 89, 23, 1]
+p insertion_sort(array)
