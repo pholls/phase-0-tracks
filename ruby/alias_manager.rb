@@ -59,7 +59,7 @@ end
 all_aliases = Hash.new
 
 puts "Welcome to the ALIAS GENERATOR 3000(R)
-Enter your first and last name to receive an Official Secret Agent alias (C).
+Enter your first and last name to receive an Official Secret Agent Alias (C).
 (Type 'quit' when finished.)"
 user_name = gets.chomp
 
@@ -71,7 +71,8 @@ loop do
     user_name = gets.chomp
   else
     p split_name(user_name)
-    puts "Enter another name."
+    all_aliases[user_name] = split_name(user_name)
+    puts "Enter another name (or 'quit')."
     user_name = gets.chomp
   end
 end
