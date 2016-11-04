@@ -50,13 +50,13 @@ def change_letters(name)
   new_name
 end
 
-# I used .first and .last instead [0] and [1] to allow for inputs of three or more names:
-# The program still only returns the first and last name as the alias.
 def split_name(string)
-  first_name = change_letters(string.split(' ').last.downcase)
-  last_name = change_letters(string.split(' ').first.downcase)
+  first_name = change_letters(string.split(' ')[1].downcase)
+  last_name = change_letters(string.split(' ')[0].downcase)
   full_alias = first_name.capitalize + " " + last_name.capitalize
 end
+
+all_aliases = Hash.new
 
 puts "Welcome to the ALIAS GENERATOR 3000(R)
 Enter your first and last name to receive an Official Secret Agent alias (C).
@@ -75,3 +75,5 @@ loop do
     user_name = gets.chomp
   end
 end
+
+all_aliases.each { |key, value| puts "#{value} is really #{key}"}
