@@ -53,7 +53,7 @@ end
 def split_name(string)
   first_name = change_letters(string.split(' ')[1].downcase)
   last_name = change_letters(string.split(' ')[0].downcase)
-  full_alias = first_name.capitalize + " " + last_name.capitalize
+  first_name.capitalize + " " + last_name.capitalize
 end
 
 all_aliases = Hash.new
@@ -67,7 +67,7 @@ loop do
   if user_name.downcase == "quit"
     break
   elsif user_name == ""
-    puts "Invalid input. Try again"
+    puts "Invalid input. Try again."
     user_name = gets.chomp
   else
     p split_name(user_name)
