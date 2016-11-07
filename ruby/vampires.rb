@@ -13,12 +13,8 @@ until employee_number.to_i == number do
   puts "What year were you born?"
   birth_year = gets.chomp
   
-  if ((Time.now.year - birth_year.to_i) == age.to_i) || ((Time.now.year - birth_year.to_i) == (age.to_i + 1))
-    valid_age = true
-  else
-    valid_age = false
-  end
-  
+  valid_age = ((Time.now.year - birth_year.to_i) == age.to_i) || ((Time.now.year - birth_year.to_i) == (age.to_i + 1))
+
   puts "Our company cafeteria serves garlic bread. Should we order some for you? (y/n)"
   garlic_bread = gets.chomp
   
