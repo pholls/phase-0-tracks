@@ -13,29 +13,17 @@ until employee_number.to_i == number do
   puts "What year were you born?"
   birth_year = gets.chomp
   
-  if ((2016 - birth_year.to_i) == age.to_i) || ((2016 - birth_year.to_i) == (age.to_i + 1))
-    valid_age = true
-  else
-    valid_age = false
-  end
-  
+  valid_age = ((Time.now.year - birth_year.to_i) == age.to_i) || ((Time.now.year - birth_year.to_i) == (age.to_i + 1))
+
   puts "Our company cafeteria serves garlic bread. Should we order some for you? (y/n)"
   garlic_bread = gets.chomp
   
-  if garlic_bread.downcase == "yes" || garlic_bread.downcase == "y"
-    garlic_bread = true
-  else
-    garlic_bread = false
-  end
+  garlic_bread = garlic_bread.downcase == "yes" || garlic_bread.downcase == "y"
   
   puts "Would you like to enroll in the company’s health insurance? (y/n)"
   insurance = gets.chomp
   
-  if insurance.downcase == "yes" || insurance.downcase == "y"
-    insurance = true
-  else
-    insurance = false
-  end
+  insurance = insurance.downcase == "yes" || insurance.downcase == "y"
 
   allergy = ''
   until allergy.downcase == 'done'
