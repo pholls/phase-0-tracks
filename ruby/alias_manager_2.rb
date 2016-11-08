@@ -34,15 +34,26 @@ def rec_switching(name, vowels, consonants)
   new_name.capitalize
 end
 
+def build_hash(empty_hash = {}, fake_name, real_name)
+  empty_hash[real_name] = fake_name.capitalize
+end
+# put the results into a new hash as the alias
+# put the original input into the hash as the real name
+
 p switching("steve")
 p switching("pat")
 p switching("zaub")
 
 # define a method that breaks the user input into two separate strings
+def user_input(alias_array = [], string)
+  alias_array = string.downcase.split(' ').reverse
+  user_alias = switching(alias_array[0]) + ' ' + switching(alias_array[1])
+  p user_alias
+end
+
+user_input("Steve Rogers")
 # reverse their position
 # ignore case
 # call switching() on the input
-# put the results into a new hash as the alias
-# put the original input into the hash as the real name
 
 # USER INTERFACE
