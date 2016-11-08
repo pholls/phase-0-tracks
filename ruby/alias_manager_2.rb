@@ -60,6 +60,6 @@ while true
   names_hash[input.capitalize] = split_and_switch(input)
 end
 
-names_hash.each do |key, value|
-  puts "#{key} is also known as #{value}"
+names_hash.each do |user_name, user_alias|
+  puts "#{user_name} is also known as #{user_alias}"
 end
