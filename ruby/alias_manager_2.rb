@@ -45,13 +45,13 @@ p switching("pat")
 p switching("zaub")
 
 # define a method that breaks the user input into two separate strings
-def user_input(alias_array = [], string)
+def split_and_switch(alias_array = [], string)
   alias_array = string.downcase.split(' ').reverse
   user_alias = switching(alias_array[0]) + ' ' + switching(alias_array[1])
   p user_alias
 end
 
-user_input("Steve Rogers")
+split_and_switch("Steve Rogers")
 # reverse their position
 # ignore case
 # call switching() on the input
