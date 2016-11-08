@@ -16,6 +16,7 @@ end
 def rec_switching(name, vowels, consonants)
   new_name = ""
   name.each_char do |letter|
+    #this is repetitive code: better way to do this? loops?
     if vowels.include?(letter)
       if vowels[vowels.index(letter) + 1] == nil
         new_name << vowels[0]
