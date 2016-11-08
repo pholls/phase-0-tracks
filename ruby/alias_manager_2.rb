@@ -18,13 +18,13 @@ def rec_switching(name, vowels, consonants)
   name.each_char do |letter|
     if vowels.include?(letter)
       if vowels[vowels.index(letter) + 1] == nil
-        vowels[0]
+        new_name << vowels[0]
       else 
         new_name << vowels[vowels.index(letter) + 1]
       end
     elsif consonants.include?(letter)
       if consonants[consonants.index(letter) + 1] == nil
-        consonants[0]
+        new_name << consonants[0]
       else 
         new_name << consonants[consonants.index(letter) + 1]
       end
@@ -35,6 +35,7 @@ end
 
 p switching("steve")
 p switching("pat")
+p switching("zaub")
 
 # define a method that breaks the user input into two separate strings
 # reverse their position
