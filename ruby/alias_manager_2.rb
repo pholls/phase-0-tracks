@@ -45,18 +45,21 @@ end
 
 # USER INTERFACE
 
-my_hash = {}
+names_hash = {}
 while true
   puts "Enter your first and last name to receive your Secret Agent Alias.
-  Or type 'done'."
+  Or type 'done' when finished."
   input = gets.chomp
-  break if input == 'done'
-  my_hash[input] = split_and_switch(input)
-  if input.split(' ').length != 2
-    puts "Invalid input. Try again."
+  if input == 'done'
+    break
+  elsif  input.split(' ').length != 2
+    puts "Invalid input. Try again. (Or type 'done')."
+    input = gets.chomp
+    break if input == 'done'
   end
+  names_hash[input.capitalize] = split_and_switch(input)
 end
 
-my_hash.each do |key, value|
+names_hash.each do |key, value|
   puts "#{key} is also known as #{value}"
 end
