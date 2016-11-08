@@ -34,10 +34,6 @@ def rec_switching(name, vowels, consonants)
   new_name.capitalize
 end
 
-def build_hash(alias_hash = {}, real_name)
-  alias_hash[real_name] = split_and_switch(real_name)
-  p alias_hash
-end
 # put the results into a new hash as the alias
 # put the original input into the hash as the real name
 
@@ -51,10 +47,23 @@ end
 # call switching() on the input
 def split_and_switch(alias_array = [], string)
   alias_array = string.downcase.split(' ').reverse
-  user_alias = switching(alias_array[0]).capitalize + ' ' + switching(alias_array[1]).capitalize
+  user_alias = switching(alias_array[0]) + ' ' + switching(alias_array[1])
   p user_alias
 end
 
 build_hash("Steve Rogers")
 
 # USER INTERFACE
+my_hash = {}
+
+while true
+  puts "Enter your first and last name to receive your Secret Agent Alias.
+  Or type 'done'."
+  input = gets.chomp
+  break if input == 'done'
+  my_hash[input] = split_and_switch(input)
+end
+
+my_hash.each do |key, value|
+  puts "#{key} is also known as #{value}"
+end
