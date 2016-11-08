@@ -17,9 +17,17 @@ def rec_switching(name, vowels, consonants)
   new_name = ""
   name.each_char do |letter|
     if vowels.include?(letter)
-      new_name << vowels[vowels.index(letter) + 1]
+      if vowels[vowels.index(letter) + 1] == nil
+        vowels[0]
+      else 
+        new_name << vowels[vowels.index(letter) + 1]
+      end
     elsif consonants.include?(letter)
-      new_name << consonants[consonants.index(letter) + 1]
+      if consonants[consonants.index(letter) + 1] == nil
+        consonants[0]
+      else 
+        new_name << consonants[consonants.index(letter) + 1]
+      end
     end
   end
   new_name.capitalize
