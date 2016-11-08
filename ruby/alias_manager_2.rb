@@ -16,7 +16,7 @@ end
 def rec_switching(name, vowels, consonants)
   new_name = ""
   name.each_char do |letter|
-    #this is repetitive code: better way to do this? loops?
+    #this is repetitive code: better way to do this?
     if vowels.include?(letter)
       if vowels[vowels.index(letter) + 1] == nil
         new_name << vowels[0]
@@ -34,15 +34,27 @@ def rec_switching(name, vowels, consonants)
   new_name.capitalize
 end
 
-p switching("steve")
-p switching("pat")
-p switching("zaub")
+def build_hash(alias_hash = {}, real_name)
+  alias_hash[real_name] = split_and_switch(real_name)
+  p alias_hash
+end
+# put the results into a new hash as the alias
+# put the original input into the hash as the real name
+
+# p switching("steve")
+# p switching("pat")
+# p switching("zaub")
 
 # define a method that breaks the user input into two separate strings
 # reverse their position
 # ignore case
 # call switching() on the input
-# put the results into a new hash as the alias
-# put the original input into the hash as the real name
+def split_and_switch(alias_array = [], string)
+  alias_array = string.downcase.split(' ').reverse
+  user_alias = switching(alias_array[0]).capitalize + ' ' + switching(alias_array[1]).capitalize
+  p user_alias
+end
+
+build_hash("Steve Rogers")
 
 # USER INTERFACE
