@@ -18,6 +18,22 @@ class Santa
 
 end
 
-saint_nick = Santa.new("male", "white")
-saint_nick.speak
-saint_nick.eat_milk_and_cookies("Oreo")
+santas = []
+example_genders = ["agender", "female", "bigender", "male", "female", "gender fluid", "N/A"]
+example_ethnicities = ["black", "Latino", "white", "Japanese-African", "prefer not to say", "Mystical Creature (unicorn)", "N/A"]
+example_genders.length.times do |i|
+  santas << Santa.new(example_genders[i], example_ethnicities[i])
+end
+
+santas.each do
+  p @gender
+end
+
+kris_kringle = Santa.new("gender nonbinary", "hyphenated-American")
+kris_kringle.speak
+kris_kringle.eat_milk_and_cookies("milano")
+p kris_kringle
+
+saint_nick = Santa.new("gender fluid", "biracial")
+
+
