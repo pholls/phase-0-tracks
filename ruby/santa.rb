@@ -59,4 +59,6 @@ p saint_nick.age
 p saint_nick.ethnicity
 p saint_nick.celebrate_birthday
 p saint_nick.age
+p saint_nick.change_gender=("binary")
+puts "Saint Nick is #{saint_nick.ethnicity} and #{saint_nick.age} years old."
 
