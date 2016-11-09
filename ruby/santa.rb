@@ -21,7 +21,7 @@ class Santa
   end
 
   def get_mad_at(reindeer_name)
-    @reindeer_ranking.delete_at(@reindeer_ranking.index(reindeer_name))
+    @reindeer_ranking.delete(reindeer_name)
     @reindeer_ranking << reindeer_name
   end
 
@@ -30,7 +30,14 @@ class Santa
     @gender = new_gender
   end
 
+  # getter methods
+  def age
+    @age
+  end
 
+  def ethnicity
+    @ethnicity
+  end
 
 end
 
@@ -47,6 +54,9 @@ kris_kringle.eat_milk_and_cookies("milano")
 kris_kringle
 
 saint_nick = Santa.new("gender fluid", "biracial")
-saint_nick.get_mad_at("Rudolph")
-
+p saint_nick.get_mad_at("Rudolph")
+p saint_nick.age
+p saint_nick.ethnicity
+p saint_nick.celebrate_birthday
+p saint_nick.age
 
