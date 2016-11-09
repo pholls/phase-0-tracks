@@ -8,7 +8,7 @@
 def switching(name, vowels = "aeiou", consonants = "bcdfghjklmnpqrstvwxyz")
   new_name = ""
   name.each_char do |letter|
-    #this is repetitive code: better way to do this?
+    #this is repetitive code. is there a better way to do this?
     if vowels.include?(letter)
       if vowels[vowels.index(letter) + 1] == nil
         new_name << vowels[0]
