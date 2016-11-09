@@ -1,22 +1,14 @@
 # BUSINESS LOGIC
-
-# define a method that takes one argument
-  # a string
-  # and it calls the below method with the string, the vowels, and the consonants
-def switching(string)
-  rec_switching(string, "aeiou", "bcdfghjklmnpqrstvwxyz")
-end
-
 # define a method that takes three arguments
   # a name, a string of vowels, and a string of consonants
   # compare each character to the vowels/consonants
     # if the character is a vowel, put the next vowel into alias_string
     # if the character is a consonant, put the next consonant into alias_string
 # return alias_string
-def rec_switching(name, vowels, consonants)
+def switching(name, vowels = "aeiou", consonants = "bcdfghjklmnpqrstvwxyz")
   new_name = ""
   name.each_char do |letter|
-    #this is repetitive code: better way to do this?
+    #this is repetitive code. is there a better way to do this?
     if vowels.include?(letter)
       if vowels[vowels.index(letter) + 1] == nil
         new_name << vowels[0]
@@ -34,10 +26,6 @@ def rec_switching(name, vowels, consonants)
   new_name.capitalize
 end
 
-def build_hash(alias_hash = {}, real_name)
-  alias_hash[real_name] = split_and_switch(real_name)
-  p alias_hash
-end
 # put the results into a new hash as the alias
 # put the original input into the hash as the real name
 
@@ -51,10 +39,27 @@ end
 # call switching() on the input
 def split_and_switch(alias_array = [], string)
   alias_array = string.downcase.split(' ').reverse
-  user_alias = switching(alias_array[0]).capitalize + ' ' + switching(alias_array[1]).capitalize
+  user_alias = switching(alias_array[0]) + ' ' + switching(alias_array[1])
   p user_alias
 end
 
-build_hash("Steve Rogers")
-
 # USER INTERFACE
+
+names_hash = {}
+while true
+  puts "Enter your first and last name to receive your Secret Agent Alias.
+  Or type 'done' when finished."
+  input = gets.chomp
+  if input == 'done'
+    break
+  elsif  input.split(' ').length != 2
+    puts "Invalid input. Try again. (Or type 'done')."
+    input = gets.chomp
+    break if input == 'done'
+  end
+  names_hash[input.capitalize] = split_and_switch(input)
+end
+
+names_hash.each do |user_name, user_alias|
+  puts "#{user_name} is also known as #{user_alias}"
+end
