@@ -11,4 +11,8 @@ describe Game do
     expect(game.is_over).to eq false
   end
 
+  it "converts word to underscores" do
+    expect(game.hide_word("sugar")).to eq "_____"
+  end
+
 end

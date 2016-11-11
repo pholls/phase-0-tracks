@@ -3,17 +3,18 @@
 # -getter methods:
 #   -guess_count
 #   -is_over
+#   -secret_word
 # - setter method:
 #   -guesses_left
 # -initialize method
 #   - set guess_count to zero
 #   - set is_over variable to false
-#     - is_over = true when user guesses the word or runs out of guesses
-#       - number of guesses = length of word
-#     - user has as many guesses as the word is long
 # - method to store a user-inputted word
 #   - replace all letters with underscores
 #   - guesses_left = length of word
+#   - is_over = true when user guesses the word or runs out of guesses
+#       - number of guesses = length of word
+#     - user has as many guesses as the word is long
 # - method to receive user guesses (letters)
 #   - check against previous guesses
 #   - iterate over the string
@@ -42,17 +43,22 @@
 #   - display the hidden word
 #   - accept a guess (method to accept user guesses)
 #   - display word status (method to update word's status)
+#   - loop while secret_word != hidden_word OR guesses_left > 0
 # - when finished: 
-#   - display congrats or taunt message (method to pring message upon end)
+#   - display congrats or taunt message (method to print message upon end)
 
 
 class Game
-  attr_reader :guess_count, :is_over
+  attr_reader :guess_count, :is_over, :secret_word, :hidden_word
   attr_accessor :guesses_left
 
   def initialize
     @guess_count = 0
     @is_over = false
+  end
+
+  def hide_word(string)
+    @hidden_word = string.downcase.tr('a-z', '_')
   end
 
 end
