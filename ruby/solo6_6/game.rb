@@ -1,9 +1,9 @@
 # Pseudocode: 
 # Game Class
-# -reader methods:
+# -getter methods:
 #   -guess_count
 #   -is_over
-# - writer method:
+# - setter method:
 #   -guesses_left
 # -initialize method
 #   - set guess_count to zero
@@ -34,6 +34,7 @@
 #   - print taunt message if they lose
 
 # Driver Code:
+# - new Game instance
 # - instruct user 1 to pick a word
 #   - store this word with "method to store user-inputted word"
 #   - set guesses_left = length of word
@@ -46,5 +47,12 @@
 
 
 class Game
+  attr_reader :guess_count, :is_over
+  attr_accessor :guesses_left
+
+  def initialize
+    @guess_count = 0
+    @is_over = false
+  end
 
 end
