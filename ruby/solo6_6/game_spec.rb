@@ -15,4 +15,10 @@ describe Game do
     expect(game.hide_word("sugar")).to eq "_____"
   end
 
+  it "checks the secret word for the letter" do
+    game.secret_word = "sugar"
+    game.hide_word("sugar")
+    expect(game.check_guess("s")).to eq "s"
+  end
+
 end

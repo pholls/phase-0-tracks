@@ -49,8 +49,8 @@
 
 
 class Game
-  attr_reader :guess_count, :is_over, :secret_word, :hidden_word
-  attr_accessor :guesses_left
+  attr_reader :guess_count, :is_over, :hidden_word
+  attr_accessor :guesses_left, :secret_word
 
   def initialize
     @guess_count = 0
@@ -58,7 +58,18 @@ class Game
   end
 
   def hide_word(string)
+    @guesses_left = string.length
     @hidden_word = string.downcase.tr('a-z', '_')
+  end
+
+  def check_guess(letter)
+    if @secret_word.include?(letter)
+      @hidden_word[@secret_word.index(letter)]= letter
+    else
+      @guess_count += 1
+      puts "Nope, sorry! Guess again:"
+      @hidden_word
+    end
   end
 
 end
