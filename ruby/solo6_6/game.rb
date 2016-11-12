@@ -42,6 +42,7 @@ class Game
   def initialize
     @guess_count = 0
     @is_over = false
+    @guessed_letters = ""
   end
 
   def hide_word(string)
@@ -50,7 +51,6 @@ class Game
   end
 
   def check_guess(letter)
-    @guessed_letters = ""
     if @secret_word.include?(letter)
       @hidden_word[@secret_word.index(letter)]= letter
       @guessed_letters << letter
@@ -60,12 +60,13 @@ class Game
       @guess_count += 1
       @guesses_left -= 1
       puts "Nope, sorry!"
+      @guessed_letters << letter
     end
     p @hidden_word
   end
 
   def end_game
-    if !@hidden_word.include?('_') || guesses_left == 0
+    if @secret_word == @hidden_word || guesses_left == 0
       @is_over = true
     end
   end
@@ -98,7 +99,7 @@ puts game.hidden_word
 puts "You have #{game.guesses_left} guesses."
 puts "Type a letter to guess:"
 
-until game.is_over || game.guesses_left == 0
+until game.is_over # || game.guesses_left == 0
   guess = gets.chomp.downcase
   while guess == "" || guess == " "
     puts "Guess a letter!"
