@@ -99,7 +99,7 @@ puts game.hidden_word
 puts "You have #{game.guesses_left} guesses."
 puts "Type a letter to guess:"
 
-until game.is_over # || game.guesses_left == 0
+until game.is_over
   guess = gets.chomp.downcase
   while guess == "" || guess == " "
     puts "Guess a letter!"
