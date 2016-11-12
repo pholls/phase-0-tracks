@@ -34,23 +34,10 @@
 #   - when guess_count - guesses_left == 0
 #   - print taunt message if they lose
 
-# Driver Code:
-# - new Game instance
-# - instruct user 1 to pick a word
-#   - store this word with "method to store user-inputted word"
-#   - set guesses_left = length of word
-# - instruct user 2 to play
-#   - display the hidden word
-#   - accept a guess (method to accept user guesses)
-#   - display word status (method to update word's status)
-#   - loop while secret_word != hidden_word OR guesses_left > 0
-# - when finished: 
-#   - display congrats or taunt message (method to print message upon end)
-
 
 class Game
-  attr_reader :guess_count, :is_over, :hidden_word
-  attr_accessor :guesses_left, :secret_word
+  attr_reader :guess_count, :hidden_word, :guessed_letters
+  attr_accessor :guesses_left, :secret_word, :is_over
 
   def initialize
     @guess_count = 0
@@ -63,13 +50,68 @@ class Game
   end
 
   def check_guess(letter)
+    @guessed_letters = ""
     if @secret_word.include?(letter)
       @hidden_word[@secret_word.index(letter)]= letter
+      @guessed_letters << letter
+    elsif @guessed_letters.include?(letter)
+      puts "Guess a different letter."
     else
       @guess_count += 1
-      puts "Nope, sorry! Guess again:"
-      @hidden_word
+      @guesses_left -= 1
+      puts "Nope, sorry!"
+    end
+    p @hidden_word
+  end
+
+  def end_game
+    if !@hidden_word.include?('_') || guesses_left == 0
+      @is_over = true
     end
   end
 
+end
+
+#Driver Code
+# - new Game instance
+# - instruct user 1 to pick a word
+#   - store this word with "method to store user-inputted word"
+#   - set guesses_left = length of word
+# - instruct user 2 to play
+#   - display the hidden word
+#   - accept a guess (method to accept user guesses)
+#   - display word status (method to update word's status)
+#   - loop while secret_word != hidden_word OR guesses_left > 0
+# - when finished: 
+#   - display congrats or taunt message (method to print message upon end)
+
+puts "Welcome to the Word Game!"
+game = Game.new
+
+puts "User 1: Please input a word."
+game.secret_word = gets.chomp
+game.hide_word(game.secret_word)
+25.times { puts }
+
+puts "User 2: Get ready to guess!"
+puts game.hidden_word
+puts "You have #{game.guesses_left} guesses."
+puts "Type a letter to guess:"
+
+until game.is_over || game.guesses_left == 0
+  guess = gets.chomp.downcase
+  while guess == "" || guess == " "
+    puts "Guess a letter!"
+    guess = gets.chomp.downcase
+  end
+  game.check_guess(guess)
+  game.hidden_word
+  puts "You have #{game.guesses_left} guesses remaining."
+  game.end_game
+end
+
+if game.is_over && game.guesses_left > 0
+  puts "Congratulations! You won with #{game.guesses_left} guesses left!"
+else
+  puts "HA! Loser! The answer was '#{game.secret_word}'!"
 end

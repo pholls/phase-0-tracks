@@ -20,5 +20,4 @@ describe Game do
     game.hide_word("sugar")
     expect(game.check_guess("s")).to eq "s"
   end
-
 end
