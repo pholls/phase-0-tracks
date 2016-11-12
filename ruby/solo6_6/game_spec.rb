@@ -21,3 +21,5 @@ describe Game do
     expect(game.check_guess("s")).to eq "s"
   end
 end
+
+# How do I test with Driver Code/User interface?
