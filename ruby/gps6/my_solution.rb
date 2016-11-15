@@ -94,3 +94,27 @@ end
 
 #=======================================================================
 # Reflection Section
+
+# Hash keys are declared using a string and a hash rocket or with symbols.
+# The String is used because it's user-friendly, and it will print to the console when the program runs.
+# It is easier for a user to use and understand.
+# The symbols are for internal use, for the programmer, and as such don't need to be Strings.
+
+# require_relative allows you to easily load a file that is relative to the 
+# file containing the statement. It's an easy way to declare a file using its relative path.
+# The "relative" means it is relative to the directory of the file in which it is declared. 
+
+# You can iterate through a hash with .each_key, which iterates over the hash
+# and calls the block once for each key, passing the key as the parameter.
+# Also valid are:
+# .each {|key, value| block}
+# .each_pair {|key, value| block}
+# .each_value {|key, value| block}
+
+# The variables seemed repetitive, and unnecessary, because they are 
+# instance variables that every method inside the Class has access to,
+# so they didn't need to be passed into the method calls.
+
+# This challenge gave me a better understanding of classes, instance variables, 
+# and instance methods.
+# It introduced me to private methods and constants.
