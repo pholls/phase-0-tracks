@@ -13,4 +13,10 @@ function reverse(string) {
   return newString;
 }
 
-console.log(reverse("hello"));
+var olleh = reverse("hello");
+var hturt = reverse("truth");
+
+if (1 == 1) {
+  console.log(olleh);
+  console.log(hturt);
+}
