@@ -29,10 +29,13 @@ function Car (make, model, year) {
 }
 
 var someCar = new Car("Jeep", "Cherokee", 1990);
-console.log(someCar);
+console.log(someCar.make + " " + someCar.model + " goes beep beep!");
 someCar.horn();
 
 var anotherCar = new Car("Toyota", "Tundra", 2015);
 var andAnother = new Car("Honda", "Civic", 2000);
-console.log(anotherCar);
-console.log(andAnother);
+console.log(anotherCar.make + " " + anotherCar.model + " can honk:");
+anotherCar.horn();
+// console.log(andAnother);
+console.log(andAnother.make + " " + andAnother.model + " can honk too:");
+andAnother.horn();
