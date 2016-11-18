@@ -1,14 +1,3 @@
-// function that takes array of strings and returns the longest one
-// loop over the array
-// var longestWord = ''
-// if index === 0, var previousLength = 0
-// otherwise, previousLength = currentLength
-// call .length on current index
-// update currentLength
-// if currentLength > previousLength, update longestWord to the current String
-// otherwise, skip that step
-// return longestWord
-
 // take an array of strings
 // var currentLength = 0
 // var longestIndex = 0
@@ -22,20 +11,15 @@
 // return array[longestIndex]
 
 function sortArray(array) {
-  var longestWord = '';
-  var previousLength = 0;
   var currentLength = 0;
+  var longestIndex = 0;
   for (var i = 0; i <= array.length - 1; i++) {
-    if (i !== 0) {
-      previousLength = currentLength;
+    if (currentLength < array[i].length) {
+      currentLength = array[i].length;
+      longestIndex = i
     }
-    currentLength = array.length;
-    if (currentLength > previousLength) {
-      longestWord = array[i];
-    }
-    // console.log(array[i]);
   }
-  return longestWord;
+  return array[longestIndex];
 }
 
 var testArray = ["one", "to", "three"];
