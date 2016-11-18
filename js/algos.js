@@ -16,7 +16,7 @@ function sortArray(array) {
   for (var i = 0; i <= array.length - 1; i++) {
     if (currentLength < array[i].length) {
       currentLength = array[i].length;
-      longestIndex = i
+      longestIndex = i;
     }
   }
   return console.log(array[longestIndex]);
