@@ -24,3 +24,6 @@ function sortArray(array) {
 
 var testArray = ["one", "to", "three"];
 sortArray(testArray);
+
+var anotherArray = ["long phrase", "longest phrase", "longer phrase"];
+sortArray(anotherArray);
