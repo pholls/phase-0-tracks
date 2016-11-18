@@ -19,8 +19,8 @@ function sortArray(array) {
       longestIndex = i
     }
   }
-  return array[longestIndex];
+  return console.log(array[longestIndex]);
 }
 
 var testArray = ["one", "to", "three"];
-console.log(sortArray(testArray));
+sortArray(testArray);
