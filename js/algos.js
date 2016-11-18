@@ -10,7 +10,7 @@
   // longestIndex = i
 // return array[longestIndex]
 
-function sortArray(array) {
+function longestChecker(array) {
   var currentLength = 0;
   var longestIndex = 0;
   for (var i = 0; i <= array.length - 1; i++) {
@@ -23,7 +23,7 @@ function sortArray(array) {
 }
 
 var testArray = ["one", "to", "three"];
-sortArray(testArray);
+longestChecker(testArray);
 
 var anotherArray = ["long phrase", "longest phrase", "longer phrase"];
-sortArray(anotherArray);
+longestChecker(anotherArray);
