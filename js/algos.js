@@ -8,3 +8,11 @@
 // if currentLength > previousLength, update longestWord to the current String
 // otherwise, skip that step
 // return longestWord
+
+function sortArray(array) {
+  for (var i = array.length - 1; i >= 0; i--) {
+    console.log(array[i]);
+  }
+}
+var testArray = ["one", "two", "three"];
+sortArray(testArray);
