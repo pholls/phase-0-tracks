@@ -1,3 +1,4 @@
+// Release 0
 // take an array of strings
 // var currentLength = 0
 // var longestIndex = 0
@@ -22,6 +23,7 @@ function longestChecker(array) {
   return console.log(array[longestIndex]);
 }
 
+// Release 1
 // a function that takes two objects, obj1 and obj2
 // loop through the properties of obj1
   // compare each property to obj2's properties
@@ -30,6 +32,12 @@ function longestChecker(array) {
     // if they are equal, function returns true
 // otherwise, function returns false
 
+function shareProps(); {
+
+}
+
+
+// Driver Code
 var testArray = ["one", "to", "three"];
 longestChecker(testArray);
 
