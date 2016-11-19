@@ -24,7 +24,7 @@ function longestChecker(array) {
 
 // a function that takes two objects, obj1 and obj2
 // loop through the properties of obj1
-  // compare the properties to obj2's
+  // compare each property to obj2's properties
   // if there is a match, var match = true
     // if match = true, compare the values of the properties
     // if they are equal, function returns true
