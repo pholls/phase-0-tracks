@@ -34,9 +34,9 @@ function longestChecker(array) {
 
 function shareProps(obj1, obj2) {
   var match = false;
-// when verifying code with JShint, I get this message:
+// when verifying code with JSHint, I get this message:
 // "The body of a for in should be wrapped in an if statement to 
-// filter unwanted properties from the prototype.""
+// filter unwanted properties from the prototype."
   for (var prop1 in obj1) {
     for (var prop2 in obj2) {
       if (prop1 === prop2) {
@@ -49,14 +49,30 @@ function shareProps(obj1, obj2) {
   return console.log(match);
 }
 
+// Release 2
+// function will take one argument: an integer (call it n)
+// initialize with an empty array
+  // array = []
+// create an array such that array.length = n
+// populate the array with strings of random letters
+  // "abcdefghijklmnopqrstuvwxyz" at a random index
+  // each string is between 1 and 10 letters (randomly generated)
+  // do this n number of times
+// return the array
+
+function randomizeArray(n) {
+  // body...
+}
 
 // Driver Code
+// release 0
 var testArray = ["one", "to", "three"];
 longestChecker(testArray);
 
 var anotherArray = ["long phrase", "longest phrase", "longer phrase"];
 longestChecker(anotherArray);
 
+// release 1
 var someObject = {name: "Jeff", age: 55, date: "today"};
 var otherObject = {brand: "Jeep", age: 54};
 console.log("Test case 1: Should be false");
@@ -66,3 +82,4 @@ var thirdObject = {name: "Steve", age: 100, date: "today"};
 console.log("Test case 2: should be true");
 shareProps(someObject, thirdObject);
 
+// release 2
