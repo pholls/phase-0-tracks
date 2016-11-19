@@ -32,8 +32,18 @@ function longestChecker(array) {
     // if they are equal, function returns true
 // otherwise, function returns false
 
-function shareProps(); {
-
+function shareProps(obj1, obj2) {
+  var match = false;
+  for (var prop1 in obj1) {
+    for (var prop2 in obj2) {
+      if (prop1 === prop2) {
+        if (obj1[prop1] === obj2[prop2]) {
+          match = true;
+        }
+      }
+    }
+  }
+  return console.log(match);
 }
 
 
@@ -43,3 +53,7 @@ longestChecker(testArray);
 
 var anotherArray = ["long phrase", "longest phrase", "longer phrase"];
 longestChecker(anotherArray);
+
+var someObject = {name: "Jeff", age: 55, date: "today"};
+var otherObject = {brand: "Jeep", age: 54};
+shareProps(someObject, otherObject);
