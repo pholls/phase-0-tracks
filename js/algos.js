@@ -1,4 +1,4 @@
-// Release 0
+// Release 0 Pseudocode
 // take an array of strings
 // var currentLength = 0
 // var longestIndex = 0
@@ -23,7 +23,7 @@ function longestChecker(array) {
   return console.log(array[longestIndex]);
 }
 
-// Release 1
+// Release 1 Pseudocode
 // a function that takes two objects, obj1 and obj2
 // loop through the properties of obj1
   // compare each property to obj2's properties
@@ -37,6 +37,7 @@ function shareProps(obj1, obj2) {
 // when verifying code with JSHint, I get this message:
 // "The body of a for in should be wrapped in an if statement to 
 // filter unwanted properties from the prototype."
+// I don't fully understand the prototype thing.
   for (var prop1 in obj1) {
     for (var prop2 in obj2) {
       if (prop1 === prop2) {
@@ -49,7 +50,7 @@ function shareProps(obj1, obj2) {
   return console.log(match);
 }
 
-// Release 2
+// Release 2 Pseudocode
 // function will take one argument: an integer (call it n)
 // initialize with an empty array
   // array = []
@@ -61,7 +62,11 @@ function shareProps(obj1, obj2) {
 // return the array
 
 function randomizeArray(n) {
-  // body...
+  array = [];
+  for (var i = 0; i < n; i++) {
+    array.push("word");
+  }
+  return console.log(array);
 }
 
 // Driver Code
@@ -83,3 +88,4 @@ console.log("Test case 2: should be true");
 shareProps(someObject, thirdObject);
 
 // release 2
+randomizeArray(3);
