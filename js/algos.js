@@ -61,10 +61,23 @@ function shareProps(obj1, obj2) {
   // do this n number of times
 // return the array
 
+function randomNumber(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
 function randomizeArray(n) {
-  array = [];
+  var array = [];
+  var alphabet = "abcdefghijklmnopqrstuvwxyz";
   for (var i = 0; i < n; i++) {
-    array.push("word");
+    var wordLength = randomNumber(1, 11);
+    for (var j = 0; j <= wordLength; j++) { 
+      var randomIndex = randomNumber(0, 26);
+      var string = "";
+      string += alphabet[randomIndex];
+    }
+    array.push(string);
   }
   return console.log(array);
 }
