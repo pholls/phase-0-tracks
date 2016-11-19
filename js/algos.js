@@ -72,9 +72,9 @@ function randomizeArray(n) {
   var alphabet = "abcdefghijklmnopqrstuvwxyz";
   for (var i = 0; i < n; i++) {
     var wordLength = randomNumber(1, 11);
+    var string = "";
     for (var j = 0; j <= wordLength; j++) { 
       var randomIndex = randomNumber(0, 26);
-      var string = "";
       string += alphabet[randomIndex];
     }
     array.push(string);
