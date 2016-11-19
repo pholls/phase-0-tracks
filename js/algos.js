@@ -34,6 +34,9 @@ function longestChecker(array) {
 
 function shareProps(obj1, obj2) {
   var match = false;
+// when verifying code with JShint, I get this message:
+// "The body of a for in should be wrapped in an if statement to 
+// filter unwanted properties from the prototype.""
   for (var prop1 in obj1) {
     for (var prop2 in obj2) {
       if (prop1 === prop2) {
@@ -56,4 +59,10 @@ longestChecker(anotherArray);
 
 var someObject = {name: "Jeff", age: 55, date: "today"};
 var otherObject = {brand: "Jeep", age: 54};
+console.log("Test case 1: Should be false");
 shareProps(someObject, otherObject);
+
+var thirdObject = {name: "Steve", age: 100, date: "today"};
+console.log("Test case 2: should be true");
+shareProps(someObject, thirdObject);
+
