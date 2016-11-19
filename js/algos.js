@@ -22,6 +22,14 @@ function longestChecker(array) {
   return console.log(array[longestIndex]);
 }
 
+// a function that takes two objects, obj1 and obj2
+// loop through the properties of obj1
+  // compare the properties to obj2's
+  // if there is a match, var match = true
+    // if match = true, compare the values of the properties
+    // if they are equal, function returns true
+// otherwise, function returns false
+
 var testArray = ["one", "to", "three"];
 longestChecker(testArray);
 
