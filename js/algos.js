@@ -20,7 +20,7 @@ function longestChecker(array) {
       longestIndex = i;
     }
   }
-  return console.log(array[longestIndex]);
+  return array[longestIndex];
 }
 
 // Release 1 Pseudocode
@@ -47,7 +47,7 @@ function shareProps(obj1, obj2) {
       }
     }
   }
-  return console.log(match);
+  return match;
 }
 
 // Release 2 Pseudocode
@@ -79,26 +79,38 @@ function randomizeArray(n) {
     }
     array.push(string);
   }
-  return console.log(array);
+  return array;
 }
 
 // Driver Code
 // release 0
 var testArray = ["one", "to", "three"];
-longestChecker(testArray);
+console.log(longestChecker(testArray));
 
 var anotherArray = ["long phrase", "longest phrase", "longer phrase"];
-longestChecker(anotherArray);
+console.log(longestChecker(anotherArray));
 
 // release 1
 var someObject = {name: "Jeff", age: 55, date: "today"};
 var otherObject = {brand: "Jeep", age: 54};
 console.log("Test case 1: Should be false");
-shareProps(someObject, otherObject);
+console.log(shareProps(someObject, otherObject));
 
 var thirdObject = {name: "Steve", age: 100, date: "today"};
 console.log("Test case 2: should be true");
-shareProps(someObject, thirdObject);
+console.log(shareProps(someObject, thirdObject));
 
 // release 2
 randomizeArray(3);
+
+function Driver() {
+  for (var i = 0; i < 10; i++) {
+    newArray = randomizeArray(randomNumber(1,10));
+    console.log(newArray);
+    var longestWord = longestChecker(newArray);
+    console.log(longestWord);
+    return longestWord;
+  }
+}
+
+Driver();
