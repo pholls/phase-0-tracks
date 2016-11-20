@@ -84,13 +84,17 @@ function randomizeArray(n) {
 
 // Driver Code
 // release 0
-var testArray = ["one", "to", "three"];
+console.log('Release 0 tests:');
+
+var testArray = ["one", "four", "three"];
 console.log(longestChecker(testArray));
 
 var anotherArray = ["long phrase", "longest phrase", "longer phrase"];
 console.log(longestChecker(anotherArray));
 
 // release 1
+console.log('Release 1 tests:');
+
 var someObject = {name: "Jeff", age: 55, date: "today"};
 var otherObject = {brand: "Jeep", age: 54};
 console.log("Test case 1: Should be false");
@@ -101,16 +105,12 @@ console.log("Test case 2: should be true");
 console.log(shareProps(someObject, thirdObject));
 
 // release 2
-randomizeArray(3);
+console.log('Release 2 tests:');
 
-function Driver() {
-  for (var i = 0; i < 10; i++) {
-    newArray = randomizeArray(randomNumber(1,10));
-    console.log(newArray);
-    var longestWord = longestChecker(newArray);
-    console.log(longestWord);
-    return longestWord;
-  }
+console.log(randomizeArray(3));
+
+for (var i = 0; i < 10; i++) {
+  var newArray = randomizeArray(randomNumber(1,10));
+  var longestWord = longestChecker(newArray);
+  console.log("The longest word is: " + longestWord);
 }
-
-Driver();
