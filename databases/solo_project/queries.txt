@@ -1,0 +1,41 @@
+1. Display the information in one table (either table is fine).
+
+sqlite> SELECT * FROM employees;
+
+1|Billy Bradshaw|19940912|1
+2|James Q. Broni|19920314|2
+3|Dan Nomite|19860419|3
+4|Roger Dodger Rockefeller|19560514|1
+5|Doc Howard|19800612|2
+6|Ronald Christianson|19760707|3
+
+2. Update an item that meets some condition (you can choose a condition that makes sense).
+
+sqlite> UPDATE restaurants SET name='Dunkin Donuts' WHERE id=3;
+
+3. Display the information in both tables using one query.
+
+sqlite> SELECT * FROM employees, restaurants WHERE employees.workplace_id = restaurants.id;
+
+1|Billy Bradshaw|19940912|1|1|Shenanigans|Chicago
+2|James Q. Broni|19920314|2|2|TGI Fridays|NYC
+3|Dan Nomite|19860419|3|3|Dunkin Donuts|San Diego
+4|Roger Dodger Rockefeller|19560514|1|1|Shenanigans|Chicago
+5|Doc Howard|19800612|2|2|TGI Fridays|NYC
+6|Ronald Christianson|19760707|3|3|Dunkin Donuts|San Diego
+
+4. Display a narrower selection of columns (fewer columns than all of them, in other words) from both tables using one query.
+
+sqlite> SELECT employees.name, restaurants.name FROM employees, restaurants WHERE employees.workplace_id = restaurants.id;
+
+Billy Bradshaw|Shenanigans
+James Q. Broni|TGI Fridays
+Dan Nomite|Dunkin Donuts
+Roger Dodger Rockefeller|Shenanigans
+Doc Howard|TGI Fridays
+Ronald Christianson|Dunkin Donuts
+
+5. Delete an item that meets some condition (you can choose a condition that makes sense).
+
+sqlite> DELETE FROM employees WHERE name = 'Ronald Christianson';
+
