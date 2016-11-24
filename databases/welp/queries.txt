@@ -1,0 +1,25 @@
+sqlite> SELECT * FROM reviews JOIN businesses ON businesses.id = reviews.business_id JOIN users ON users.id = reviews.user_id;
+id  sta  comment                         bus  use  id   name                  id   first_name       last_name
+--  ---  ------------------------------  ---  ---  ---  --------------------  ---  ---------------  ---------------
+1   4    Good customer service           1    1    1    Lotus Yoga            1    Bradford         Pitt
+2   3    Mediocre service                2    2    2    Plumbing by Janet     2    Mandy            Kaling
+3   5    Amazing service!                3    3    3    Sushi World           3    Angela           Jolie
+4   2    Slightly dissapointed           1    2    1    Lotus Yoga            2    Mandy            Kaling
+5   1    Worst service imaginable        3    2    3    Sushi World           2    Mandy            Kaling
+
+sqlite> SELECT reviews.id, businesses.name, reviews.stars, reviews.comment, users.last_name FROM reviews JOIN
+   ...> businesses ON businesses.id = reviews.business_id JOIN users ON users.id = reviews.user_id;
+id   name                  stars  comment                         last_name
+---  --------------------  -----  ------------------------------  ----------
+1    Lotus Yoga            4      Good customer service           Pitt
+2    Plumbing by Janet     3      Mediocre service                Kaling
+3    Sushi World           5      Amazing service!                Jolie
+4    Lotus Yoga            2      Slightly dissapointed           Kaling
+5    Sushi World           1      Worst service imaginable        Kaling
+
+sqlite> SELECT * FROM reviews JOIN businesses ON businesses.id = reviews.business_id JOIN users ON users.id = reviews.user_id WHERE businesses.name = "Lotus Yoga";
+id   sta  comment               bus  use  id   name        id   first_name       last_name
+---  ---  --------------------  ---  ---  ---  ----------  ---  ---------------  ---------------
+1    4    Good customer service  1    1    1    Lotus Yoga  1    Bradford         Pitt
+4    2    Slightly dissapointed  1    2    1    Lotus Yoga  2    Mandy            Kaling
+sqlite>
