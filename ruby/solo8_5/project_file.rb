@@ -12,12 +12,12 @@ db.results_as_hash = true
 
 # Create (if not exist) tables:
 # Doctors
-# ID (primary key), name, specialization
+# ID (primary key), name, specialty
 create_doctors_cmd = <<-SQL
   CREATE TABLE IF NOT EXISTS doctors(
   id INTEGER PRIMARY KEY,
   name VARCHAR(255),
-  specialization VARCHAR(255)
+  specialty VARCHAR(255)
   )
 SQL
 # Patients
@@ -49,14 +49,37 @@ db.execute(create_patients_cmd)
 # Change a patient's upcoming appointment
 # Update patient's insurance status
 # Add/remove doctors
-def add_doctor(db, name, specialization)
-  db.execute("INSERT INTO doctors (name, specialization) VALUES (?, ?)", [name, specialization])
+def add_doctor(db, name, specialty)
+  db.execute("INSERT INTO doctors (name, specialty) VALUES (?, ?)", [name, specialty])
 end
 
-def delete_doctor(db, name)
-  db.execute("DELETE FROM doctors WHERE name = ?", [name])
+def delete_doctor(db, name_or_id)
+  if name_or_id.integer?
+    db.execute("DELETE FROM doctors WHERE id = ?", [name_or_id])
+  else
+    db.execute("DELETE FROM doctors WHERE name = ?", [name_or_id])
+  end
 end
-# Change specialization by doctor's name or id
+# Change specialty by doctor's name or id
+def change_spec(db, name_or_id, new_spec)
+  if name_or_id.integer?
+    db.execute("UPDATE doctors SET specialty = ? WHERE id = ?", [new_spec, name_or_id])
+  else
+    db.execute("UPDATE doctors SET specialty = ? WHERE name = ?", [new_spec, name_or_id])
+  end
+end
+
+# Driver Code
+# add_doctor(db, Faker::Name.name, "Toxicology")
+# docs = db.execute("SELECT * FROM doctors")
+# change_spec(db, 1, "Phrenology")
+# docs.each do |doctor|
+#   puts "Dr. #{doctor['name']}'s specialty is #{doctor['specialty']}"
+# end
+# delete_doctor(db, 1)
+# docs.each do |doctor|
+#   puts "Dr. #{doctor['name']}'s specialty is #{doctor['specialty']}"
+# end
 
 # USER INTERFACE
 # Patient or doctor?
