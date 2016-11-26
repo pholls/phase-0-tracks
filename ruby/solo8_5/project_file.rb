@@ -89,10 +89,21 @@ def view_patient_doctor(db, name_or_id)
   doctor_name = doctor_name[0]["name"]
 end
 # Assign a patient's doctor
-def update_doctor(db, patient_name_or_id, doctor_name_or_id)
-
+def update_doctor(db, patient_name_or_id, doctor_id)
+  if patient_name_or_id.to_i >= 1
+    db.execute("UPDATE patients SET doctor_id=? WHERE id=?", [doctor_id, patient_name_or_id])
+  else
+    db.execute("UPDATE patients SET doctor_id=? where name=?",[doctor_id, patient_name_or_id])
+  end
 end
 # Change a patient's upcoming appointment
+def update_appointment(db, patient_name_or_id, date)
+  if patient_name_or_id.to_i >= 1
+    db.execute("UPDATE patients SET next_appt=? WHERE id=?", [date, patient_name_or_id])
+  else
+    db.execute("UPDATE patients SET next_appt=? WHERE name=?", [date, patient_name_or_id])
+  end
+end
 # Update patient's insurance status
 # Add/remove doctors
 def add_doctor(db, name, specialty)
@@ -139,6 +150,10 @@ p last_appointment(db, "Korbin Conroy")
 p next_appointment(db, "Korbin Conroy")
 p view_insurance(db, "Korbin Conroy")
 p view_patient_doctor(db, "Korbin Conroy")
+update_doctor(db, "Korbin Conroy", 3)
+p view_patient_doctor(db, "Korbin Conroy")
+update_appointment(db, "Korbin Conroy", 20170312)
+p next_appointment(db, "Korbin Conroy")
 
 # USER INTERFACE
 # Patient or doctor?
