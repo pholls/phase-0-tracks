@@ -61,6 +61,15 @@ def last_appointment(db, name_or_id)
   end
   date = full_date[0]["last_appt"]
 end
+
+def parse_date(numbers)
+  string = numbers.to_s
+  year = string.slice!(0...4).to_i
+  month = string.slice!(0..1).to_i
+  day = string.to_i
+  parsed_date = Date.new(year,month,day)
+  Date::DAYNAMES[parsed_date.wday] + ", " + Date::MONTHNAMES[month] + " " + day.to_s + ", " + year.to_s
+end
 # View a patient's upcoming appointment
 def next_appointment(db, name_or_id)
   if name_or_id.to_i >= 1
@@ -155,14 +164,15 @@ end
 # end
 # p last_appointment(db, "Korbin Conroy")
 # p next_appointment(db, "Korbin Conroy")
-p view_insurance(db, "Korbin Conroy")
+# p view_insurance("Korbin Conroy")
 # p view_patient_doctor(db, "Korbin Conroy")
 # update_doctor(db, "Korbin Conroy", 3)
 # p view_patient_doctor(db, "Korbin Conroy")
 # update_appointment(db, "Korbin Conroy", 20170312)
 # p next_appointment(db, "Korbin Conroy")
-update_insurance(db, "Korbin Conroy", "false")
-p view_insurance(db, "Korbin Conroy")
+# update_insurance(db, "Korbin Conroy", "false")
+# p view_insurance(db, "Korbin Conroy")
+p parse_date(last_appointment(db, "Korbin Conroy"))
 
 # USER INTERFACE
 # Patient or doctor?
