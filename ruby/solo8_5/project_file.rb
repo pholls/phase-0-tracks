@@ -144,17 +144,26 @@ def change_spec(db, name_or_id, new_spec)
   end
 end
 # View all of a doctor's patients
-
+def view_patient_list(db, doctor_name_or_id)
+  if doctor_name_or_id.to_i >= 1
+    patients = db.execute("SELECT patients.name FROM patients JOIN doctors ON patients.doctor_id=doctors.id WHERE doctors.id=?", [doctor_name_or_id])
+  else
+    patients = db.execute("SELECT patients.name FROM patients JOIN doctors ON patients.doctor_id=doctors.id WHERE doctors.name=?", [doctor_name_or_id])
+  end
+  patients.each do |hash|
+    p hash['name']
+  end
+end
 
 # View all of a doctor's upcoming appointments
 def view_doctor_appointments(db, doctor_name_or_id)
   if doctor_name_or_id.to_i >= 1
-    appointments = db.execute("SELECT patients.next_appt FROM patients JOIN doctors ON patients.doctor_id=doctors.id WHERE doctors.id=?", [doctor_name_or_id])
+    appointments = db.execute("SELECT patients.name, patients.next_appt FROM patients JOIN doctors ON patients.doctor_id=doctors.id WHERE doctors.id=?", [doctor_name_or_id])
   else
-    appointments = db.execute("SELECT patients.next_appt FROM patients JOIN doctors ON patients.doctor_id=doctors.id WHERE doctors.name=?", [doctor_name_or_id])
+    appointments = db.execute("SELECT patients.name, patients.next_appt FROM patients JOIN doctors ON patients.doctor_id=doctors.id WHERE doctors.name=?", [doctor_name_or_id])
   end
   appointments.each do |hash|
-    p parse_date(hash['next_appt'])
+    p parse_date(hash['next_appt']) + " - " + hash['name'] 
   end
 end
 
