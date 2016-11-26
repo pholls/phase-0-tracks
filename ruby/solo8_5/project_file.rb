@@ -143,8 +143,27 @@ def change_spec(db, name_or_id, new_spec)
     db.execute("UPDATE doctors SET specialty = ? WHERE name = ?", [new_spec, name_or_id])
   end
 end
+# View all of a doctor's patients
+
+
+# View all of a doctor's upcoming appointments
+def view_doctor_appointments(db, doctor_name_or_id)
+  if doctor_name_or_id.to_i >= 1
+    appointments = db.execute("SELECT patients.next_appt FROM patients JOIN doctors ON patients.doctor_id=doctors.id WHERE doctors.id=?", [doctor_name_or_id])
+  else
+    appointments = db.execute("SELECT patients.next_appt FROM patients JOIN doctors ON patients.doctor_id=doctors.id WHERE doctors.name=?", [doctor_name_or_id])
+  end
+  appointments.each do |hash|
+    p parse_date(hash['next_appt'])
+  end
+end
 
 # Driver Code
+# 1000.times do
+#   add_doctor(db, Faker::Name.last_name, Faker::Company.buzzword)
+#   add_patient(db, Faker::Name.name, Faker::Boolean.boolean.to_s, Faker::Number.number(8), Faker::Number.number(8), Faker::Number.between(1, 1000))
+# end
+view_doctor_appointments(db, 1)
 # add_doctor(db, Faker::Name.name, "Toxicology")
 # docs = db.execute("SELECT * FROM doctors")
 # change_spec(db, 1, "Phrenology")
@@ -174,7 +193,9 @@ end
 # p next_appointment(db, "Korbin Conroy")
 # update_insurance(db, "Korbin Conroy", "false")
 # p view_insurance(db, "Korbin Conroy")
-p last_appointment(db, "Korbin Conroy")
+# p last_appointment(db, 5)
+
+
 
 # USER INTERFACE
 # Patient or doctor?
