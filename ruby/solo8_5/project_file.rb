@@ -3,8 +3,12 @@
 # Require gems:
 # Sqlite3
 # Faker
+require 'sqlite3'
+require 'faker'
 
-#Create (if not exist) databases:
+# Create database 
+
+# Create (if not exist) tables:
 # Doctors
 # Patients
 
@@ -27,4 +31,15 @@
 # Add/remove doctors
 # Change specialization by doctor's name or id
 
+# USER INTERFACE
+# Loading statement before table creation
+# Ready statement when ready
+# Patient or doctor?
+  # Add, Update, Remove, or View?
+    # Add - go through each row and get data from user, input into table
+    # Update - go through each row, get data, update into table
+    # Remove - by name or id
+      # confirm delete
+      # delete row
+    # View - display the relevant information in a pretty way
 
