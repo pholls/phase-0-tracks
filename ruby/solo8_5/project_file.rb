@@ -40,7 +40,18 @@ db.execute(create_patients_cmd)
 
 # Program abilities:
 # Add a new patient
+def add_patient(db, name, insurance, next_appt, last_appt, doctor_id)
+  db.execute("INSERT INTO patients (name, insurance, next_appt, last_appt, doctor_id) VALUES (?, ?, ?, ?, ?)", [name, insurance, next_appt, last_appt, doctor_id])
+end
 # Delete a patient by name or by ID number
+def delete_patient(db, name_or_id)
+  if name_or_id.integer?
+    db.execute("DELETE FROM patients WHERE id=?", [name_or_id])
+  else
+    db.execute("DELETE FROM patients WHERE name=?", [name_or_id])
+  end
+end
+
 # View a patient's last appointment
 # View a patient's upcoming appointment
 # View patient's insurance status
@@ -79,6 +90,11 @@ end
 # delete_doctor(db, 1)
 # docs.each do |doctor|
 #   puts "Dr. #{doctor['name']}'s specialty is #{doctor['specialty']}"
+# end
+# add_patient(db, Faker::Name.name, "true", 20170502, 20161105, 1)
+# all_patients = db.execute("SELECT * FROM patients")
+# all_patients.each do |patient|
+#   puts "#{patient['name']} has an appointment on #{patient['next_appt']}"
 # end
 
 # USER INTERFACE
