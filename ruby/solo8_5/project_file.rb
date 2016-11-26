@@ -39,7 +39,7 @@ SQL
 db.execute(create_doctors_cmd)
 db.execute(create_patients_cmd)
 
-# Program abilities:
+# Program capabilities:
 # Add a new patient
 def add_patient(db, name, insurance, next_appt, last_appt, doctor_id)
   db.execute("INSERT INTO patients (name, insurance, next_appt, last_appt, doctor_id) VALUES (?, ?, ?, ?, ?)", [name, insurance, next_appt, last_appt, doctor_id])
@@ -60,8 +60,6 @@ def last_appointment(db, name_or_id)
     full_date = db.execute("SELECT last_appt FROM patients WHERE name=?", [name_or_id])
   end
   date = full_date[0]["last_appt"]
-  # month = full_date.slice!(0..1)
-  # day = full_date.slice!(0..1)
 end
 # View a patient's upcoming appointment
 def next_appointment(db, name_or_id)
@@ -73,8 +71,27 @@ def next_appointment(db, name_or_id)
   date = full_date[0]["next_appt"]
 end
 # View patient's insurance status
+def view_insurance(db, name_or_id)
+  if name_or_id.to_i >= 1
+    status = db.execute("SELECT insurance FROM patients WHERE id=?", [name_or_id])
+  else
+    status = db.execute("SELECT insurance FROM patients WHERE name=?", [name_or_id])
+  end
+  status = status[0]["insurance"]
+end
 # View patient's doctor's name
+def view_patient_doctor(db, name_or_id)
+  if name_or_id.to_i >= 1
+    doctor_name = db.execute("SELECT patients.name, doctors.name FROM patients JOIN doctors ON patients.doctor_id=doctors.id WHERE patients.id=?", [name_or_id])
+  else
+    doctor_name = db.execute("SELECT patients.name, doctors.name FROM patients JOIN doctors ON patients.doctor_id=doctors.id WHERE patients.name=?", [name_or_id])
+  end
+  doctor_name = doctor_name[0]["name"]
+end
 # Assign a patient's doctor
+def update_doctor(db, patient_name_or_id, doctor_name_or_id)
+
+end
 # Change a patient's upcoming appointment
 # Update patient's insurance status
 # Add/remove doctors
@@ -119,6 +136,9 @@ end
 #   puts "#{patient['name']} has an appointment on #{patient['next_appt']}"
 # end
 p last_appointment(db, "Korbin Conroy")
+p next_appointment(db, "Korbin Conroy")
+p view_insurance(db, "Korbin Conroy")
+p view_patient_doctor(db, "Korbin Conroy")
 
 # USER INTERFACE
 # Patient or doctor?
