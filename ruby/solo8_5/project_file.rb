@@ -14,19 +14,19 @@ db.results_as_hash = true
 # Doctors
 # ID (primary key), name, specialization
 create_doctors_cmd = <<-SQL
-  CREATE TABLE IF NOT EXISTS doctors (
+  CREATE TABLE IF NOT EXISTS doctors(
   id INTEGER PRIMARY KEY,
-  name VARCHAR (255),
-  specialization VARCHAR (255),
+  name VARCHAR(255),
+  specialization VARCHAR(255)
   )
 SQL
 # Patients
 # Fields: ID (primary key), name, insurance (boolean), 
 # next appointment (date), last appointment (date), doctor (foreign key)
 create_patients_cmd = <<-SQL
-  CREATE TABLE IF NOT EXISTS patients (
+  CREATE TABLE IF NOT EXISTS patients(
   id INTEGER PRIMARY KEY,
-  name VARCHAR (255),
+  name VARCHAR(255),
   insurance BOOLEAN,
   next_appt DATE,
   last_appt DATE,
@@ -45,14 +45,20 @@ db.execute(create_patients_cmd)
 # View a patient's upcoming appointment
 # View patient's insurance status
 # View patient's doctor's name
+# Assign a patient's doctor
 # Change a patient's upcoming appointment
 # Update patient's insurance status
 # Add/remove doctors
+def add_doctor(db, name, specialization)
+  db.execute("INSERT INTO doctors (name, specialization) VALUES (?, ?)", [name, specialization])
+end
+
+def delete_doctor(db, name)
+  db.execute("DELETE FROM doctors WHERE name = ?", [name])
+end
 # Change specialization by doctor's name or id
 
 # USER INTERFACE
-# Loading statement before table creation
-# Ready statement when ready
 # Patient or doctor?
   # Add, Update, Remove, or View?
     # Add - go through each row and get data from user, input into table
