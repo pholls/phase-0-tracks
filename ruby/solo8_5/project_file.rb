@@ -7,17 +7,36 @@ require 'sqlite3'
 require 'faker'
 
 # Create database 
+db = SQLite3::Database.new("doctors_office.db")
+db.results_as_hash = true
 
 # Create (if not exist) tables:
 # Doctors
-# Patients
-
-# Doctor's Database
 # ID (primary key), name, specialization
-
-# Patient Database
+create_doctors_cmd = <<-SQL
+  CREATE TABLE IF NOT EXISTS doctors (
+  id INTEGER PRIMARY KEY,
+  name VARCHAR (255),
+  specialization VARCHAR (255),
+  )
+SQL
+# Patients
 # Fields: ID (primary key), name, insurance (boolean), 
 # next appointment (date), last appointment (date), doctor (foreign key)
+create_patients_cmd = <<-SQL
+  CREATE TABLE IF NOT EXISTS patients (
+  id INTEGER PRIMARY KEY,
+  name VARCHAR (255),
+  insurance BOOLEAN,
+  next_appt DATE,
+  last_appt DATE,
+  doctor_id INT,
+  FOREIGN KEY (doctor_id) REFERENCES doctors(id)
+  )
+SQL
+
+db.execute(create_doctors_cmd)
+db.execute(create_patients_cmd)
 
 # Program abilities:
 # Add a new patient
