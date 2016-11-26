@@ -45,13 +45,12 @@ def add_patient(db, name, insurance, next_appt, last_appt, doctor_id)
 end
 # Delete a patient by name or by ID number
 def delete_patient(db, name_or_id)
-  if name_or_id.integer?
+  if name_or_id.to_i >= 1
     db.execute("DELETE FROM patients WHERE id=?", [name_or_id])
   else
     db.execute("DELETE FROM patients WHERE name=?", [name_or_id])
   end
 end
-
 # View a patient's last appointment
 # View a patient's upcoming appointment
 # View patient's insurance status
@@ -65,7 +64,7 @@ def add_doctor(db, name, specialty)
 end
 
 def delete_doctor(db, name_or_id)
-  if name_or_id.integer?
+  if name_or_id.to_i >= 1
     db.execute("DELETE FROM doctors WHERE id = ?", [name_or_id])
   else
     db.execute("DELETE FROM doctors WHERE name = ?", [name_or_id])
@@ -73,7 +72,7 @@ def delete_doctor(db, name_or_id)
 end
 # Change specialty by doctor's name or id
 def change_spec(db, name_or_id, new_spec)
-  if name_or_id.integer?
+  if name_or_id.to_i >= 1
     db.execute("UPDATE doctors SET specialty = ? WHERE id = ?", [new_spec, name_or_id])
   else
     db.execute("UPDATE doctors SET specialty = ? WHERE name = ?", [new_spec, name_or_id])
@@ -93,6 +92,10 @@ end
 # end
 # add_patient(db, Faker::Name.name, "true", 20170502, 20161105, 1)
 # all_patients = db.execute("SELECT * FROM patients")
+# all_patients.each do |patient|
+#   puts "#{patient['name']} has an appointment on #{patient['next_appt']}"
+# end
+# delete_patient(db, 2)
 # all_patients.each do |patient|
 #   puts "#{patient['name']} has an appointment on #{patient['next_appt']}"
 # end
