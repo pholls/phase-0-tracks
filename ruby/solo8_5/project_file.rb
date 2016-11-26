@@ -105,6 +105,13 @@ def update_appointment(db, patient_name_or_id, date)
   end
 end
 # Update patient's insurance status
+def update_insurance(db, patient_name_or_id, insurance)
+  if patient_name_or_id.to_i >= 1
+    db.execute("UPDATE patients SET insurance=? WHERE id=?", [insurance, patient_name_or_id])
+  else
+    db.execute("UPDATE patients SET insurance=? WHERE name=?", [insurance, patient_name_or_id])
+  end
+end
 # Add/remove doctors
 def add_doctor(db, name, specialty)
   db.execute("INSERT INTO doctors (name, specialty) VALUES (?, ?)", [name, specialty])
@@ -146,14 +153,16 @@ end
 # all_patients.each do |patient|
 #   puts "#{patient['name']} has an appointment on #{patient['next_appt']}"
 # end
-p last_appointment(db, "Korbin Conroy")
-p next_appointment(db, "Korbin Conroy")
+# p last_appointment(db, "Korbin Conroy")
+# p next_appointment(db, "Korbin Conroy")
 p view_insurance(db, "Korbin Conroy")
-p view_patient_doctor(db, "Korbin Conroy")
-update_doctor(db, "Korbin Conroy", 3)
-p view_patient_doctor(db, "Korbin Conroy")
-update_appointment(db, "Korbin Conroy", 20170312)
-p next_appointment(db, "Korbin Conroy")
+# p view_patient_doctor(db, "Korbin Conroy")
+# update_doctor(db, "Korbin Conroy", 3)
+# p view_patient_doctor(db, "Korbin Conroy")
+# update_appointment(db, "Korbin Conroy", 20170312)
+# p next_appointment(db, "Korbin Conroy")
+update_insurance(db, "Korbin Conroy", "false")
+p view_insurance(db, "Korbin Conroy")
 
 # USER INTERFACE
 # Patient or doctor?
