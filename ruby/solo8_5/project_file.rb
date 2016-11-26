@@ -60,6 +60,7 @@ def last_appointment(db, name_or_id)
     full_date = db.execute("SELECT last_appt FROM patients WHERE name=?", [name_or_id])
   end
   date = full_date[0]["last_appt"]
+  parse_date(date)
 end
 
 def parse_date(numbers)
@@ -78,6 +79,7 @@ def next_appointment(db, name_or_id)
     full_date = db.execute("SELECT next_appt FROM patients WHERE name=?", [name_or_id])
   end
   date = full_date[0]["next_appt"]
+  parse_date(date)
 end
 # View patient's insurance status
 def view_insurance(db, name_or_id)
@@ -172,7 +174,7 @@ end
 # p next_appointment(db, "Korbin Conroy")
 # update_insurance(db, "Korbin Conroy", "false")
 # p view_insurance(db, "Korbin Conroy")
-p parse_date(last_appointment(db, "Korbin Conroy"))
+p last_appointment(db, "Korbin Conroy")
 
 # USER INTERFACE
 # Patient or doctor?
