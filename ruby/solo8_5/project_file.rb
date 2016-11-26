@@ -5,6 +5,7 @@
 # Faker
 require 'sqlite3'
 require 'faker'
+require 'date'
 
 # Create database 
 db = SQLite3::Database.new("doctors_office.db")
@@ -52,7 +53,25 @@ def delete_patient(db, name_or_id)
   end
 end
 # View a patient's last appointment
+def last_appointment(db, name_or_id)
+  if name_or_id.to_i >= 1
+    full_date = db.execute("SELECT last_appt FROM patients WHERE id=?", [name_or_id])
+  else
+    full_date = db.execute("SELECT last_appt FROM patients WHERE name=?", [name_or_id])
+  end
+  date = full_date[0]["last_appt"]
+  # month = full_date.slice!(0..1)
+  # day = full_date.slice!(0..1)
+end
 # View a patient's upcoming appointment
+def next_appointment(db, name_or_id)
+  if name_or_id.to_i >= 1
+    full_date = db.execute("SELECT next_appt FROM patients WHERE id=?", [name_or_id])
+  else
+    full_date = db.execute("SELECT next_appt FROM patients WHERE name=?", [name_or_id])
+  end
+  date = full_date[0]["next_appt"]
+end
 # View patient's insurance status
 # View patient's doctor's name
 # Assign a patient's doctor
@@ -99,6 +118,7 @@ end
 # all_patients.each do |patient|
 #   puts "#{patient['name']} has an appointment on #{patient['next_appt']}"
 # end
+p last_appointment(db, "Korbin Conroy")
 
 # USER INTERFACE
 # Patient or doctor?
@@ -109,4 +129,6 @@ end
       # confirm delete
       # delete row
     # View - display the relevant information in a pretty way
+      # View what? 
+        # Next appt, last appt, Doctor, insurance status
 
