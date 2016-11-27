@@ -201,7 +201,7 @@ end
 # view one patient's info
 # ID, name, insurance, appointments, and doctor
 def view_one_patient(db, patient_name_or_id)
-  if patient_name_or_id >= 1
+  if patient_name_or_id.to_i >= 1
     patient_data = db.execute("SELECT patients.name, patients.id, doctors.name, patients.next_appt, patients.last_appt FROM doctors JOIN patients ON patients.doctor_id=doctors.id WHERE patients.id=?", [patient_name_or_id])
   else
     patient_data = db.execute("SELECT patients.name, patients.id, doctors.name, patients.next_appt, patients.last_appt FROM doctors JOIN patients ON patients.doctor_id=doctors.id WHERE patients.name=?", [patient_name_or_id])
@@ -216,8 +216,20 @@ def view_one_patient(db, patient_name_or_id)
 end
 
 # view one doctor's info
-# ID, name, specialty, and patient's names
+# ID, name, specialty
+def view_one_doctor(db, doctor_name_or_id)
+  if doctor_name_or_id.to_i >= 1
+    doctor_info = db.execute("SELECT id, name, specialty FROM doctors WHERE id=?", [doctor_name_or_id])
+  else
+    doctor_info = db.execute("SELECT id, name, specialty FROM doctors WHERE name=?", [doctor_name_or_id])
+  end
+  puts "-------------------------------------"
+  puts "Employee Summary for Dr. " + doctor_info[0]['name'] + ":"
+  puts "Employee ID#: " + doctor_info[0]['id'].to_s
+  puts "Specialty: " + doctor_info[0]['specialty']
+end
 
+view_one_doctor(db, "Murphy")
 # Driver Code
 # def fake_last_date
 #   year = Faker::Number.between(2010, 2016).to_s

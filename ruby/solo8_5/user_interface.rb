@@ -1,5 +1,3 @@
-require 'sqlite3'
-require 'faker'
 require_relative 'project_file.rb'
 
 # USER INTERFACE
