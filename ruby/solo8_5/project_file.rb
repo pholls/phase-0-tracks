@@ -84,11 +84,18 @@ end
 # View patient's insurance status
 def view_insurance(db, name_or_id)
   if name_or_id.to_i >= 1
-    status = db.execute("SELECT insurance FROM patients WHERE id=?", [name_or_id])
+    status = db.execute("SELECT insurance, name FROM patients WHERE id=?", [name_or_id])
   else
-    status = db.execute("SELECT insurance FROM patients WHERE name=?", [name_or_id])
+    status = db.execute("SELECT insurance, name FROM patients WHERE name=?", [name_or_id])
   end
+  name = status[0]["name"]
   status = status[0]["insurance"]
+  case status
+  when 'false'
+    puts "#{name} is uninsured."
+  when 'true'
+    puts "#{name} has insurance and is within their network."
+  end
 end
 # View patient's doctor's name
 def view_patient_doctor(db, name_or_id)
@@ -204,7 +211,9 @@ def view_one_patient(db, patient_name_or_id)
   puts "Primary Physician: Dr. " + patient_data[0]['name']
   puts "Last appointment: " + parse_date(patient_data[0]['last_appt'])
   puts "Next appointment: " + parse_date(patient_data[0]['next_appt'])
+  view_insurance(db, patient_name_or_id)
 end
+# puts view_insurance(db, 1)
 
 # view one doctor's info
 # ID, name, specialty, and patient's names
