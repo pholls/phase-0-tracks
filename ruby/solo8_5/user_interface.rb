@@ -240,9 +240,11 @@ while 1==1
           case verify
 
           when 'y'
+            puts "#{patient_to_add} added."
             break
 
           when 'n'
+            puts "#{patient_to_add} NOT added."
             delete_patient(db, patient_to_add)
             break
 
