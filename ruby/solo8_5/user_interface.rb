@@ -32,11 +32,11 @@ while 1==1
       puts
       puts "What would you like to do? Enter a command:"
       puts
-      puts "Add   ".ljust(10) + "                   (Add a new doctor)".rjust(20)
-      puts "Update".ljust(10) + "(Edit an existing doctor's specialty)".rjust(20)
-      puts "Remove".ljust(10) + "          (Remove an existing doctor)".rjust(20)
-      puts "View  ".ljust(10) + "   (View a doctors' info or patients)".rjust(20)
-      puts "List  ".ljust(10) + "                   (List all doctors)".rjust(20)
+      puts "1. Add   ".ljust(10) + "                   (Add a new doctor)".rjust(20)
+      puts "2. Update".ljust(10) + "(Edit an existing doctor's specialty)".rjust(20)
+      puts "3. Remove".ljust(10) + "          (Remove an existing doctor)".rjust(20)
+      puts "4. View  ".ljust(10) + "   (View a doctors' info or patients)".rjust(20)
+      puts "5. List  ".ljust(10) + "                   (List all doctors)".rjust(20)
       puts
       puts "Or type 'back' to return to main menu."
       input = gets.chomp.downcase
@@ -46,7 +46,7 @@ while 1==1
       when 'back'
         break
   
-      when 'add'
+      when 'add', '1'
         puts
         puts "What is the last name of the new doctor to add?"
         new_name = gets.chomp.capitalize
@@ -106,7 +106,7 @@ while 1==1
 
         end
   
-      when 'update'
+      when 'update', '2'
         puts
         puts "What doctor are you updating? (Enter name or employee ID)"
         doctor_to_edit = gets.chomp
@@ -138,7 +138,7 @@ while 1==1
         puts "Hit enter to continue"
         gets.chomp
   
-      when 'remove'
+      when 'remove', '3'
         puts
         puts "What doctor shall be deleted? (Enter name or employee ID)"
         doctor_to_delete = gets.chomp.capitalize
@@ -189,7 +189,7 @@ while 1==1
           end
         end
   
-      when 'view'
+      when 'view', '4'
         puts
         puts "Which doctor would you like to view? (Enter name or employee ID)"
         doctor_to_view = gets.chomp
@@ -236,7 +236,7 @@ while 1==1
           end
         end
 
-      when 'list'
+      when 'list', '5'
         view_all_doctors(db)
         puts
         puts "Press enter to continue"
@@ -257,11 +257,11 @@ while 1==1
       puts
       puts "What would you like to do? Enter a command:"
       puts
-      puts "Add    ".ljust(10) + "              (Add a new patient)".rjust(20)
-      puts "Update ".ljust(10) + "       (Edit an existing patient)".rjust(20)
-      puts "Remove ".ljust(10) + "     (Remove an existing patient)".rjust(20)
-      puts "View   ".ljust(10) + "(See information about a patient".rjust(20)
-      puts "List   ".ljust(10) + "              (List all patients)".rjust(20)
+      puts "1. Add    ".ljust(10) + "              (Add a new patient)".rjust(20)
+      puts "2. Update ".ljust(10) + "       (Edit an existing patient)".rjust(20)
+      puts "3. Remove ".ljust(10) + "     (Remove an existing patient)".rjust(20)
+      puts "4. View   ".ljust(10) + "(See information about a patient".rjust(20)
+      puts "5. List   ".ljust(10) + "              (List all patients)".rjust(20)
       puts
       puts "Or type 'back' to return to main menu."
       input = gets.chomp.downcase
@@ -271,17 +271,34 @@ while 1==1
       when 'back'
         break
 
-      when 'add'
+      when 'add', '1'
         puts
         puts "What is the full name of the patient to add?"
-        patient_to_add = gets.chomp
+        patient_to_add = gets.chomp.capitalize
+
+        while verify_patient(db, patient_to_add)
+          puts
+          puts "Error:"
+          puts "Patient #{patient_to_add} already exists."
+          puts "Try again."
+          puts
+          puts "What is the full name of the patient to add?"
+          puts "Or type 'back' to return to main menu."
+          patient_to_add = gets.chomp.capitalize
+          break if patient_to_add == 'Back'
+        end
+
+        break if patient_to_add == 'Back'
+
         puts
         puts "Who is #{patient_to_add}'s preferred doctor?"
         puts "Enter name or employee ID."
         puts "(If none, just hit enter)"
         preferred_doctor = gets.chomp
         if preferred_doctor == ''
-          preferred_doctor = rand(0..101)
+          preferred_doctor = rand(1..101)
+          # To Add: method that counts number of doctors in db
+          # Assign a doctor randomly from 0 to total number of doctors
         end
         puts
         puts "When was #{patient_to_add}'s last appointment?"
@@ -335,7 +352,7 @@ while 1==1
 
         end
 
-      when 'update'
+      when 'update', '2'
         puts
         puts "What patient are you updating? (Enter name or patient ID)"
         patient_to_edit = gets.chomp
@@ -398,7 +415,7 @@ while 1==1
         puts "Hit enter to continue"
         gets.chomp
 
-      when 'remove'
+      when 'remove', '3'
         puts
         puts "What patient shall be deleted? (Enter name or patient ID)"
         patient_to_delete = gets.chomp
@@ -435,7 +452,7 @@ while 1==1
           end
         end
 
-      when 'view'
+      when 'view', '4'
         puts
         puts "Which patient would you like to view? (Enter name or patient ID)"
         patient_to_view = gets.chomp
@@ -445,7 +462,7 @@ while 1==1
         puts "Hit enter to continue."
         gets
 
-      when 'list'
+      when 'list', '5'
         view_all_patients(db)
         puts
         puts "Press enter to continue"

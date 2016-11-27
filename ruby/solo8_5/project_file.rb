@@ -289,6 +289,9 @@ p verify_doctor(db, "Fast")
       # loop chopping off last character and searching remaining string until something is returned
         # display result to the user "did you mean [this]?"
 
+# Method that counts number of doctors in table
+# Return the number
+
 # Driver Code
 # view_one_doctor(db, "Murphy")
 # def fake_last_date
