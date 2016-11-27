@@ -167,6 +167,14 @@ def view_doctor_appointments(db, doctor_name_or_id)
 end
 
 # view all doctors
+def view_all_doctors(db)
+  doctor_list = db.execute("SELECT id, name, specialty FROM doctors")
+  doctor_list.each do |hash|
+    puts "-------------------------------------"
+    puts hash['id'].to_s + ": Dr. " + hash['name']
+    puts "Specialty: " + hash['specialty']
+  end
+end
 
 # view all patients
 
@@ -212,6 +220,7 @@ end
 # update_insurance(db, "Korbin Conroy", "false")
 # p view_insurance(db, "Korbin Conroy")
 # p last_appointment(db, 5)
+# view_all_doctors(db)
 
 # USER INTERFACE
 # Patient or doctor?
