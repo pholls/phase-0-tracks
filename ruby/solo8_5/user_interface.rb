@@ -11,9 +11,10 @@ while 1==1
   puts "Doctors Office Database".center(75)
   puts "***********************".center(75)
   puts
-  puts "Welcome to the Doctor's Office Database."
+  puts "MAIN MENU".center(75)
   puts "1. Enter Doctors Portal."
   puts "2. Enter Patients Portal."
+  puts
   puts "Type 'done' to quit."
   
   portal = gets.chomp.downcase
@@ -25,9 +26,9 @@ while 1==1
     if portal == '1'
   
       puts
-      puts "**************".center(75)
+      puts "--------------".center(75)
       puts "Doctors Portal".center(75)
-      puts "**************".center(75)
+      puts "--------------".center(75)
       puts
       puts "What would you like to do? Enter a command:"
       puts
@@ -35,26 +36,34 @@ while 1==1
       puts "Update".ljust(10) + "  (Edit an existing doctor)".rjust(20)
       puts "Remove".ljust(10) + "(Remove an existing doctor)".rjust(20)
       puts "View  ".ljust(10) + "           (View doctor(s))".rjust(20)
-      puts "Or type 'done' to exit."
+      puts
+      puts "Or type 'back' to return to main menu."
       #type 'menu' at any time to discard and return to this menu
       input = gets.chomp.downcase
   
       case input
   
-      when 'done'
+      when 'back'
         break
   
       when 'add'
+        puts
         puts "What is the last name of the new doctor to add?"
         new_name = gets.chomp.capitalize
         break if new_name == 'Done'
+        puts
         puts "What is Dr. #{new_name}'s specialty?"
+
         new_specialty = gets.chomp
+
+        puts
         puts "Confirm the following data:"
+        puts
         puts "-" * 30
         puts "New entry:"
         puts "Dr. #{new_name}, specialty: #{new_specialty}"
         puts "-" * 30
+        puts
         puts "Is this correct? y/n"
         confirm = gets.chomp.downcase
   
@@ -68,7 +77,10 @@ while 1==1
             break
   
           when 'n'
+            puts
             puts "Dr. #{new_name} has NOT been added."
+            puts "Press enter to continue."
+            gets
             break
   
           else
@@ -91,8 +103,19 @@ while 1==1
       end
   
     elsif portal == '2'
-      puts "Patients Portal"
       puts
+      puts "--------------".center(75)
+      puts "Patients Portal".center(75)
+      puts "--------------".center(75)
+      puts
+      puts "What would you like to do? Enter a command:"
+      puts
+      puts "Add   ".ljust(10) + "         (Add a new patient)".rjust(20)
+      puts "Update".ljust(10) + "  (Edit an existing patient)".rjust(20)
+      puts "Remove".ljust(10) + "(Remove an existing patient)".rjust(20)
+      puts "View  ".ljust(10) + "           (View patient(s))".rjust(20)
+      puts
+      puts "Or type 'back' to return to main menu."
       break
   
     else
