@@ -159,6 +159,11 @@ while 1==1
           puts "Hit enter to continue."
           gets
         end
+
+      else
+        puts
+        puts "Invalid input. Try again."
+        sleep 1
   
       end
   
@@ -170,15 +175,40 @@ while 1==1
       puts
       puts "What would you like to do? Enter a command:"
       puts
-      puts "Add   ".ljust(10) + "         (Add a new patient)".rjust(20)
-      puts "Update".ljust(10) + "  (Edit an existing patient)".rjust(20)
-      puts "Remove".ljust(10) + "(Remove an existing patient)".rjust(20)
-      puts "View  ".ljust(10) + "           (View patient(s))".rjust(20)
+      puts "Add    ".ljust(10) + "         (Add a new patient)".rjust(20)
+      puts "Update ".ljust(10) + "  (Edit an existing patient)".rjust(20)
+      puts "Remove ".ljust(10) + "(Remove an existing patient)".rjust(20)
+      puts "View   ".ljust(10) + "           (View patient(s))".rjust(20)
       puts
       puts "Or type 'back' to return to main menu."
-      break
+      input = gets.chomp.downcase
+      
+      case input
+
+      when 'back'
+        break
+
+      when 'add'
+        break
+
+      when 'update'
+        break
+
+      when 'remove'
+        break
+
+      when 'view'
+        break
+
+      else
+        puts
+        puts "Invalid input. Try again."
+        sleep 1
+
+      end
   
     else
+      puts
       puts "Invalid input. Try again."
       portal = gets.chomp
   
