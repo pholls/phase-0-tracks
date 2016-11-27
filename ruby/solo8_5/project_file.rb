@@ -229,6 +229,11 @@ def view_one_doctor(db, doctor_name_or_id)
   puts "Specialty: " + doctor_info[0]['specialty']
 end
 
+#add a method to verify the data (ID or name exists)
+def verify_data(db, name_or_id)
+  
+end
+
 # view_one_doctor(db, "Murphy")
 # Driver Code
 # def fake_last_date

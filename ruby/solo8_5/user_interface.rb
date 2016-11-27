@@ -91,7 +91,11 @@ while 1==1
         end
   
       when 'update'
+        puts
         puts "What doctor are you updating? (Enter name or employee ID)"
+        doctor = gets.chomp
+        
+        view_one_doctor(db, doctor)
   
       when 'delete'
         puts "What doctor shall be deleted? (Enter name or employee ID)"
