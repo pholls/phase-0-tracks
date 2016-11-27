@@ -240,20 +240,46 @@ end
   # return true if data exists
   # otherwise, return false
 def verify_data(db, name_or_id)
-  # if name_or_id.to_i >= 1
-  #   if db.execute("SELECT DISTINCT name FROM patients WHERE patients.id=?", [name_or_id]) == {}
-  #     false
-  #   else
-  #     true
-  #   end
-  # else
-  #   if db.execute("SELECT DISTINCT name FROM patients WHERE patients.name=?", [name_or_id]) == {}
-  #     false
-  #   else
-  #     true
-  #   end
-  # end
+  if verify_patient(db, name_or_id) == false
+    verify_doctor(db, name_or_id)
+  else
+    true
+  end
 end
+
+def verify_patient(db, name_or_id)
+  if name_or_id.to_i >= 1
+    true
+    if db.execute("SELECT DISTINCT name FROM patients WHERE patients.id=?", [name_or_id]) == []
+      false
+    end
+  else
+    true
+    if db.execute("SELECT DISTINCT name FROM patients WHERE patients.name=?", [name_or_id]) == []
+      false
+    end
+  end
+end
+
+def verify_doctor(db, name_or_id)
+  if name_or_id.to_i >= 1
+    true
+    if db.execute("SELECT DISTINCT name FROM doctors WHERE doctors.id=?", [name_or_id]) == []
+      false
+    end
+  else
+    true
+    if db.execute("SELECT DISTINCT name FROM doctors WHERE doctors.name=?", [name_or_id]) == []
+      false
+    end
+  end
+end
+
+p verify_data(db, 10)
+p verify_data(db, 1000)
+p verify_data(db, 14)
+p verify_data(db, "Marley Upton V")
+p verify_data(db, "Ricket Marklemantz")
 
 # search method
   # add to doctor and patient portals
