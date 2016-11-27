@@ -383,11 +383,11 @@ while 1==1
           puts
           puts "What patient are you updating? (Enter name or patient ID)"
           puts "Or type 'back' to return to main menu."
-          patient_to_edit = gets.chomp.capitalize
-          break if patient_to_edit == 'Back'
+          patient_to_edit = gets.chomp
+          break if patient_to_edit.downcase == 'back'
         end
 
-        break if patient_to_edit == 'Back'
+        break if patient_to_edit.downcase == 'back'
 
         while 1 != 2
           view_one_patient(db, patient_to_edit)
@@ -404,10 +404,20 @@ while 1==1
           case patient_change
   
           when '1', 'name'
-            puts
-            puts "What is the patient's new name?"
-            
-            break
+
+            while 1 != 2
+              puts
+              puts "What is the patient's new name?"
+              patient_new_name = gets.chomp
+              puts patient_new_name
+              puts "Is this correct? y/n"
+              correct = gets.chomp.downcase
+              break if correct == 'y'
+              puts
+              puts "Try again:"
+            end
+
+            change_patient_name(db, patient_to_edit, patient_new_name)
   
           when '2', 'primary physician'
             puts
