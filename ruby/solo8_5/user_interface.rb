@@ -94,29 +94,71 @@ while 1==1
       when 'update'
         puts
         puts "What doctor are you updating? (Enter name or employee ID)"
-        doctor = gets.chomp
+        doctor_to_edit = gets.chomp
         puts
 
-        view_one_doctor(db, doctor)
+        view_one_doctor(db, doctor_to_edit)
         puts
         puts "Enter new specialty:"
         change = gets.chomp
-        change_spec(db, doctor, change)
+        change_spec(db, doctor_to_edit, change)
         puts 
         puts "Updated information:"
-        view_one_doctor(db, doctor)
+        view_one_doctor(db, doctor_to_edit)
         puts
         puts "Hit enter to continue"
         gets.chomp
   
-      when 'delete'
+      when 'remove'
+        puts
         puts "What doctor shall be deleted? (Enter name or employee ID)"
-        doctor = gets.chomp
+        doctor_to_delete = gets.chomp
+        puts
 
+        puts "Doctor to delete:"
+        view_one_doctor(db, doctor_to_delete)
+        puts
+        puts "Delete this doctor? y/n"
+        confirm = gets.chomp.downcase
+  
+        while 1 != 2
+          case confirm
+  
+          when 'y'
+            delete_doctor(db, doctor_to_delete)
+            puts "Doctor successfully deleted."
+            break
+  
+          when 'n'
+            puts
+            puts "Doctor has NOT been deleted."
+            puts "Press enter to continue."
+            gets
+            break
+  
+          else
+            puts "Invalid input, try again."
+            confirm = gets.chomp.downcase
+  
+          end
+        end
   
       when 'view'
-        puts "What doctor would you like to view? (Enter name or employee ID)"
+        puts
+        puts "Which doctor would you like to view? (Enter name or employee ID)"
         puts "Or type 'all' to see all doctors."
+        doctor_to_view = gets.chomp
+        puts
+
+        if doctor_to_view == 'all'
+          view_all_doctors(db)
+          puts "Hit enter to continue."
+          gets
+        else
+          view_one_doctor(db, doctor_to_view)
+          puts "Hit enter to continue."
+          gets
+        end
   
       end
   
