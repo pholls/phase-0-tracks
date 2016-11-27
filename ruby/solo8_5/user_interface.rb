@@ -107,6 +107,15 @@ while 1==1
         doctor_to_edit = gets.chomp
         puts
 
+        while !verify_doctor(db, doctor_to_edit)
+          puts
+          puts "Error:"
+          puts "Dr. #{doctor_to_edit} does not exist."
+          puts "Try again."
+          puts "What doctor are you updating? (Enter name or employee ID)"
+          doctor_to_edit = gets.chomp.capitalize
+        end
+
         view_one_doctor(db, doctor_to_edit)
         puts
         puts "Enter new specialty:"
