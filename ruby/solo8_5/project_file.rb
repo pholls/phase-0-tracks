@@ -93,8 +93,10 @@ def view_insurance(db, name_or_id)
   case status
   when 'false'
     puts "#{name} is uninsured."
+    status = false
   when 'true'
     puts "#{name} has insurance and is within their network."
+    status = true
   end
 end
 # View patient's doctor's name
@@ -205,7 +207,6 @@ def view_one_patient(db, patient_name_or_id)
     patient_data = db.execute("SELECT patients.name, patients.id, doctors.name, patients.next_appt, patients.last_appt FROM doctors JOIN patients ON patients.doctor_id=doctors.id WHERE patients.name=?", [patient_name_or_id])
   end
   puts "-------------------------------------"
-  # puts patient_data
   puts "Patient summary for: " + patient_data[0][0]
   puts "Patient ID#: " + patient_data[0]['id'].to_s
   puts "Primary Physician: Dr. " + patient_data[0]['name']
@@ -213,7 +214,6 @@ def view_one_patient(db, patient_name_or_id)
   puts "Next appointment: " + parse_date(patient_data[0]['next_appt'])
   view_insurance(db, patient_name_or_id)
 end
-# puts view_insurance(db, 1)
 
 # view one doctor's info
 # ID, name, specialty, and patient's names
@@ -272,37 +272,5 @@ end
 # p view_insurance(db, "Korbin Conroy")
 # p last_appointment(db, 5)
 # view_all_doctors(db)
-view_one_patient(db, 1)
-
-# USER INTERFACE
-# Patient or doctor?
-puts "Welcome to the Doctor's Office Database."
-puts "Enter 1 to enter Doctors Portal."
-puts "Enter 2 for Patients Portal."
-puts "Type 'done' to quit."
-
-portal = gets.chomp
-
-while portal != 'done'
-  if portal == '1'
-    puts "Doctors Portal"
-    break
-  elsif portal == '2'
-    puts "Patients Portal"
-    break
-  else
-    puts "Invalid input. Try again."
-    portal = gets.chomp
-  end
-end
-
-  # Add, Update, Remove, or View?
-    # Add - go through each row and get data from user, input into table
-    # Update - go through each row, get data, update into table
-    # Remove - by name or id
-      # confirm delete
-      # delete row
-    # View - display the relevant information in a pretty way
-      # View what? 
-        # Next appt, last appt, Doctor, insurance status
+# view_one_patient(db, 1)
 
