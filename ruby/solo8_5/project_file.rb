@@ -213,7 +213,16 @@ puts "Type 'done' to quit."
 portal = gets.chomp
 
 while portal != 'done'
-
+  if portal == '1'
+    puts "Doctors Portal"
+    break
+  elsif portal == '2'
+    puts "Patients Portal"
+    break
+  else
+    puts "Invalid input. Try again."
+    portal = gets.chomp
+  end
 end
 
   # Add, Update, Remove, or View?
