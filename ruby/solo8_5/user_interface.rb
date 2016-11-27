@@ -36,6 +36,7 @@ while 1==1
       puts "Update".ljust(10) + "(Edit an existing doctor's specialty)".rjust(20)
       puts "Remove".ljust(10) + "          (Remove an existing doctor)".rjust(20)
       puts "View  ".ljust(10) + "   (View a doctors' info or patients)".rjust(20)
+      puts "List  ".ljust(10) + "                   (List all doctors)".rjust(20)
       puts
       puts "Or type 'back' to return to main menu."
       #type 'menu' at any time to discard and return to this menu
@@ -162,6 +163,12 @@ while 1==1
           puts "Hit enter to continue."
           gets
         end
+
+      when 'list'
+        view_all_doctors(db)
+        puts
+        puts "Press enter to continue"
+        gets
 
       else
         puts
