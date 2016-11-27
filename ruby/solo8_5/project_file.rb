@@ -231,7 +231,14 @@ def view_one_doctor(db, doctor_name_or_id)
   puts "-------------------------------------"
 end
 
-#add a method to verify the data (ID or name exists)
+# add a method to verify the data (ID or name exists)
+# one verify_data method
+  # one verify_doctor method
+  # one verify_patient method
+    # verify_data will determine which one to call
+  # check by name or ID
+  # return true if data exists
+  # otherwise, return false
 def verify_data(db, name_or_id)
   # if name_or_id.to_i >= 1
   #   if db.execute("SELECT DISTINCT name FROM patients WHERE patients.id=?", [name_or_id]) == {}
