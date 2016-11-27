@@ -191,6 +191,20 @@ end
 
 # view one patient's info
 # ID, name, insurance, appointments, and doctor
+def view_one_patient(db, patient_name_or_id)
+  if patient_name_or_id >= 1
+    patient_data = db.execute("SELECT patients.name, patients.id, doctors.name, patients.next_appt, patients.last_appt FROM doctors JOIN patients ON patients.doctor_id=doctors.id WHERE patients.id=?", [patient_name_or_id])
+  else
+    patient_data = db.execute("SELECT patients.name, patients.id, doctors.name, patients.next_appt, patients.last_appt FROM doctors JOIN patients ON patients.doctor_id=doctors.id WHERE patients.name=?", [patient_name_or_id])
+  end
+  puts "-------------------------------------"
+  # puts patient_data
+  puts "Patient summary for: " + patient_data[0][0]
+  puts "Patient ID#: " + patient_data[0]['id'].to_s
+  puts "Primary Physician: Dr. " + patient_data[0]['name']
+  puts "Last appointment: " + parse_date(patient_data[0]['last_appt'])
+  puts "Next appointment: " + parse_date(patient_data[0]['next_appt'])
+end
 
 # view one doctor's info
 # ID, name, specialty, and patient's names
@@ -249,7 +263,7 @@ end
 # p view_insurance(db, "Korbin Conroy")
 # p last_appointment(db, 5)
 # view_all_doctors(db)
-view_all_patients(db)
+view_one_patient(db, 1)
 
 # USER INTERFACE
 # Patient or doctor?
