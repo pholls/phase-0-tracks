@@ -279,7 +279,67 @@ while 1==1
         end
 
       when 'update'
-        break
+        puts
+        puts "What patient are you updating? (Enter name or patient ID)"
+        patient_to_edit = gets.chomp
+        puts
+
+        while 1 != 2
+          view_one_patient(db, patient_to_edit)
+          sleep 4
+          puts
+          puts "What information do you want to update?"
+          puts "1. Name"
+          puts "2. Primary Physician"
+          puts "3. Next appointment"
+          puts "4. Insurance status"
+          puts "5. Exit"
+  
+          patient_change = gets.chomp
+          case patient_change
+  
+          when '1'
+            
+            break
+  
+          when '2'
+            puts
+            puts "Who is the new doctor? (Enter name or employee ID)"
+            new_doctor = gets.chomp
+            update_doctor(db, patient_to_edit, new_doctor)
+  
+          when '3'
+            puts
+            puts "When will the next appointment be?"
+            puts "Format: YYYYMMDD"
+            date = gets.chomp
+            update_appointment(db, patient_to_edit, date)
+  
+          when '4'
+            puts
+            puts "Does the patient have insurance? y/n"
+            new_insurance = gets.chomp.downcase
+            if new_insurance == 'y'
+              update_insurance(db, patient_to_edit, 'true')
+            elsif
+              update_insurance(db, patient_to_edit, 'false')
+            end
+  
+          when '5'
+            break
+  
+          else
+            puts
+            puts "Invalid input. Try again."
+          end
+        end
+
+        puts 
+        puts "Updated information:"
+        view_one_patient(db, patient_to_edit)
+        puts
+        puts "Hit enter to continue"
+        gets.chomp
 
       when 'remove'
         puts
