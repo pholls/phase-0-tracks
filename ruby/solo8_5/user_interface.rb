@@ -152,8 +152,9 @@ while 1==1
         puts "Which doctor would you like to view? (Enter name or employee ID)"
         doctor_to_view = gets.chomp
         puts
-        puts "1. View information about #{doctor_to_view}"
-        puts "2. View all of #{doctor_to_view}'s patients"
+        puts "1. View information about #{doctor_to_view}."
+        puts "2. View all of #{doctor_to_view}'s patients."
+        puts "3. View all of #{doctor_to_view}'s upcoming appointments."
         puts
 
         while 1 != 2
@@ -165,6 +166,11 @@ while 1==1
             break
           elsif choice == '2'
             view_patient_list(db, doctor_to_view)
+            puts "Hit enter to continue."
+            gets
+            break
+          elsif choice == '3'
+            view_doctor_appointments(db, doctor_to_view)
             puts "Hit enter to continue."
             gets
             break
