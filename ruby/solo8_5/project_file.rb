@@ -166,6 +166,16 @@ def view_doctor_appointments(db, doctor_name_or_id)
   end
 end
 
+# view all doctors
+
+# view all patients
+
+# view one patient's info
+# ID, name, insurance, appointments, and doctor
+
+# view one doctor's info
+# ID, name, specialty, and patient's names
+
 # Driver Code
 # 1000.times do
 #   add_doctor(db, Faker::Name.last_name, Faker::Company.buzzword)
