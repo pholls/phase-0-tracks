@@ -175,11 +175,11 @@ while 1==1
       puts
       puts "What would you like to do? Enter a command:"
       puts
-      puts "Add    ".ljust(10) + "                (Add a new patient)".rjust(20)
-      puts "Update ".ljust(10) + "         (Edit an existing patient)".rjust(20)
-      puts "Remove ".ljust(10) + "       (Remove an existing patient)".rjust(20)
-      puts "View   ".ljust(10) + "                  (View patient(s))".rjust(20)
-      puts "List   ".ljust(10) + "(List information about patient(s))".rjust(20)
+      puts "Add    ".ljust(10) + "                 (Add a new patient)".rjust(20)
+      puts "Update ".ljust(10) + "          (Edit an existing patient)".rjust(20)
+      puts "Remove ".ljust(10) + "        (Remove an existing patient)".rjust(20)
+      puts "View   ".ljust(10) + "(See information about a patient(s))".rjust(20)
+      puts "List   ".ljust(10) + "               (List all patient(s))".rjust(20)
       puts
       puts "Or type 'back' to return to main menu."
       input = gets.chomp.downcase
@@ -202,7 +202,10 @@ while 1==1
         break
 
       when 'list'
-        break
+        view_all_patients(db)
+        puts
+        puts "Press enter to continue"
+        gets
 
       else
         puts
