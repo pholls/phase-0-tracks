@@ -410,8 +410,30 @@ while 1==1
           when '2'
             puts
             puts "Who is the new doctor? (Enter name or employee ID)"
+
+          while 1 != 2
             new_doctor = gets.chomp
-            update_doctor(db, patient_to_edit, new_doctor)
+            if new_doctor == ''
+                rand_seed = count_doctors(db)
+                if verify_doctor(db, rand_seed)
+                  new_doctor = rand(1..rand_seed)
+                  puts "#{patient_to_edit}'s physician is: "
+                  view_one_doctor(db, rand_seed) 
+                  break
+                end
+            elsif !verify_doctor(db, new_doctor)
+              puts
+              puts "Doctor #{new_doctor} not found."
+              puts "Try again."
+            else
+              puts 
+              puts "#{patient_to_edit}'s new physician is: "
+              view_one_doctor(db, new_doctor)
+              break
+            end
+          end
+
+          update_doctor(db, patient_to_edit, new_doctor)
   
           when '3'
             puts
