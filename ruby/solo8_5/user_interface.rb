@@ -52,6 +52,13 @@ while 1==1
         puts "What is the last name of the new doctor to add?"
         new_name = gets.chomp.capitalize
         break if new_name == 'Done'
+
+        if verify_doctor(db, new_name)
+          puts "Error:"
+          puts "Dr. #{new_name} already exists."
+          break
+        end
+
         puts
         puts "What is Dr. #{new_name}'s specialty?"
 
