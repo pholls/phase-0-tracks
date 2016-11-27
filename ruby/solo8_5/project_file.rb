@@ -248,13 +248,12 @@ def verify_data(db, name_or_id)
 end
 
 def verify_patient(db, name_or_id)
+  true
   if name_or_id.to_i >= 1
-    true
     if db.execute("SELECT DISTINCT name FROM patients WHERE patients.id=?", [name_or_id]) == []
       false
     end
   else
-    true
     if db.execute("SELECT DISTINCT name FROM patients WHERE patients.name=?", [name_or_id]) == []
       false
     end
@@ -262,13 +261,12 @@ def verify_patient(db, name_or_id)
 end
 
 def verify_doctor(db, name_or_id)
+  true
   if name_or_id.to_i >= 1
-    true
     if db.execute("SELECT DISTINCT name FROM doctors WHERE doctors.id=?", [name_or_id]) == []
       false
     end
   else
-    true
     if db.execute("SELECT DISTINCT name FROM doctors WHERE doctors.name=?", [name_or_id]) == []
       false
     end
