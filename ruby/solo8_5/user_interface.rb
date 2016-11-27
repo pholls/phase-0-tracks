@@ -35,7 +35,7 @@ while 1==1
       puts "Add   ".ljust(10) + "                   (Add a new doctor)".rjust(20)
       puts "Update".ljust(10) + "(Edit an existing doctor's specialty)".rjust(20)
       puts "Remove".ljust(10) + "          (Remove an existing doctor)".rjust(20)
-      puts "View  ".ljust(10) + "     (View doctors' info or patients)".rjust(20)
+      puts "View  ".ljust(10) + "   (View a doctors' info or patients)".rjust(20)
       puts
       puts "Or type 'back' to return to main menu."
       #type 'menu' at any time to discard and return to this menu
@@ -99,15 +99,20 @@ while 1==1
 
         view_one_doctor(db, doctor)
         puts
-        puts "Enter Dr.'s new specialty:"
+        puts "Enter new specialty:"
         change = gets.chomp
         change_spec(db, doctor, change)
         puts 
         puts "Updated information:"
         view_one_doctor(db, doctor)
+        puts
+        puts "Hit enter to continue"
+        gets.chomp
   
       when 'delete'
         puts "What doctor shall be deleted? (Enter name or employee ID)"
+        doctor = gets.chomp
+
   
       when 'view'
         puts "What doctor would you like to view? (Enter name or employee ID)"
