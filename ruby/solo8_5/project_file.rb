@@ -5,7 +5,7 @@
 # Faker
 require 'sqlite3'
 require 'faker'
-require 'date'
+# require 'date'
 
 # Create database 
 db = SQLite3::Database.new("doctors_office.db")
@@ -154,7 +154,6 @@ def view_patient_list(db, doctor_name_or_id)
     p hash['name']
   end
 end
-
 # View all of a doctor's upcoming appointments
 def view_doctor_appointments(db, doctor_name_or_id)
   if doctor_name_or_id.to_i >= 1
@@ -172,7 +171,7 @@ end
 #   add_doctor(db, Faker::Name.last_name, Faker::Company.buzzword)
 #   add_patient(db, Faker::Name.name, Faker::Boolean.boolean.to_s, Faker::Number.number(8), Faker::Number.number(8), Faker::Number.between(1, 1000))
 # end
-view_doctor_appointments(db, 1)
+# view_doctor_appointments(db, 1)
 # add_doctor(db, Faker::Name.name, "Toxicology")
 # docs = db.execute("SELECT * FROM doctors")
 # change_spec(db, 1, "Phrenology")
@@ -194,7 +193,7 @@ view_doctor_appointments(db, 1)
 # end
 # p last_appointment(db, "Korbin Conroy")
 # p next_appointment(db, "Korbin Conroy")
-# p view_insurance("Korbin Conroy")
+# p view_insurance(db, 3)
 # p view_patient_doctor(db, "Korbin Conroy")
 # update_doctor(db, "Korbin Conroy", 3)
 # p view_patient_doctor(db, "Korbin Conroy")
@@ -204,10 +203,19 @@ view_doctor_appointments(db, 1)
 # p view_insurance(db, "Korbin Conroy")
 # p last_appointment(db, 5)
 
-
-
 # USER INTERFACE
 # Patient or doctor?
+puts "Welcome to the Doctor's Office Database."
+puts "Enter 1 to enter Doctors Portal."
+puts "Enter 2 for Patients Portal."
+puts "Type 'done' to quit."
+
+portal = gets.chomp
+
+while portal != 'done'
+
+end
+
   # Add, Update, Remove, or View?
     # Add - go through each row and get data from user, input into table
     # Update - go through each row, get data, update into table
