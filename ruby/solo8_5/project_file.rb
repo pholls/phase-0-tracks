@@ -278,8 +278,6 @@ def verify_doctor(db, name_or_id)
   end
 end
 
-p verify_doctor(db, "Fast")
-
 # search method
   # add to doctor and patient portals
   # enter a name
@@ -291,6 +289,14 @@ p verify_doctor(db, "Fast")
 
 # Method that counts number of doctors in table
 # Return the number
+def count_doctors(db)
+  doctor_list = db.execute("SELECT id, name, specialty FROM doctors")
+  i = 0
+  doctor_list.each do |hash|
+    i = hash['id']
+  end
+  i
+end
 
 # Driver Code
 # view_one_doctor(db, "Murphy")

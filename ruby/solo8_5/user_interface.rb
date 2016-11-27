@@ -274,7 +274,7 @@ while 1==1
       when 'add', '1'
         puts
         puts "What is the full name of the patient to add?"
-        patient_to_add = gets.chomp.capitalize
+        patient_to_add = gets.chomp
 
         while verify_patient(db, patient_to_add)
           puts
@@ -284,22 +284,39 @@ while 1==1
           puts
           puts "What is the full name of the patient to add?"
           puts "Or type 'back' to return to main menu."
-          patient_to_add = gets.chomp.capitalize
-          break if patient_to_add == 'Back'
+          patient_to_add = gets.chomp
+          break if patient_to_add.downcase == 'back'
         end
 
-        break if patient_to_add == 'Back'
+        break if patient_to_add.downcase == 'back'
 
         puts
         puts "Who is #{patient_to_add}'s preferred doctor?"
-        puts "Enter name or employee ID."
+        puts "Enter last name or employee ID."
         puts "(If none, just hit enter)"
-        preferred_doctor = gets.chomp
-        if preferred_doctor == ''
-          preferred_doctor = rand(1..101)
-          # To Add: method that counts number of doctors in db
-          # Assign a doctor randomly from 0 to total number of doctors
+
+        while 1 != 2
+          preferred_doctor = gets.chomp.capitalize
+          if preferred_doctor == ''
+              rand_seed = count_doctors(db)
+              if verify_doctor(db, rand_seed)
+                preferred_doctor = rand(1..rand_seed)
+                puts "#{patient_to_add}'s physician is: "
+                view_one_doctor(db, rand_seed) 
+                break
+              end
+          elsif !verify_doctor(db, preferred_doctor)
+            puts
+            puts "Doctor #{preferred_doctor} not found."
+            puts "Try again."
+          else
+            puts 
+            puts "#{patient_to_add}'s physician is: "
+            view_one_doctor(db, preferred_doctor)
+            break
+          end
         end
+
         puts
         puts "When was #{patient_to_add}'s last appointment?"
         puts "Format: YYYYMMDD"
