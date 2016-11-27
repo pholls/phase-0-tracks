@@ -32,14 +32,13 @@ while 1==1
       puts
       puts "What would you like to do? Enter a command:"
       puts
-      puts "Add   ".ljust(10) + "                   (Add a new doctor)".rjust(20)
-      puts "Update".ljust(10) + "(Edit an existing doctor's specialty)".rjust(20)
-      puts "Remove".ljust(10) + "          (Remove an existing doctor)".rjust(20)
-      puts "View  ".ljust(10) + "   (View a doctors' info or patients)".rjust(20)
-      puts "List  ".ljust(10) + "                   (List all doctors)".rjust(20)
+      puts "1. Add   ".ljust(10) + "                   (Add a new doctor)".rjust(20)
+      puts "2. Update".ljust(10) + "(Edit an existing doctor's specialty)".rjust(20)
+      puts "3. Remove".ljust(10) + "          (Remove an existing doctor)".rjust(20)
+      puts "4. View  ".ljust(10) + "   (View a doctors' info or patients)".rjust(20)
+      puts "5. List  ".ljust(10) + "                   (List all doctors)".rjust(20)
       puts
       puts "Or type 'back' to return to main menu."
-      #type 'menu' at any time to discard and return to this menu
       input = gets.chomp.downcase
   
       case input
@@ -47,11 +46,26 @@ while 1==1
       when 'back'
         break
   
-      when 'add'
+      when 'add', '1'
         puts
         puts "What is the last name of the new doctor to add?"
         new_name = gets.chomp.capitalize
         break if new_name == 'Done'
+
+        while verify_doctor(db, new_name)
+          puts
+          puts "Error:"
+          puts "Dr. #{new_name} already exists."
+          puts "Try again."
+          puts
+          puts "What is the last name of the new doctor to add?"
+          puts "Or type 'back' to return to main menu."
+          new_name = gets.chomp.capitalize
+          break if new_name == 'Back'
+        end
+
+        break if new_name == 'Back'
+
         puts
         puts "What is Dr. #{new_name}'s specialty?"
 
@@ -92,11 +106,25 @@ while 1==1
 
         end
   
-      when 'update'
+      when 'update', '2'
         puts
         puts "What doctor are you updating? (Enter name or employee ID)"
         doctor_to_edit = gets.chomp
         puts
+
+        while !verify_doctor(db, doctor_to_edit)
+          puts
+          puts "Error:"
+          puts "Dr. #{doctor_to_edit} does not exist."
+          puts "Try again."
+          puts
+          puts "What doctor are you updating? (Enter name or employee ID)"
+          puts "Or type 'back' to return to main menu."
+          doctor_to_edit = gets.chomp.capitalize
+          break if doctor_to_edit == 'Back'
+        end
+
+        break if doctor_to_edit == 'Back'
 
         view_one_doctor(db, doctor_to_edit)
         puts
@@ -110,11 +138,25 @@ while 1==1
         puts "Hit enter to continue"
         gets.chomp
   
-      when 'remove'
+      when 'remove', '3'
         puts
         puts "What doctor shall be deleted? (Enter name or employee ID)"
-        doctor_to_delete = gets.chomp
+        doctor_to_delete = gets.chomp.capitalize
         puts
+
+        while !verify_doctor(db, doctor_to_delete)
+          puts
+          puts "Error:"
+          puts "Dr. #{doctor_to_delete} does not exist."
+          puts "Try again."
+          puts
+          puts "What doctor shall be deleted? (Enter name or employee ID)"
+          puts "Or type 'back' to return to main menu."
+          doctor_to_delete = gets.chomp.capitalize
+          break if doctor_to_delete == 'Back'
+        end
+
+        break if doctor_to_delete == 'Back'
 
         puts "Doctor to delete:"
         view_one_doctor(db, doctor_to_delete)
@@ -147,10 +189,25 @@ while 1==1
           end
         end
   
-      when 'view'
+      when 'view', '4'
         puts
         puts "Which doctor would you like to view? (Enter name or employee ID)"
         doctor_to_view = gets.chomp
+
+        while !verify_doctor(db, doctor_to_view)
+          puts
+          puts "Error:"
+          puts "Dr. #{doctor_to_view} does not exist."
+          puts "Try again."
+          puts
+          puts "What doctor would you like to view? (Enter name or employee ID)"
+          puts "Or type 'back' to return to main menu."
+          doctor_to_view = gets.chomp.capitalize
+          break if doctor_to_view == 'Back'
+        end
+
+        break if doctor_to_view == 'Back'
+
         puts
         puts "1. View information about #{doctor_to_view}."
         puts "2. View all of #{doctor_to_view}'s patients."
@@ -179,7 +236,7 @@ while 1==1
           end
         end
 
-      when 'list'
+      when 'list', '5'
         view_all_doctors(db)
         puts
         puts "Press enter to continue"
@@ -200,11 +257,11 @@ while 1==1
       puts
       puts "What would you like to do? Enter a command:"
       puts
-      puts "Add    ".ljust(10) + "              (Add a new patient)".rjust(20)
-      puts "Update ".ljust(10) + "       (Edit an existing patient)".rjust(20)
-      puts "Remove ".ljust(10) + "     (Remove an existing patient)".rjust(20)
-      puts "View   ".ljust(10) + "(See information about a patient".rjust(20)
-      puts "List   ".ljust(10) + "              (List all patients)".rjust(20)
+      puts "1. Add    ".ljust(10) + "              (Add a new patient)".rjust(20)
+      puts "2. Update ".ljust(10) + "       (Edit an existing patient)".rjust(20)
+      puts "3. Remove ".ljust(10) + "     (Remove an existing patient)".rjust(20)
+      puts "4. View   ".ljust(10) + "(See information about a patient".rjust(20)
+      puts "5. List   ".ljust(10) + "              (List all patients)".rjust(20)
       puts
       puts "Or type 'back' to return to main menu."
       input = gets.chomp.downcase
@@ -214,18 +271,52 @@ while 1==1
       when 'back'
         break
 
-      when 'add'
+      when 'add', '1'
         puts
         puts "What is the full name of the patient to add?"
         patient_to_add = gets.chomp
+
+        while verify_patient(db, patient_to_add)
+          puts
+          puts "Error:"
+          puts "Patient #{patient_to_add} already exists."
+          puts "Try again."
+          puts
+          puts "What is the full name of the patient to add?"
+          puts "Or type 'back' to return to main menu."
+          patient_to_add = gets.chomp
+          break if patient_to_add.downcase == 'back'
+        end
+
+        break if patient_to_add.downcase == 'back'
+
         puts
         puts "Who is #{patient_to_add}'s preferred doctor?"
-        puts "Enter name or employee ID."
+        puts "Enter last name or employee ID."
         puts "(If none, just hit enter)"
-        preferred_doctor = gets.chomp
-        if preferred_doctor == ''
-          preferred_doctor = rand(0..101)
+
+        while 1 != 2
+          preferred_doctor = gets.chomp.capitalize
+          if preferred_doctor == ''
+              rand_seed = count_doctors(db)
+              if verify_doctor(db, rand_seed)
+                preferred_doctor = rand(1..rand_seed)
+                puts "#{patient_to_add}'s physician is: "
+                view_one_doctor(db, rand_seed) 
+                break
+              end
+          elsif !verify_doctor(db, preferred_doctor)
+            puts
+            puts "Doctor #{preferred_doctor} not found."
+            puts "Try again."
+          else
+            puts 
+            puts "#{patient_to_add}'s physician is: "
+            view_one_doctor(db, preferred_doctor)
+            break
+          end
         end
+
         puts
         puts "When was #{patient_to_add}'s last appointment?"
         puts "Format: YYYYMMDD"
@@ -278,11 +369,25 @@ while 1==1
 
         end
 
-      when 'update'
+      when 'update', '2'
         puts
         puts "What patient are you updating? (Enter name or patient ID)"
         patient_to_edit = gets.chomp
         puts
+
+        while !verify_patient(db, patient_to_edit)
+          puts
+          puts "Error:"
+          puts "Patient #{patient_to_edit} does not exist."
+          puts "Try again."
+          puts
+          puts "What patient are you updating? (Enter name or patient ID)"
+          puts "Or type 'back' to return to main menu."
+          patient_to_edit = gets.chomp
+          break if patient_to_edit.downcase == 'back'
+        end
+
+        break if patient_to_edit.downcase == 'back'
 
         while 1 != 2
           view_one_patient(db, patient_to_edit)
@@ -295,27 +400,61 @@ while 1==1
           puts "4. Insurance status"
           puts "5. Exit"
   
-          patient_change = gets.chomp
+          patient_change = gets.chomp.downcase
           case patient_change
   
-          when '1'
-            
-            break
+          when '1', 'name'
+
+            while 1 != 2
+              puts
+              puts "What is the patient's new name?"
+              patient_new_name = gets.chomp
+              puts patient_new_name
+              puts "Is this correct? y/n"
+              correct = gets.chomp.downcase
+              break if correct == 'y'
+              puts
+              puts "Try again:"
+            end
+
+            change_patient_name(db, patient_to_edit, patient_new_name)
   
-          when '2'
+          when '2', 'primary physician'
             puts
             puts "Who is the new doctor? (Enter name or employee ID)"
-            new_doctor = gets.chomp
+
+            while 1 != 2
+              new_doctor = gets.chomp
+              if new_doctor == ''
+                  rand_seed = count_doctors(db)
+                  if verify_doctor(db, rand_seed)
+                    new_doctor = rand(1..rand_seed)
+                    puts "#{patient_to_edit}'s physician is: "
+                    view_one_doctor(db, rand_seed) 
+                    break
+                  end
+              elsif !verify_doctor(db, new_doctor)
+                puts
+                puts "Doctor #{new_doctor} not found."
+                puts "Try again."
+              else
+                puts 
+                puts "#{patient_to_edit}'s new physician is: "
+                view_one_doctor(db, new_doctor)
+                break
+              end
+            end
+
             update_doctor(db, patient_to_edit, new_doctor)
   
-          when '3'
+          when '3', 'next appointment'
             puts
             puts "When will the next appointment be?"
             puts "Format: YYYYMMDD"
             date = gets.chomp
             update_appointment(db, patient_to_edit, date)
   
-          when '4'
+          when '4', 'insurance status'
             puts
             puts "Does the patient have insurance? y/n"
             new_insurance = gets.chomp.downcase
@@ -325,7 +464,7 @@ while 1==1
               update_insurance(db, patient_to_edit, 'false')
             end
   
-          when '5'
+          when '5', 'exit'
             break
   
           else
@@ -341,11 +480,25 @@ while 1==1
         puts "Hit enter to continue"
         gets.chomp
 
-      when 'remove'
+      when 'remove', '3'
         puts
         puts "What patient shall be deleted? (Enter name or patient ID)"
         patient_to_delete = gets.chomp
         puts
+
+        while !verify_patient(db, patient_to_delete)
+          puts
+          puts "Error:"
+          puts "Patient #{patient_to_delete} does not exist."
+          puts "Try again."
+          puts
+          puts "What patient shall be deleted? (Enter name or patient ID)"
+          puts "Or type 'back' to return to main menu."
+          patient_to_delete = gets.chomp.capitalize
+          break if patient_to_delete == 'Back'
+        end
+
+        break if patient_to_delete == 'Back'
 
         puts "Patient to delete:"
         view_one_patient(db, patient_to_delete)
@@ -378,17 +531,32 @@ while 1==1
           end
         end
 
-      when 'view'
+      when 'view', '4'
         puts
         puts "Which patient would you like to view? (Enter name or patient ID)"
         patient_to_view = gets.chomp
         puts
+
+        while !verify_patient(db, patient_to_view)
+          puts
+          puts "Error:"
+          puts "Patient #{patient_to_view} does not exist."
+          puts "Try again."
+          puts
+          puts "What patient are you updating? (Enter name or patient ID)"
+          puts "Or type 'back' to exit."
+          patient_to_view = gets.chomp.capitalize
+          break if patient_to_view == 'Back'
+        end
+
+        break if patient_to_view == 'Back'
+
         view_one_patient(db, patient_to_view)
         puts
         puts "Hit enter to continue."
         gets
 
-      when 'list'
+      when 'list', '5'
         view_all_patients(db)
         puts
         puts "Press enter to continue"

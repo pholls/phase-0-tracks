@@ -5,7 +5,6 @@
 # Faker
 require 'sqlite3'
 require 'faker'
-# require 'date'
 
 # Create database 
 db = SQLite3::Database.new("doctors_office.db")
@@ -240,19 +239,43 @@ end
   # return true if data exists
   # otherwise, return false
 def verify_data(db, name_or_id)
-  # if name_or_id.to_i >= 1
-  #   if db.execute("SELECT DISTINCT name FROM patients WHERE patients.id=?", [name_or_id]) == {}
-  #     false
-  #   else
-  #     true
-  #   end
-  # else
-  #   if db.execute("SELECT DISTINCT name FROM patients WHERE patients.name=?", [name_or_id]) == {}
-  #     false
-  #   else
-  #     true
-  #   end
-  # end
+  if verify_patient(db, name_or_id) == false
+    verify_doctor(db, name_or_id)
+  else
+    true
+  end
+end
+
+def verify_patient(db, name_or_id)
+  if name_or_id.to_i >= 1
+    if db.execute("SELECT DISTINCT name FROM patients WHERE patients.id=?", [name_or_id]) == []
+      false
+    else
+      true
+    end
+  else
+    if db.execute("SELECT DISTINCT name FROM patients WHERE patients.name=?", [name_or_id]) == []
+      false
+    else
+      true
+    end
+  end
+end
+
+def verify_doctor(db, name_or_id)
+  if name_or_id.to_i >= 1
+    if db.execute("SELECT DISTINCT name FROM doctors WHERE doctors.id=?", [name_or_id]) == []
+      false
+    else
+      true
+    end
+  else
+    if db.execute("SELECT DISTINCT name FROM doctors WHERE doctors.name=?", [name_or_id]) == []
+      false
+    else
+      true
+    end
+  end
 end
 
 # search method
@@ -264,8 +287,30 @@ end
       # loop chopping off last character and searching remaining string until something is returned
         # display result to the user "did you mean [this]?"
 
-# view_one_doctor(db, "Murphy")
+# Method that counts number of doctors in table
+# Return the number
+def count_doctors(db)
+  doctor_list = db.execute("SELECT id, name, specialty FROM doctors")
+  i = 0
+  doctor_list.each do |hash|
+    i = hash['id']
+  end
+  i
+end
+
+# method to change patient name
+# get name
+# verify
+  # if not, try again
+  # break if "exit"
+# update patient name in database
+
+def change_patient_name(db, patient_name, new_name)
+  db.execute("UPDATE patients SET name=? WHERE name=?", [new_name, patient_name])
+end
+
 # Driver Code
+# view_one_doctor(db, "Murphy")
 # def fake_last_date
 #   year = Faker::Number.between(2010, 2016).to_s
 #   month = Faker::Number.between(10, 12).to_s
@@ -320,3 +365,9 @@ end
 # p last_appointment(db, 5)
 # view_all_doctors(db)
 # view_one_patient(db, 1)
+
+# p verify_data(db, 10)
+# p verify_data(db, 1000)
+# p verify_data(db, 14)
+# p verify_data(db, "Marley Upton V")
+# p verify_data(db, "Ricket Marklemantz")
