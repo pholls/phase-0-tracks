@@ -127,6 +127,8 @@ while 1==1
           when 'y'
             delete_doctor(db, doctor_to_delete)
             puts "Doctor successfully deleted."
+            puts
+            sleep 1
             break
   
           when 'n'
@@ -175,11 +177,11 @@ while 1==1
       puts
       puts "What would you like to do? Enter a command:"
       puts
-      puts "Add    ".ljust(10) + "                 (Add a new patient)".rjust(20)
-      puts "Update ".ljust(10) + "          (Edit an existing patient)".rjust(20)
-      puts "Remove ".ljust(10) + "        (Remove an existing patient)".rjust(20)
-      puts "View   ".ljust(10) + "(See information about a patient(s))".rjust(20)
-      puts "List   ".ljust(10) + "                 (List all patients)".rjust(20)
+      puts "Add    ".ljust(10) + "              (Add a new patient)".rjust(20)
+      puts "Update ".ljust(10) + "       (Edit an existing patient)".rjust(20)
+      puts "Remove ".ljust(10) + "     (Remove an existing patient)".rjust(20)
+      puts "View   ".ljust(10) + "(See information about a patient".rjust(20)
+      puts "List   ".ljust(10) + "              (List all patients)".rjust(20)
       puts
       puts "Or type 'back' to return to main menu."
       input = gets.chomp.downcase
@@ -196,7 +198,40 @@ while 1==1
         break
 
       when 'remove'
-        break
+        puts
+        puts "What patient shall be deleted? (Enter name or patient ID)"
+        patient_to_delete = gets.chomp
+        puts
+
+        puts "Patient to delete:"
+        view_one_patient(db, patient_to_delete)
+        puts
+        puts "Delete this patient? y/n"
+        confirm = gets.chomp.downcase
+  
+        while 1 != 2
+          case confirm
+  
+          when 'y'
+            delete_patient(db, patient_to_delete)
+            puts "Patient successfully deleted."
+            puts
+            sleep 1
+            break
+  
+          when 'n'
+            puts
+            puts "Patient has NOT been deleted."
+            puts "Press enter to continue."
+            gets
+            break
+  
+          else
+            puts "Invalid input, try again."
+            confirm = gets.chomp.downcase
+  
+          end
+        end
 
       when 'view'
         puts
