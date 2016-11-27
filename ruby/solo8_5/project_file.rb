@@ -255,8 +255,14 @@ def verify_data(db, name_or_id)
   # end
 end
 
-# p verify_data(db, 1000)
-# p verify_data(db, 100)
+# search method
+  # add to doctor and patient portals
+  # enter a name
+    # run verify_data on it
+      # return the data if it's there
+    # otherwise, say "not found" 
+      # loop chopping off last character and searching remaining string until something is returned
+        # display result to the user "did you mean [this]?"
 
 # view_one_doctor(db, "Murphy")
 # Driver Code

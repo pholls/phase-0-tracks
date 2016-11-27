@@ -126,6 +126,7 @@ while 1==1
   
           when 'y'
             delete_doctor(db, doctor_to_delete)
+            puts
             puts "Doctor successfully deleted."
             puts
             sleep 1
@@ -192,7 +193,66 @@ while 1==1
         break
 
       when 'add'
-        break
+        puts
+        puts "What is the full name of the patient to add?"
+        patient_to_add = gets.chomp
+        puts
+        puts "Who is #{patient_to_add}'s preferred doctor?"
+        puts "Enter name or employee ID."
+        puts "(If none, just hit enter)"
+        preferred_doctor = gets.chomp
+        if preferred_doctor == ''
+          preferred_doctor = rand(0..101)
+        end
+        puts
+        puts "When was #{patient_to_add}'s last appointment?"
+        puts "Format: YYYYMMDD"
+        new_patient_last_appt = gets.chomp
+        puts
+        puts "When will #{patient_to_add}'s next appointment be?"
+        puts "Format: YYYYMMDD"
+        new_patient_next_appt = gets.chomp
+        puts
+        puts "Does #{patient_to_add} have insurance? y/n"
+
+        while 1 != 2
+          new_patient_insurance = gets.chomp
+          if new_patient_insurance == 'y'
+            new_patient_insurance = 'true'
+            break
+          elsif new_patient_insurance == 'n'
+            new_patient_insurance = 'false'
+            break
+          else
+            puts "Invalid input. Try again."
+          end
+        end
+
+        add_patient(db, patient_to_add, new_patient_insurance, new_patient_next_appt, new_patient_last_appt, preferred_doctor)
+        puts "Confirm new patient data:"
+        view_one_patient(db, patient_to_add)
+        puts
+        puts "Is this correct? y/n"
+        verify = gets.chomp.downcase
+
+        while 1 != 2
+
+          case verify
+
+          when 'y'
+            break
+
+          when 'n'
+            delete_patient(db, patient_to_add)
+            break
+
+          else
+            puts "Invalid input. Try again."
+            verify = gets.chomp.downcase
+            
+          end
+
+        end
 
       when 'update'
         break
@@ -214,6 +274,7 @@ while 1==1
   
           when 'y'
             delete_patient(db, patient_to_delete)
+            puts
             puts "Patient successfully deleted."
             puts
             sleep 1
