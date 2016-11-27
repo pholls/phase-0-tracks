@@ -1,3 +1,7 @@
+require 'sqlite3'
+require 'faker'
+require_relative 'project_file.rb'
+
 # USER INTERFACE
 # Patient or doctor?
 puts "Welcome to the Doctor's Office Database."
