@@ -213,6 +213,7 @@ def view_one_patient(db, patient_name_or_id)
   puts "Last appointment: " + parse_date(patient_data[0]['last_appt'])
   puts "Next appointment: " + parse_date(patient_data[0]['next_appt'])
   view_insurance(db, patient_name_or_id)
+  puts "-------------------------------------"
 end
 
 # view one doctor's info

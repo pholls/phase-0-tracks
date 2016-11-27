@@ -179,7 +179,7 @@ while 1==1
       puts "Update ".ljust(10) + "          (Edit an existing patient)".rjust(20)
       puts "Remove ".ljust(10) + "        (Remove an existing patient)".rjust(20)
       puts "View   ".ljust(10) + "(See information about a patient(s))".rjust(20)
-      puts "List   ".ljust(10) + "               (List all patient(s))".rjust(20)
+      puts "List   ".ljust(10) + "                 (List all patients)".rjust(20)
       puts
       puts "Or type 'back' to return to main menu."
       input = gets.chomp.downcase
@@ -199,7 +199,14 @@ while 1==1
         break
 
       when 'view'
-        break
+        puts
+        puts "Which patient would you like to view? (Enter name or patient ID)"
+        patient_to_view = gets.chomp
+        puts
+        view_one_patient(db, patient_to_view)
+        puts
+        puts "Hit enter to continue."
+        gets
 
       when 'list'
         view_all_patients(db)
