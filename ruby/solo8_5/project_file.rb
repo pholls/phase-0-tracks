@@ -229,7 +229,7 @@ def view_one_doctor(db, doctor_name_or_id)
   puts "Specialty: " + doctor_info[0]['specialty']
 end
 
-view_one_doctor(db, "Murphy")
+# view_one_doctor(db, "Murphy")
 # Driver Code
 # def fake_last_date
 #   year = Faker::Number.between(2010, 2016).to_s

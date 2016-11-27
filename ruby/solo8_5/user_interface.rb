@@ -7,19 +7,27 @@ puts "Enter 1 to enter Doctors Portal."
 puts "Enter 2 for Patients Portal."
 puts "Type 'done' to quit."
 
-portal = gets.chomp
+portal = gets.chomp.downcase
 
 while portal != 'done'
   if portal == '1'
-    puts "Doctors Portal"
+    puts "**************".center(75)
+    puts "Doctors Portal".center(75)
+    puts "**************".center(75)
+    puts
+    puts "What would you like to do?\nAdd, Update, Remove, or View a Doctor?"
+    puts "Or type 'done' to exit."
     break
   elsif portal == '2'
     puts "Patients Portal"
+    puts
     break
   else
     puts "Invalid input. Try again."
     portal = gets.chomp
   end
+  break if portal == 'quit'
+  break if portal == 'exit'
 end
 
   # Add, Update, Remove, or View?
