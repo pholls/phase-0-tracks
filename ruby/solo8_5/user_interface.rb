@@ -358,6 +358,20 @@ while 1==1
         patient_to_edit = gets.chomp
         puts
 
+        while !verify_patient(db, patient_to_edit)
+          puts
+          puts "Error:"
+          puts "Patient #{patient_to_edit} does not exist."
+          puts "Try again."
+          puts
+          puts "What patient are you updating? (Enter name or patient ID)"
+          puts "Or type 'back' to return to main menu."
+          patient_to_edit = gets.chomp.capitalize
+          break if patient_to_edit == 'Back'
+        end
+
+        break if patient_to_edit == 'Back'
+
         while 1 != 2
           view_one_patient(db, patient_to_edit)
           sleep 4
@@ -421,6 +435,20 @@ while 1==1
         patient_to_delete = gets.chomp
         puts
 
+        while !verify_patient(db, patient_to_delete)
+          puts
+          puts "Error:"
+          puts "Patient #{patient_to_delete} does not exist."
+          puts "Try again."
+          puts
+          puts "What patient shall be deleted? (Enter name or patient ID)"
+          puts "Or type 'back' to return to main menu."
+          patient_to_delete = gets.chomp.capitalize
+          break if patient_to_delete == 'Back'
+        end
+
+        break if patient_to_delete == 'Back'
+
         puts "Patient to delete:"
         view_one_patient(db, patient_to_delete)
         puts
@@ -457,6 +485,21 @@ while 1==1
         puts "Which patient would you like to view? (Enter name or patient ID)"
         patient_to_view = gets.chomp
         puts
+
+        while !verify_patient(db, patient_to_view)
+          puts
+          puts "Error:"
+          puts "Patient #{patient_to_view} does not exist."
+          puts "Try again."
+          puts
+          puts "What patient are you updating? (Enter name or patient ID)"
+          puts "Or type 'back' to exit."
+          patient_to_view = gets.chomp.capitalize
+          break if patient_to_view == 'Back'
+        end
+
+        break if patient_to_view == 'Back'
+
         view_one_patient(db, patient_to_view)
         puts
         puts "Hit enter to continue."
