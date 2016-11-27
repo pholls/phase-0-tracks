@@ -59,7 +59,7 @@ while 1==1
           puts "Try again."
           puts
           puts "What is the last name of the new doctor to add?"
-          puts "Or type 'back' to exit."
+          puts "Or type 'back' to return to main menu."
           new_name = gets.chomp.capitalize
           break if new_name == 'Back'
         end
@@ -119,7 +119,7 @@ while 1==1
           puts "Try again."
           puts
           puts "What doctor are you updating? (Enter name or employee ID)"
-          puts "Or type 'back' to exit."
+          puts "Or type 'back' to return to main menu."
           doctor_to_edit = gets.chomp.capitalize
           break if doctor_to_edit == 'Back'
         end
@@ -151,7 +151,7 @@ while 1==1
           puts "Try again."
           puts
           puts "What doctor shall be deleted? (Enter name or employee ID)"
-          puts "Or type 'back' to return."
+          puts "Or type 'back' to return to main menu."
           doctor_to_delete = gets.chomp.capitalize
           break if doctor_to_delete == 'Back'
         end
@@ -201,7 +201,7 @@ while 1==1
           puts "Try again."
           puts
           puts "What doctor would you like to view? (Enter name or employee ID)"
-          puts "Or type 'back' to return."
+          puts "Or type 'back' to return to main menu."
           doctor_to_view = gets.chomp.capitalize
           break if doctor_to_view == 'Back'
         end
