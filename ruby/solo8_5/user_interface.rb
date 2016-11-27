@@ -39,7 +39,6 @@ while 1==1
       puts "List  ".ljust(10) + "                   (List all doctors)".rjust(20)
       puts
       puts "Or type 'back' to return to main menu."
-      #type 'menu' at any time to discard and return to this menu
       input = gets.chomp.downcase
   
       case input
@@ -53,10 +52,13 @@ while 1==1
         new_name = gets.chomp.capitalize
         break if new_name == 'Done'
 
-        if verify_doctor(db, new_name)
+        while verify_doctor(db, new_name)
+          puts
           puts "Error:"
           puts "Dr. #{new_name} already exists."
-          break
+          puts "Try again."
+          puts "What is the last name of the new doctor to add?"
+          new_name = gets.chomp.capitalize
         end
 
         puts
