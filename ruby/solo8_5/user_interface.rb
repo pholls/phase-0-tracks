@@ -150,18 +150,27 @@ while 1==1
       when 'view'
         puts
         puts "Which doctor would you like to view? (Enter name or employee ID)"
-        puts "Or type 'all' to see all doctors."
         doctor_to_view = gets.chomp
         puts
+        puts "1. View information about #{doctor_to_view}"
+        puts "2. View all of #{doctor_to_view}'s patients"
+        puts
 
-        if doctor_to_view == 'all'
-          view_all_doctors(db)
-          puts "Hit enter to continue."
-          gets
-        else
-          view_one_doctor(db, doctor_to_view)
-          puts "Hit enter to continue."
-          gets
+        while 1 != 2
+          choice = gets.chomp
+          if choice == '1'
+            view_one_doctor(db, doctor_to_view)
+            puts "Hit enter to continue."
+            gets
+            break
+          elsif choice == '2'
+            view_patient_list(db, doctor_to_view)
+            puts "Hit enter to continue."
+            gets
+            break
+          else
+            puts "Invalid input. Try again."
+          end
         end
 
       when 'list'
