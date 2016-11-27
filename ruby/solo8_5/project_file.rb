@@ -177,6 +177,17 @@ def view_all_doctors(db)
 end
 
 # view all patients
+def view_all_patients(db)
+  patient_list = db.execute("SELECT patients.name, patients.id, doctors.name, patients.next_appt, patients.last_appt FROM doctors JOIN patients ON patients.doctor_id=doctors.id")
+  patient_list.each do |hash|
+    puts "-------------------------------------"
+    puts "Patient summary for: " + hash[0]
+    puts "Patient ID: " + hash['id'].to_s
+    puts "Primary Physician: Dr. " + hash['name']
+    puts "Last appointment: " + parse_date(hash['last_appt'])
+    puts "Next appointment: " + parse_date(hash['next_appt'])
+  end
+end
 
 # view one patient's info
 # ID, name, insurance, appointments, and doctor
@@ -185,10 +196,27 @@ end
 # ID, name, specialty, and patient's names
 
 # Driver Code
-# 1000.times do
-#   add_doctor(db, Faker::Name.last_name, Faker::Company.buzzword)
-#   add_patient(db, Faker::Name.name, Faker::Boolean.boolean.to_s, Faker::Number.number(8), Faker::Number.number(8), Faker::Number.between(1, 1000))
+# def fake_last_date
+#   year = Faker::Number.between(2010, 2016).to_s
+#   month = Faker::Number.between(10, 12).to_s
+#   day = Faker::Number.between(10,28).to_s
+#   date = year << month << day
+#   date.to_i
 # end
+
+# def fake_next_date
+#   year = Faker::Number.between(2017, 2020).to_s
+#   month = Faker::Number.between(10, 12).to_s
+#   day = Faker::Number.between(10,28).to_s
+#   date = year << month << day
+#   date.to_i
+# end
+
+# 100.times do
+#   add_doctor(db, Faker::Name.last_name, Faker::Company.buzzword)
+#   add_patient(db, Faker::Name.name, Faker::Boolean.boolean.to_s, fake_next_date, fake_last_date, Faker::Number.between(1, 100))
+# end
+
 # view_doctor_appointments(db, 1)
 # add_doctor(db, Faker::Name.name, "Toxicology")
 # docs = db.execute("SELECT * FROM doctors")
@@ -221,6 +249,7 @@ end
 # p view_insurance(db, "Korbin Conroy")
 # p last_appointment(db, 5)
 # view_all_doctors(db)
+view_all_patients(db)
 
 # USER INTERFACE
 # Patient or doctor?
