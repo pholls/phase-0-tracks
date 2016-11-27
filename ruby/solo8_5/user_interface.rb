@@ -57,9 +57,14 @@ while 1==1
           puts "Error:"
           puts "Dr. #{new_name} already exists."
           puts "Try again."
+          puts
           puts "What is the last name of the new doctor to add?"
+          puts "Or type 'back' to exit."
           new_name = gets.chomp.capitalize
+          break if new_name == 'Back'
         end
+
+        break if new_name == 'Back'
 
         puts
         puts "What is Dr. #{new_name}'s specialty?"
@@ -112,9 +117,14 @@ while 1==1
           puts "Error:"
           puts "Dr. #{doctor_to_edit} does not exist."
           puts "Try again."
+          puts
           puts "What doctor are you updating? (Enter name or employee ID)"
+          puts "Or type 'back' to exit."
           doctor_to_edit = gets.chomp.capitalize
+          break if doctor_to_edit == 'Back'
         end
+
+        break if doctor_to_edit == 'Back'
 
         view_one_doctor(db, doctor_to_edit)
         puts
@@ -131,8 +141,22 @@ while 1==1
       when 'remove'
         puts
         puts "What doctor shall be deleted? (Enter name or employee ID)"
-        doctor_to_delete = gets.chomp
+        doctor_to_delete = gets.chomp.capitalize
         puts
+
+        while !verify_doctor(db, doctor_to_delete)
+          puts
+          puts "Error:"
+          puts "Dr. #{doctor_to_delete} does not exist."
+          puts "Try again."
+          puts
+          puts "What doctor shall be deleted? (Enter name or employee ID)"
+          puts "Or type 'back' to return."
+          doctor_to_delete = gets.chomp.capitalize
+          break if doctor_to_delete == 'Back'
+        end
+
+        break if doctor_to_delete == 'Back'
 
         puts "Doctor to delete:"
         view_one_doctor(db, doctor_to_delete)
@@ -169,6 +193,21 @@ while 1==1
         puts
         puts "Which doctor would you like to view? (Enter name or employee ID)"
         doctor_to_view = gets.chomp
+
+        while !verify_doctor(db, doctor_to_view)
+          puts
+          puts "Error:"
+          puts "Dr. #{doctor_to_view} does not exist."
+          puts "Try again."
+          puts
+          puts "What doctor would you like to view? (Enter name or employee ID)"
+          puts "Or type 'back' to return."
+          doctor_to_view = gets.chomp.capitalize
+          break if doctor_to_view == 'Back'
+        end
+
+        break if doctor_to_view == 'Back'
+
         puts
         puts "1. View information about #{doctor_to_view}."
         puts "2. View all of #{doctor_to_view}'s patients."
