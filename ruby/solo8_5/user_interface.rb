@@ -400,49 +400,49 @@ while 1==1
           puts "4. Insurance status"
           puts "5. Exit"
   
-          patient_change = gets.chomp
+          patient_change = gets.chomp.downcase
           case patient_change
   
-          when '1'
+          when '1', 'name'
             
             break
   
-          when '2'
+          when '2', 'rimary physician'
             puts
             puts "Who is the new doctor? (Enter name or employee ID)"
 
-          while 1 != 2
-            new_doctor = gets.chomp
-            if new_doctor == ''
-                rand_seed = count_doctors(db)
-                if verify_doctor(db, rand_seed)
-                  new_doctor = rand(1..rand_seed)
-                  puts "#{patient_to_edit}'s physician is: "
-                  view_one_doctor(db, rand_seed) 
-                  break
-                end
-            elsif !verify_doctor(db, new_doctor)
-              puts
-              puts "Doctor #{new_doctor} not found."
-              puts "Try again."
-            else
-              puts 
-              puts "#{patient_to_edit}'s new physician is: "
-              view_one_doctor(db, new_doctor)
-              break
+            while 1 != 2
+              new_doctor = gets.chomp
+              if new_doctor == ''
+                  rand_seed = count_doctors(db)
+                  if verify_doctor(db, rand_seed)
+                    new_doctor = rand(1..rand_seed)
+                    puts "#{patient_to_edit}'s physician is: "
+                    view_one_doctor(db, rand_seed) 
+                    break
+                  end
+              elsif !verify_doctor(db, new_doctor)
+                puts
+                puts "Doctor #{new_doctor} not found."
+                puts "Try again."
+              else
+                puts 
+                puts "#{patient_to_edit}'s new physician is: "
+                view_one_doctor(db, new_doctor)
+                break
+              end
             end
-          end
 
-          update_doctor(db, patient_to_edit, new_doctor)
+            update_doctor(db, patient_to_edit, new_doctor)
   
-          when '3'
+          when '3', 'next appointment'
             puts
             puts "When will the next appointment be?"
             puts "Format: YYYYMMDD"
             date = gets.chomp
             update_appointment(db, patient_to_edit, date)
   
-          when '4'
+          when '4', 'insurance status'
             puts
             puts "Does the patient have insurance? y/n"
             new_insurance = gets.chomp.downcase
@@ -452,7 +452,7 @@ while 1==1
               update_insurance(db, patient_to_edit, 'false')
             end
   
-          when '5'
+          when '5', 'exit'
             break
   
           else
