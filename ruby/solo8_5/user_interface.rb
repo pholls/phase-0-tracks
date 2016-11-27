@@ -404,10 +404,12 @@ while 1==1
           case patient_change
   
           when '1', 'name'
+            puts
+            puts "What is the patient's new name?"
             
             break
   
-          when '2', 'rimary physician'
+          when '2', 'primary physician'
             puts
             puts "Who is the new doctor? (Enter name or employee ID)"
 
