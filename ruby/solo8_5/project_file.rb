@@ -285,4 +285,3 @@ end
 # p last_appointment(db, 5)
 # view_all_doctors(db)
 # view_one_patient(db, 1)
-

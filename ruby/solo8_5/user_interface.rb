@@ -1,4 +1,7 @@
-require_relative 'project_file.rb'
+require_relative 'project_file'
+
+db = SQLite3::Database.new("doctors_office.db")
+db.results_as_hash = true
 
 # USER INTERFACE
 # Patient or doctor?
@@ -10,24 +13,81 @@ puts "Type 'done' to quit."
 portal = gets.chomp.downcase
 
 while portal != 'done'
+
   if portal == '1'
+
+    puts
     puts "**************".center(75)
     puts "Doctors Portal".center(75)
     puts "**************".center(75)
     puts
     puts "What would you like to do?\nAdd, Update, Remove, or View a Doctor?"
     puts "Or type 'done' to exit."
-    break
+    #type 'menu' at any time to discard and return to this menu
+    input = gets.chomp.downcase
+
+    case input
+
+    when 'done'
+      break
+
+    when 'add'
+      puts "What is the last name of the new doctor to add?"
+      new_name = gets.chomp.capitalize
+      break if new_name == 'Done'
+      puts "What is Dr. #{new_name}'s specialty?"
+      new_specialty = gets.chomp
+      puts "Confirm the following data:"
+      puts "-" * 30
+      puts "New entry:"
+      puts "Dr. #{new_name}, specialty: #{new_specialty}"
+      puts "-" * 30
+      puts "Is this correct? y/n"
+      confirm = gets.chomp.downcase
+
+      while confirm != 'done'
+        case confirm
+
+        when 'y'
+          add_doctor(db, new_name, new_specialty)
+          puts "SUCCESS"
+          puts "Dr. #{new_name} has been added."
+          break
+
+        when 'n'
+          puts "Dr. #{new_name} has NOT been added."
+          break
+
+        else
+          puts "Invalid input, try again."
+          confirm = gets.chomp.downcase
+
+        end
+      end
+
+    when 'update'
+      puts "What doctor are you updating? (Enter name or employee ID)"
+
+    when 'delete'
+      puts "What doctor shall be deleted? (Enter name or employee ID)"
+
+    when 'view'
+      puts "What doctor would you like to view? (Enter name or employee ID)"
+      puts "Or type 'all' to see all doctors."
+
+    end
+
   elsif portal == '2'
     puts "Patients Portal"
     puts
     break
+
   else
     puts "Invalid input. Try again."
     portal = gets.chomp
+
   end
-  break if portal == 'quit'
-  break if portal == 'exit'
+
 end
 
   # Add, Update, Remove, or View?
