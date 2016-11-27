@@ -32,10 +32,10 @@ while 1==1
       puts
       puts "What would you like to do? Enter a command:"
       puts
-      puts "Add   ".ljust(10) + "         (Add a new doctor)".rjust(20)
-      puts "Update".ljust(10) + "  (Edit an existing doctor)".rjust(20)
-      puts "Remove".ljust(10) + "(Remove an existing doctor)".rjust(20)
-      puts "View  ".ljust(10) + "           (View doctor(s))".rjust(20)
+      puts "Add   ".ljust(10) + "                   (Add a new doctor)".rjust(20)
+      puts "Update".ljust(10) + "(Edit an existing doctor's specialty)".rjust(20)
+      puts "Remove".ljust(10) + "          (Remove an existing doctor)".rjust(20)
+      puts "View  ".ljust(10) + "     (View doctors' info or patients)".rjust(20)
       puts
       puts "Or type 'back' to return to main menu."
       #type 'menu' at any time to discard and return to this menu
@@ -88,13 +88,22 @@ while 1==1
             confirm = gets.chomp.downcase
   
           end
+
         end
   
       when 'update'
         puts
         puts "What doctor are you updating? (Enter name or employee ID)"
         doctor = gets.chomp
-        
+        puts
+
+        view_one_doctor(db, doctor)
+        puts
+        puts "Enter Dr.'s new specialty:"
+        change = gets.chomp
+        change_spec(db, doctor, change)
+        puts 
+        puts "Updated information:"
         view_one_doctor(db, doctor)
   
       when 'delete'

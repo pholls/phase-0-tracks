@@ -227,12 +227,28 @@ def view_one_doctor(db, doctor_name_or_id)
   puts "Employee Summary for Dr. " + doctor_info[0]['name'] + ":"
   puts "Employee ID#: " + doctor_info[0]['id'].to_s
   puts "Specialty: " + doctor_info[0]['specialty']
+  puts "-------------------------------------"
 end
 
 #add a method to verify the data (ID or name exists)
 def verify_data(db, name_or_id)
-  
+  # if name_or_id.to_i >= 1
+  #   if db.execute("SELECT DISTINCT name FROM patients WHERE patients.id=?", [name_or_id]) == {}
+  #     false
+  #   else
+  #     true
+  #   end
+  # else
+  #   if db.execute("SELECT DISTINCT name FROM patients WHERE patients.name=?", [name_or_id]) == {}
+  #     false
+  #   else
+  #     true
+  #   end
+  # end
 end
+
+# p verify_data(db, 1000)
+# p verify_data(db, 100)
 
 # view_one_doctor(db, "Murphy")
 # Driver Code
