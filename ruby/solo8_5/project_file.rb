@@ -254,15 +254,6 @@ def verify_data(db, name_or_id, pat_or_doc)
   end
 end
 
-# search method
-  # add to doctor and patient portals
-  # enter a name
-    # run verify_data on it
-      # return the data if it's there
-    # otherwise, say "not found" 
-      # loop chopping off last character and searching remaining string until something is returned
-        # display result to the user "did you mean [this]?"
-
 # Method that counts number of doctors in table
 # Return the number
 def count_doctors(db)
@@ -278,6 +269,15 @@ end
 def change_patient_name(db, patient_name, new_name)
   db.execute("UPDATE patients SET name=? WHERE name=?", [new_name, patient_name])
 end
+
+# search method
+  # add to doctor and patient portals
+  # enter a name
+    # run verify_data on it
+      # return the data if it's there
+    # otherwise, say "not found" 
+      # loop chopping off last character and searching remaining string until something is returned
+        # display result to the user "did you mean [this]?"
 
 # Driver Code
 # view_one_doctor(db, "Murphy")
