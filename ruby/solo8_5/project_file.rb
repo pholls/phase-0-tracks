@@ -145,12 +145,9 @@ def delete_doctor(db, name_or_id)
 end
 # Change specialty by doctor's name or id
 def change_spec(db, name_or_id, new_spec)
-  if name_or_id.to_i >= 1
-    db.execute("UPDATE doctors SET specialty = ? WHERE id = ?", [new_spec, name_or_id])
-  else
-    db.execute("UPDATE doctors SET specialty = ? WHERE name = ?", [new_spec, name_or_id])
-  end
+  db.execute("UPDATE doctors SET specialty=? WHERE id=? OR name=?", [new_spec, name_or_id, name_or_id])
 end
+
 # View all of a doctor's patients
 def view_patient_list(db, doctor_name_or_id)
   patients = db.execute("SELECT patients.name FROM patients JOIN doctors ON patients.doctor_id=doctors.id WHERE doctors.id=? OR doctors.name=?", [doctor_name_or_id, doctor_name_or_id])
@@ -158,7 +155,6 @@ def view_patient_list(db, doctor_name_or_id)
     p hash['name']
   end
 end
-
 # View all of a doctor's upcoming appointments
 def view_doctor_appointments(db, doctor_name_or_id)
   appointments = db.execute("SELECT patients.name, patients.next_appt FROM patients JOIN doctors ON patients.doctor_id=doctors.id WHERE doctors.id=? OR doctors.name=?", [doctor_name_or_id, doctor_name_or_id])
@@ -255,3 +251,4 @@ end
     # otherwise, say "not found" 
       # loop chopping off last character and searching remaining string until something is returned
         # display result to the user "did you mean [this]?"
+
