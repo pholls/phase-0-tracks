@@ -94,11 +94,7 @@ def view_insurance(db, name_or_id)
     status = true
   end
 end
-# View patient's doctor's name
-def view_patient_doctor(db, name_or_id)
-  doctor_name = db.execute("SELECT patients.name, doctors.name FROM patients JOIN doctors ON patients.doctor_id=doctors.id WHERE patients.id=? OR patients.name=?", [name_or_id, name_or_id])
-  doctor_name = doctor_name[0]["name"]
-end
+
 # Assign a patient's doctor
 def update_doctor(db, patient_name_or_id, doctor_id)
   db.execute("UPDATE patients SET doctor_id=? WHERE patients.id=? OR patients.name=?", [doctor_id, patient_name_or_id, patient_name_or_id])
