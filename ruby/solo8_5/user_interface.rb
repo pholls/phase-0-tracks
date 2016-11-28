@@ -579,13 +579,3 @@ while 1==1
   end
 
 end
-  # Add, Update, Remove, or View?
-    # Add - go through each row and get data from user, input into table
-    # Update - go through each row, get data, update into table
-    # Remove - by name or id
-      # confirm delete
-      # delete row
-    # View - display the relevant information in a pretty way
-      # View what? 
-        # Next appt, last appt, Doctor, insurance status
-
