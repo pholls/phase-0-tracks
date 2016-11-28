@@ -88,20 +88,18 @@ end
 def update_insurance(db, patient_name_or_id, insurance)
   db.execute("UPDATE patients SET insurance=? WHERE id=? OR name=?", [insurance, patient_name_or_id, patient_name_or_id])
 end
-# Add/remove doctors
+# Add doctors
 def add_doctor(db, name, specialty)
   db.execute("INSERT INTO doctors (name, specialty) VALUES (?, ?)", [name, specialty])
 end
-
+# Delete doctor by name or id
 def delete_doctor(db, name_or_id)
   db.execute("DELETE FROM doctors WHERE id=? OR name=?", [name_or_id, name_or_id])
 end
-
 # Change specialty by doctor's name or id
 def change_spec(db, name_or_id, new_spec)
   db.execute("UPDATE doctors SET specialty=? WHERE id=? OR name=?", [new_spec, name_or_id, name_or_id])
 end
-
 # View all of a doctor's patients
 def view_patient_list(db, doctor_name_or_id)
   patients = db.execute("SELECT patients.name FROM patients JOIN doctors ON patients.doctor_id=doctors.id WHERE doctors.id=? OR doctors.name=?", [doctor_name_or_id, doctor_name_or_id])
