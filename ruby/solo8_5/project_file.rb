@@ -200,11 +200,7 @@ end
 # view one patient's info
 # ID, name, insurance, appointments, and doctor
 def view_one_patient(db, patient_name_or_id)
-  if patient_name_or_id.to_i >= 1
-    patient_data = db.execute("SELECT patients.name, patients.id, doctors.name, patients.next_appt, patients.last_appt FROM doctors JOIN patients ON patients.doctor_id=doctors.id WHERE patients.id=?", [patient_name_or_id])
-  else
-    patient_data = db.execute("SELECT patients.name, patients.id, doctors.name, patients.next_appt, patients.last_appt FROM doctors JOIN patients ON patients.doctor_id=doctors.id WHERE patients.name=?", [patient_name_or_id])
-  end
+  patient_data = db.execute("SELECT patients.name, patients.id, doctors.name, patients.next_appt, patients.last_appt FROM doctors JOIN patients ON patients.doctor_id=doctors.id WHERE patients.id=? OR patients.name=?", [patient_name_or_id, patient_name_or_id])
   puts "-------------------------------------"
   puts "Patient summary for: " + patient_data[0][0]
   puts "Patient ID#: " + patient_data[0]['id'].to_s
