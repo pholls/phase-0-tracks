@@ -218,11 +218,7 @@ end
 # view one doctor's info
 # ID, name, specialty
 def view_one_doctor(db, doctor_name_or_id)
-  if doctor_name_or_id.to_i >= 1
-    doctor_info = db.execute("SELECT id, name, specialty FROM doctors WHERE id=?", [doctor_name_or_id])
-  else
-    doctor_info = db.execute("SELECT id, name, specialty FROM doctors WHERE name=?", [doctor_name_or_id])
-  end
+  doctor_info = db.execute("SELECT id, name, specialty FROM doctors WHERE id=? OR name=?", [doctor_name_or_id, doctor_name_or_id])
   puts "-------------------------------------"
   puts "Employee Summary for Dr. " + doctor_info[0]['name'] + ":"
   puts "Employee ID#: " + doctor_info[0]['id'].to_s
