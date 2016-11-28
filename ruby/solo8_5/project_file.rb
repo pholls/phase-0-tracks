@@ -239,20 +239,20 @@ end
   # return true if data exists
   # otherwise, return false
 def verify_data(db, name_or_id, pat_or_doc)
-  if name_or_id.to_i >= 1
-    if db.execute("SELECT DISTINCT name FROM #{pat_or_doc} WHERE #{pat_or_doc}.id=?", [name_or_id]) == []
-      false
-    else
-      true
-    end
+  if db.execute("SELECT DISTINCT name FROM #{pat_or_doc} WHERE id=? OR name=?", [name_or_id, name_or_id]) == []
+    false
   else
-    if db.execute("SELECT DISTINCT name FROM #{pat_or_doc} WHERE #{pat_or_doc}.name=?", [name_or_id]) == []
-      false
-    else
-      true
-    end
+    true
   end
 end
+
+p verify_data(db, 100, 'patients')
+p verify_data(db, 10000, 'patients')
+p verify_data(db, 100, 'doctors')
+p verify_data(db, 10000, 'doctors')
+p verify_data(db, 'asdf asdf', 'patients')
+p verify_data(db, 'Butt Head', 'patients')
+p verify_data(db, 'Charle', 'doctors')
 
 # Method that counts number of doctors in table
 # Return the number
