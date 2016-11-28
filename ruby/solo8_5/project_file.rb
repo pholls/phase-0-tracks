@@ -109,11 +109,7 @@ def view_patient_doctor(db, name_or_id)
 end
 # Assign a patient's doctor
 def update_doctor(db, patient_name_or_id, doctor_id)
-  if patient_name_or_id.to_i >= 1
-    db.execute("UPDATE patients SET doctor_id=? WHERE id=?", [doctor_id, patient_name_or_id])
-  else
-    db.execute("UPDATE patients SET doctor_id=? where name=?",[doctor_id, patient_name_or_id])
-  end
+  db.execute("UPDATE patients SET doctor_id=? WHERE patients.id=? OR patients.name=?", [doctor_id, patient_name_or_id, patient_name_or_id])
 end
 # Change a patient's upcoming appointment
 def update_appointment(db, patient_name_or_id, date)
@@ -231,13 +227,6 @@ end
 def change_patient_name(db, patient_name, new_name)
   db.execute("UPDATE patients SET name=? WHERE name=?", [new_name, patient_name])
 end
-
-view_one_patient(db, 35)
-update_appointment(db, 35, 20180303)
-view_one_patient(db, 35)
-
-update_appointment(db, 'Nella Ferry', 20200909)
-view_one_patient(db, 'Nella Ferry')
 
 # search method
   # add to doctor and patient portals
