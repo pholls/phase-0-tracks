@@ -238,13 +238,26 @@ end
   # check by name or ID
   # return true if data exists
   # otherwise, return false
-def verify_data(db, name_or_id)
-  if verify_patient(db, name_or_id) == false
-    verify_doctor(db, name_or_id)
+def verify_data(db, name_or_id, pat_or_doc)
+  if name_or_id.to_i >= 1
+    if db.execute("SELECT DISTINCT name FROM #{pat_or_doc} WHERE #{pat_or_doc}.id=?", [name_or_id]) == []
+      false
+    else
+      true
+    end
   else
-    true
+    if db.execute("SELECT DISTINCT name FROM #{pat_or_doc} WHERE #{pat_or_doc}.name=?", [name_or_id]) == []
+      false
+    else
+      true
+    end
   end
 end
+
+p verify_data(db, 100, 'doctors')
+p verify_data(db, 200, 'doctors')
+p verify_data(db, 14, 'patients')
+p verify_data(db, 1000, 'patients')
 
 def verify_patient(db, name_or_id)
   if name_or_id.to_i >= 1

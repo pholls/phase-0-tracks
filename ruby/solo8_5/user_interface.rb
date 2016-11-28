@@ -52,7 +52,7 @@ while 1==1
         new_name = gets.chomp.capitalize
         break if new_name == 'Done'
 
-        while verify_doctor(db, new_name)
+        while verify_data(db, new_name, 'doctors')
           puts
           puts "Error:"
           puts "Dr. #{new_name} already exists."
@@ -537,7 +537,7 @@ while 1==1
         patient_to_view = gets.chomp
         puts
 
-        while !verify_patient(db, patient_to_view)
+        while !verify_data(db, patient_to_view, 'patients')
           puts
           puts "Error:"
           puts "Patient #{patient_to_view} does not exist."
