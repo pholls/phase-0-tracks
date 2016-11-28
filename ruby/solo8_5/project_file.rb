@@ -254,43 +254,6 @@ def verify_data(db, name_or_id, pat_or_doc)
   end
 end
 
-p verify_data(db, 100, 'doctors')
-p verify_data(db, 200, 'doctors')
-p verify_data(db, 14, 'patients')
-p verify_data(db, 1000, 'patients')
-
-def verify_patient(db, name_or_id)
-  if name_or_id.to_i >= 1
-    if db.execute("SELECT DISTINCT name FROM patients WHERE patients.id=?", [name_or_id]) == []
-      false
-    else
-      true
-    end
-  else
-    if db.execute("SELECT DISTINCT name FROM patients WHERE patients.name=?", [name_or_id]) == []
-      false
-    else
-      true
-    end
-  end
-end
-
-def verify_doctor(db, name_or_id)
-  if name_or_id.to_i >= 1
-    if db.execute("SELECT DISTINCT name FROM doctors WHERE doctors.id=?", [name_or_id]) == []
-      false
-    else
-      true
-    end
-  else
-    if db.execute("SELECT DISTINCT name FROM doctors WHERE doctors.name=?", [name_or_id]) == []
-      false
-    else
-      true
-    end
-  end
-end
-
 # search method
   # add to doctor and patient portals
   # enter a name
