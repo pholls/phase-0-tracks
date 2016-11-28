@@ -125,11 +125,7 @@ def update_appointment(db, patient_name_or_id, date)
 end
 # Update patient's insurance status
 def update_insurance(db, patient_name_or_id, insurance)
-  if patient_name_or_id.to_i >= 1
-    db.execute("UPDATE patients SET insurance=? WHERE id=?", [insurance, patient_name_or_id])
-  else
-    db.execute("UPDATE patients SET insurance=? WHERE name=?", [insurance, patient_name_or_id])
-  end
+  db.execute("UPDATE patients SET insurance=? WHERE id=? OR name=?", [insurance, patient_name_or_id, patient_name_or_id])
 end
 # Add/remove doctors
 def add_doctor(db, name, specialty)
