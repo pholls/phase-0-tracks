@@ -52,7 +52,7 @@ while 1==1
         new_name = gets.chomp.capitalize
         break if new_name == 'Done'
 
-        while verify_doctor(db, new_name)
+        while verify_data(db, new_name, 'doctors')
           puts
           puts "Error:"
           puts "Dr. #{new_name} already exists."
@@ -112,7 +112,7 @@ while 1==1
         doctor_to_edit = gets.chomp
         puts
 
-        while !verify_doctor(db, doctor_to_edit)
+        while !verify_data(db, doctor_to_edit, 'doctors')
           puts
           puts "Error:"
           puts "Dr. #{doctor_to_edit} does not exist."
@@ -144,7 +144,7 @@ while 1==1
         doctor_to_delete = gets.chomp.capitalize
         puts
 
-        while !verify_doctor(db, doctor_to_delete)
+        while !verify_data(db, doctor_to_delete, 'doctors')
           puts
           puts "Error:"
           puts "Dr. #{doctor_to_delete} does not exist."
@@ -194,7 +194,7 @@ while 1==1
         puts "Which doctor would you like to view? (Enter name or employee ID)"
         doctor_to_view = gets.chomp
 
-        while !verify_doctor(db, doctor_to_view)
+        while !verify_data(db, doctor_to_view, 'doctors')
           puts
           puts "Error:"
           puts "Dr. #{doctor_to_view} does not exist."
@@ -276,7 +276,7 @@ while 1==1
         puts "What is the full name of the patient to add?"
         patient_to_add = gets.chomp
 
-        while verify_patient(db, patient_to_add)
+        while verify_data(db, patient_to_add, 'patients')
           puts
           puts "Error:"
           puts "Patient #{patient_to_add} already exists."
@@ -299,13 +299,13 @@ while 1==1
           preferred_doctor = gets.chomp.capitalize
           if preferred_doctor == ''
               rand_seed = count_doctors(db)
-              if verify_doctor(db, rand_seed)
+              if verify_data(db, rand_seed, 'doctors')
                 preferred_doctor = rand(1..rand_seed)
                 puts "#{patient_to_add}'s physician is: "
                 view_one_doctor(db, rand_seed) 
                 break
               end
-          elsif !verify_doctor(db, preferred_doctor)
+          elsif !verify_data(db, preferred_doctor, 'doctors')
             puts
             puts "Doctor #{preferred_doctor} not found."
             puts "Try again."
@@ -375,7 +375,7 @@ while 1==1
         patient_to_edit = gets.chomp
         puts
 
-        while !verify_patient(db, patient_to_edit)
+        while !verify_data(db, patient_to_edit, 'patients')
           puts
           puts "Error:"
           puts "Patient #{patient_to_edit} does not exist."
@@ -427,13 +427,13 @@ while 1==1
               new_doctor = gets.chomp
               if new_doctor == ''
                   rand_seed = count_doctors(db)
-                  if verify_doctor(db, rand_seed)
+                  if verify_data(db, rand_seed, 'doctors')
                     new_doctor = rand(1..rand_seed)
                     puts "#{patient_to_edit}'s physician is: "
                     view_one_doctor(db, rand_seed) 
                     break
                   end
-              elsif !verify_doctor(db, new_doctor)
+              elsif !verify_data(db, new_doctor, 'doctors')
                 puts
                 puts "Doctor #{new_doctor} not found."
                 puts "Try again."
@@ -486,7 +486,7 @@ while 1==1
         patient_to_delete = gets.chomp
         puts
 
-        while !verify_patient(db, patient_to_delete)
+        while !verify_data(db, patient_to_delete, 'patients')
           puts
           puts "Error:"
           puts "Patient #{patient_to_delete} does not exist."
@@ -537,7 +537,7 @@ while 1==1
         patient_to_view = gets.chomp
         puts
 
-        while !verify_patient(db, patient_to_view)
+        while !verify_data(db, patient_to_view, 'patients')
           puts
           puts "Error:"
           puts "Patient #{patient_to_view} does not exist."
@@ -579,13 +579,3 @@ while 1==1
   end
 
 end
-  # Add, Update, Remove, or View?
-    # Add - go through each row and get data from user, input into table
-    # Update - go through each row, get data, update into table
-    # Remove - by name or id
-      # confirm delete
-      # delete row
-    # View - display the relevant information in a pretty way
-      # View what? 
-        # Next appt, last appt, Doctor, insurance status
-

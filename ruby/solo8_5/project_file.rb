@@ -238,54 +238,21 @@ end
   # check by name or ID
   # return true if data exists
   # otherwise, return false
-def verify_data(db, name_or_id)
-  if verify_patient(db, name_or_id) == false
-    verify_doctor(db, name_or_id)
-  else
-    true
-  end
-end
-
-def verify_patient(db, name_or_id)
+def verify_data(db, name_or_id, pat_or_doc)
   if name_or_id.to_i >= 1
-    if db.execute("SELECT DISTINCT name FROM patients WHERE patients.id=?", [name_or_id]) == []
+    if db.execute("SELECT DISTINCT name FROM #{pat_or_doc} WHERE #{pat_or_doc}.id=?", [name_or_id]) == []
       false
     else
       true
     end
   else
-    if db.execute("SELECT DISTINCT name FROM patients WHERE patients.name=?", [name_or_id]) == []
+    if db.execute("SELECT DISTINCT name FROM #{pat_or_doc} WHERE #{pat_or_doc}.name=?", [name_or_id]) == []
       false
     else
       true
     end
   end
 end
-
-def verify_doctor(db, name_or_id)
-  if name_or_id.to_i >= 1
-    if db.execute("SELECT DISTINCT name FROM doctors WHERE doctors.id=?", [name_or_id]) == []
-      false
-    else
-      true
-    end
-  else
-    if db.execute("SELECT DISTINCT name FROM doctors WHERE doctors.name=?", [name_or_id]) == []
-      false
-    else
-      true
-    end
-  end
-end
-
-# search method
-  # add to doctor and patient portals
-  # enter a name
-    # run verify_data on it
-      # return the data if it's there
-    # otherwise, say "not found" 
-      # loop chopping off last character and searching remaining string until something is returned
-        # display result to the user "did you mean [this]?"
 
 # Method that counts number of doctors in table
 # Return the number
@@ -299,75 +266,15 @@ def count_doctors(db)
 end
 
 # method to change patient name
-# get name
-# verify
-  # if not, try again
-  # break if "exit"
-# update patient name in database
-
 def change_patient_name(db, patient_name, new_name)
   db.execute("UPDATE patients SET name=? WHERE name=?", [new_name, patient_name])
 end
 
-# Driver Code
-# view_one_doctor(db, "Murphy")
-# def fake_last_date
-#   year = Faker::Number.between(2010, 2016).to_s
-#   month = Faker::Number.between(10, 12).to_s
-#   day = Faker::Number.between(10,28).to_s
-#   date = year << month << day
-#   date.to_i
-# end
-
-# def fake_next_date
-#   year = Faker::Number.between(2017, 2020).to_s
-#   month = Faker::Number.between(10, 12).to_s
-#   day = Faker::Number.between(10,28).to_s
-#   date = year << month << day
-#   date.to_i
-# end
-
-# 100.times do
-#   add_doctor(db, Faker::Name.last_name, Faker::Company.buzzword)
-#   add_patient(db, Faker::Name.name, Faker::Boolean.boolean.to_s, fake_next_date, fake_last_date, Faker::Number.between(1, 100))
-# end
-
-# view_doctor_appointments(db, 1)
-# add_doctor(db, Faker::Name.name, "Toxicology")
-# docs = db.execute("SELECT * FROM doctors")
-# change_spec(db, 1, "Phrenology")
-# docs.each do |doctor|
-#   puts "Dr. #{doctor['name']}'s specialty is #{doctor['specialty']}"
-# end
-# delete_doctor(db, 1)
-# docs.each do |doctor|
-#   puts "Dr. #{doctor['name']}'s specialty is #{doctor['specialty']}"
-# end
-# add_patient(db, Faker::Name.name, "true", 20170502, 20161105, 1)
-# all_patients = db.execute("SELECT * FROM patients")
-# all_patients.each do |patient|
-#   puts "#{patient['name']} has an appointment on #{patient['next_appt']}"
-# end
-# delete_patient(db, 2)
-# all_patients.each do |patient|
-#   puts "#{patient['name']} has an appointment on #{patient['next_appt']}"
-# end
-# p last_appointment(db, "Korbin Conroy")
-# p next_appointment(db, "Korbin Conroy")
-# p view_insurance(db, 3)
-# p view_patient_doctor(db, "Korbin Conroy")
-# update_doctor(db, "Korbin Conroy", 3)
-# p view_patient_doctor(db, "Korbin Conroy")
-# update_appointment(db, "Korbin Conroy", 20170312)
-# p next_appointment(db, "Korbin Conroy")
-# update_insurance(db, "Korbin Conroy", "false")
-# p view_insurance(db, "Korbin Conroy")
-# p last_appointment(db, 5)
-# view_all_doctors(db)
-# view_one_patient(db, 1)
-
-# p verify_data(db, 10)
-# p verify_data(db, 1000)
-# p verify_data(db, 14)
-# p verify_data(db, "Marley Upton V")
-# p verify_data(db, "Ricket Marklemantz")
+# search method
+  # add to doctor and patient portals
+  # enter a name
+    # run verify_data on it
+      # return the data if it's there
+    # otherwise, say "not found" 
+      # loop chopping off last character and searching remaining string until something is returned
+        # display result to the user "did you mean [this]?"
