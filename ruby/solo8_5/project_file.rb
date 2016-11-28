@@ -47,6 +47,10 @@ end
 def delete_patient(db, name_or_id)
   db.execute("DELETE FROM patients WHERE id=? OR name=?", [name_or_id, name_or_id])
 end
+# method to change patient name
+def change_patient_name(db, patient_name_or_id, new_name)
+  db.execute("UPDATE patients SET name=? WHERE name=? OR id=?", [new_name, patient_name_or_id, patient_name_or_id])
+end
 
 def parse_date(numbers)
   string = numbers.to_s
@@ -179,11 +183,6 @@ def count_doctors(db)
     i = hash['id']
   end
   i
-end
-
-# method to change patient name
-def change_patient_name(db, patient_name, new_name)
-  db.execute("UPDATE patients SET name=? WHERE name=?", [new_name, patient_name])
 end
 
 # search method
