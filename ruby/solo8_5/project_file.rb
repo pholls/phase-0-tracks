@@ -137,12 +137,9 @@ def add_doctor(db, name, specialty)
 end
 
 def delete_doctor(db, name_or_id)
-  if name_or_id.to_i >= 1
-    db.execute("DELETE FROM doctors WHERE id = ?", [name_or_id])
-  else
-    db.execute("DELETE FROM doctors WHERE name = ?", [name_or_id])
-  end
+  db.execute("DELETE FROM doctors WHERE id=? OR name=?", [name_or_id, name_or_id])
 end
+
 # Change specialty by doctor's name or id
 def change_spec(db, name_or_id, new_spec)
   db.execute("UPDATE doctors SET specialty=? WHERE id=? OR name=?", [new_spec, name_or_id, name_or_id])
