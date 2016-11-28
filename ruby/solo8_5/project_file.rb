@@ -299,12 +299,6 @@ def count_doctors(db)
 end
 
 # method to change patient name
-# get name
-# verify
-  # if not, try again
-  # break if "exit"
-# update patient name in database
-
 def change_patient_name(db, patient_name, new_name)
   db.execute("UPDATE patients SET name=? WHERE name=?", [new_name, patient_name])
 end
