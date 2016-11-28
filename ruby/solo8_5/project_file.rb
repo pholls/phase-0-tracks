@@ -246,14 +246,6 @@ def verify_data(db, name_or_id, pat_or_doc)
   end
 end
 
-p verify_data(db, 100, 'patients')
-p verify_data(db, 10000, 'patients')
-p verify_data(db, 100, 'doctors')
-p verify_data(db, 10000, 'doctors')
-p verify_data(db, 'asdf asdf', 'patients')
-p verify_data(db, 'Butt Head', 'patients')
-p verify_data(db, 'Charle', 'doctors')
-
 # Method that counts number of doctors in table
 # Return the number
 def count_doctors(db)
