@@ -51,16 +51,6 @@ def delete_patient(db, name_or_id)
     db.execute("DELETE FROM patients WHERE name=?", [name_or_id])
   end
 end
-# View a patient's last appointment
-def last_appointment(db, name_or_id)
-  if name_or_id.to_i >= 1
-    full_date = db.execute("SELECT last_appt FROM patients WHERE id=?", [name_or_id])
-  else
-    full_date = db.execute("SELECT last_appt FROM patients WHERE name=?", [name_or_id])
-  end
-  date = full_date[0]["last_appt"]
-  parse_date(date)
-end
 
 def parse_date(numbers)
   string = numbers.to_s
@@ -70,16 +60,7 @@ def parse_date(numbers)
   parsed_date = Date.new(year,month,day)
   Date::DAYNAMES[parsed_date.wday] + ", " + Date::MONTHNAMES[month] + " " + day.to_s + ", " + year.to_s
 end
-# View a patient's upcoming appointment
-def next_appointment(db, name_or_id)
-  if name_or_id.to_i >= 1
-    full_date = db.execute("SELECT next_appt FROM patients WHERE id=?", [name_or_id])
-  else
-    full_date = db.execute("SELECT next_appt FROM patients WHERE name=?", [name_or_id])
-  end
-  date = full_date[0]["next_appt"]
-  parse_date(date)
-end
+
 # View patient's insurance status
 def view_insurance(db, name_or_id)
   status = db.execute("SELECT insurance, name FROM patients WHERE id=? OR name=?", [name_or_id, name_or_id])
