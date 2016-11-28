@@ -45,11 +45,7 @@ def add_patient(db, name, insurance, next_appt, last_appt, doctor_id)
 end
 # Delete a patient by name or by ID number
 def delete_patient(db, name_or_id)
-  if name_or_id.to_i >= 1
-    db.execute("DELETE FROM patients WHERE id=?", [name_or_id])
-  else
-    db.execute("DELETE FROM patients WHERE name=?", [name_or_id])
-  end
+  db.execute("DELETE FROM patients WHERE id=? OR name=?", [name_or_id, name_or_id])
 end
 
 def parse_date(numbers)
