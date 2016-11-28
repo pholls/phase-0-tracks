@@ -82,11 +82,7 @@ def next_appointment(db, name_or_id)
 end
 # View patient's insurance status
 def view_insurance(db, name_or_id)
-  if name_or_id.to_i >= 1
-    status = db.execute("SELECT insurance, name FROM patients WHERE id=?", [name_or_id])
-  else
-    status = db.execute("SELECT insurance, name FROM patients WHERE name=?", [name_or_id])
-  end
+  status = db.execute("SELECT insurance, name FROM patients WHERE id=? OR name=?", [name_or_id, name_or_id])
   name = status[0]["name"]
   status = status[0]["insurance"]
   case status
@@ -100,11 +96,7 @@ def view_insurance(db, name_or_id)
 end
 # View patient's doctor's name
 def view_patient_doctor(db, name_or_id)
-  if name_or_id.to_i >= 1
-    doctor_name = db.execute("SELECT patients.name, doctors.name FROM patients JOIN doctors ON patients.doctor_id=doctors.id WHERE patients.id=?", [name_or_id])
-  else
-    doctor_name = db.execute("SELECT patients.name, doctors.name FROM patients JOIN doctors ON patients.doctor_id=doctors.id WHERE patients.name=?", [name_or_id])
-  end
+  doctor_name = db.execute("SELECT patients.name, doctors.name FROM patients JOIN doctors ON patients.doctor_id=doctors.id WHERE patients.id=? OR patients.name=?", [name_or_id, name_or_id])
   doctor_name = doctor_name[0]["name"]
 end
 # Assign a patient's doctor
