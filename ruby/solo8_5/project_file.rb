@@ -164,11 +164,7 @@ def view_patient_list(db, doctor_name_or_id)
 end
 # View all of a doctor's upcoming appointments
 def view_doctor_appointments(db, doctor_name_or_id)
-  if doctor_name_or_id.to_i >= 1
-    appointments = db.execute("SELECT patients.name, patients.next_appt FROM patients JOIN doctors ON patients.doctor_id=doctors.id WHERE doctors.id=?", [doctor_name_or_id])
-  else
-    appointments = db.execute("SELECT patients.name, patients.next_appt FROM patients JOIN doctors ON patients.doctor_id=doctors.id WHERE doctors.name=?", [doctor_name_or_id])
-  end
+  appointments = db.execute("SELECT patients.name, patients.next_appt FROM patients JOIN doctors ON patients.doctor_id=doctors.id WHERE doctors.id=? OR doctors.name=?", [doctor_name_or_id, doctor_name_or_id])
   appointments.each do |hash|
     p parse_date(hash['next_appt']) + " - " + hash['name'] 
   end
