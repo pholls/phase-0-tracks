@@ -26,3 +26,10 @@ var paragraph = document.getElementsByTagName('p');
 for (var i = 0; i < paragraph.length; i++) {
   paragraph[i].addEventListener('click', colorToRed);
 }
+
+function hideElement(event) {
+  event.target.style.visibility = 'hidden';
+}
+
+var image = document.getElementsByTagName('img')[0];
+image.addEventListener('click', hideElement);
