@@ -27,8 +27,14 @@ POST updates or inserts remote data.
 POST inserts the key/value pairs within the body of the HTTP request. This keeps the URL neat, avoids clipping because there are no size limitations like the URL, and is more secure.
 
 ##When to use
-A search page should use GET
-A form to change your password should use POST
+A search page should use GET -- it gets data but doesn't change it.
+A form to change your password should use POST -- it changes the data (posting it).
 GET *should not* be used for submitting sensitive data. Use POST for sensitive data so it is not available to third parties.
 
 #Cookies
+A cookie is a small plaintext file stored on the user's machine. It is sent back with the next request to the same server. It is usually used to know if multiple requests are coming from the same browser. It is often used to keep a user logged in, or to remember stateful information.
+
+##Uses
+* Session management (user login, shopping cart)
+* Personalization (user preferences)
+* Tracking (analyzing user behavior)
