@@ -38,3 +38,6 @@ A cookie is a small plaintext file stored on the user's machine. It is sent back
 * Session management (user login, shopping cart)
 * Personalization (user preferences)
 * Tracking (analyzing user behavior)
+
+##HTTP Requests
+The server receives an HTTP request. With its response, it sends a `Set-Cookie` header, which is stored by the browser. Every request after that sends the cookie value along with it. Every new request to the server includes the previously stored cookies.
