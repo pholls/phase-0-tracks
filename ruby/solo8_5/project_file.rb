@@ -239,18 +239,14 @@ end
   # return true if data exists
   # otherwise, return false
 def verify_data(db, name_or_id, pat_or_doc)
-  if name_or_id.to_i >= 1
-    if db.execute("SELECT DISTINCT name FROM #{pat_or_doc} WHERE #{pat_or_doc}.id=?", [name_or_id]) == []
-      false
-    else
-      true
-    end
+  # I think this is still vulnerable to SQL injection, but when I replace
+  # #{pat_or_doc} or #{variable} with ? I get an error:
+  # `initialize': near "?": syntax error (SQLite3::SQLException)
+  variable = pat_or_doc
+  if db.execute("SELECT name FROM #{variable} WHERE id=? OR name=?", [name_or_id, name_or_id]) == []
+    false
   else
-    if db.execute("SELECT DISTINCT name FROM #{pat_or_doc} WHERE #{pat_or_doc}.name=?", [name_or_id]) == []
-      false
-    else
-      true
-    end
+    true
   end
 end
 
