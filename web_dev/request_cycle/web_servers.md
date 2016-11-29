@@ -18,7 +18,7 @@ A VPS is a virtual machine (VM) that serves a webpage. It is different from a tr
 ##Disadvantages
 * Performance may be lower
 
-#Reasons Why Not to Run Programs as Root User on Linux
+#Why to Not Run as Root User
 * Hackers/viruses that blindly attack a system will look for access through root, a known entry point if logins are not disabled
 * Security failures will have access to the entire system
 * Accountability -- if multiple people have access, and everyone runs root, there's no way to know who made what changes (applies less in a single-user environment, but that's a bad excuse for poor security practice)
