@@ -543,7 +543,7 @@ while 1==1
           puts "Patient #{patient_to_view} does not exist."
           puts "Try again."
           puts
-          puts "What patient are you updating? (Enter name or patient ID)"
+          puts "What patient would you like to view? (Enter name or patient ID)"
           puts "Or type 'back' to exit."
           patient_to_view = gets.chomp.capitalize
           break if patient_to_view == 'Back'

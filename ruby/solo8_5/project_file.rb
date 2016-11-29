@@ -45,21 +45,11 @@ def add_patient(db, name, insurance, next_appt, last_appt, doctor_id)
 end
 # Delete a patient by name or by ID number
 def delete_patient(db, name_or_id)
-  if name_or_id.to_i >= 1
-    db.execute("DELETE FROM patients WHERE id=?", [name_or_id])
-  else
-    db.execute("DELETE FROM patients WHERE name=?", [name_or_id])
-  end
+  db.execute("DELETE FROM patients WHERE id=? OR name=?", [name_or_id, name_or_id])
 end
-# View a patient's last appointment
-def last_appointment(db, name_or_id)
-  if name_or_id.to_i >= 1
-    full_date = db.execute("SELECT last_appt FROM patients WHERE id=?", [name_or_id])
-  else
-    full_date = db.execute("SELECT last_appt FROM patients WHERE name=?", [name_or_id])
-  end
-  date = full_date[0]["last_appt"]
-  parse_date(date)
+# method to change patient name
+def change_patient_name(db, patient_name_or_id, new_name)
+  db.execute("UPDATE patients SET name=? WHERE name=? OR id=?", [new_name, patient_name_or_id, patient_name_or_id])
 end
 
 def parse_date(numbers)
@@ -70,23 +60,10 @@ def parse_date(numbers)
   parsed_date = Date.new(year,month,day)
   Date::DAYNAMES[parsed_date.wday] + ", " + Date::MONTHNAMES[month] + " " + day.to_s + ", " + year.to_s
 end
-# View a patient's upcoming appointment
-def next_appointment(db, name_or_id)
-  if name_or_id.to_i >= 1
-    full_date = db.execute("SELECT next_appt FROM patients WHERE id=?", [name_or_id])
-  else
-    full_date = db.execute("SELECT next_appt FROM patients WHERE name=?", [name_or_id])
-  end
-  date = full_date[0]["next_appt"]
-  parse_date(date)
-end
+
 # View patient's insurance status
 def view_insurance(db, name_or_id)
-  if name_or_id.to_i >= 1
-    status = db.execute("SELECT insurance, name FROM patients WHERE id=?", [name_or_id])
-  else
-    status = db.execute("SELECT insurance, name FROM patients WHERE name=?", [name_or_id])
-  end
+  status = db.execute("SELECT insurance, name FROM patients WHERE id=? OR name=?", [name_or_id, name_or_id])
   name = status[0]["name"]
   status = status[0]["insurance"]
   case status
@@ -98,77 +75,41 @@ def view_insurance(db, name_or_id)
     status = true
   end
 end
-# View patient's doctor's name
-def view_patient_doctor(db, name_or_id)
-  if name_or_id.to_i >= 1
-    doctor_name = db.execute("SELECT patients.name, doctors.name FROM patients JOIN doctors ON patients.doctor_id=doctors.id WHERE patients.id=?", [name_or_id])
-  else
-    doctor_name = db.execute("SELECT patients.name, doctors.name FROM patients JOIN doctors ON patients.doctor_id=doctors.id WHERE patients.name=?", [name_or_id])
-  end
-  doctor_name = doctor_name[0]["name"]
-end
+
 # Assign a patient's doctor
 def update_doctor(db, patient_name_or_id, doctor_id)
-  if patient_name_or_id.to_i >= 1
-    db.execute("UPDATE patients SET doctor_id=? WHERE id=?", [doctor_id, patient_name_or_id])
-  else
-    db.execute("UPDATE patients SET doctor_id=? where name=?",[doctor_id, patient_name_or_id])
-  end
+  db.execute("UPDATE patients SET doctor_id=? WHERE patients.id=? OR patients.name=?", [doctor_id, patient_name_or_id, patient_name_or_id])
 end
 # Change a patient's upcoming appointment
 def update_appointment(db, patient_name_or_id, date)
-  if patient_name_or_id.to_i >= 1
-    db.execute("UPDATE patients SET next_appt=? WHERE id=?", [date, patient_name_or_id])
-  else
-    db.execute("UPDATE patients SET next_appt=? WHERE name=?", [date, patient_name_or_id])
-  end
+  db.execute("UPDATE patients SET next_appt=? WHERE id=? OR name=?", [date, patient_name_or_id, patient_name_or_id])
 end
 # Update patient's insurance status
 def update_insurance(db, patient_name_or_id, insurance)
-  if patient_name_or_id.to_i >= 1
-    db.execute("UPDATE patients SET insurance=? WHERE id=?", [insurance, patient_name_or_id])
-  else
-    db.execute("UPDATE patients SET insurance=? WHERE name=?", [insurance, patient_name_or_id])
-  end
+  db.execute("UPDATE patients SET insurance=? WHERE id=? OR name=?", [insurance, patient_name_or_id, patient_name_or_id])
 end
-# Add/remove doctors
+# Add doctors
 def add_doctor(db, name, specialty)
   db.execute("INSERT INTO doctors (name, specialty) VALUES (?, ?)", [name, specialty])
 end
-
+# Delete doctor by name or id
 def delete_doctor(db, name_or_id)
-  if name_or_id.to_i >= 1
-    db.execute("DELETE FROM doctors WHERE id = ?", [name_or_id])
-  else
-    db.execute("DELETE FROM doctors WHERE name = ?", [name_or_id])
-  end
+  db.execute("DELETE FROM doctors WHERE id=? OR name=?", [name_or_id, name_or_id])
 end
 # Change specialty by doctor's name or id
 def change_spec(db, name_or_id, new_spec)
-  if name_or_id.to_i >= 1
-    db.execute("UPDATE doctors SET specialty = ? WHERE id = ?", [new_spec, name_or_id])
-  else
-    db.execute("UPDATE doctors SET specialty = ? WHERE name = ?", [new_spec, name_or_id])
-  end
+  db.execute("UPDATE doctors SET specialty=? WHERE id=? OR name=?", [new_spec, name_or_id, name_or_id])
 end
 # View all of a doctor's patients
 def view_patient_list(db, doctor_name_or_id)
-  if doctor_name_or_id.to_i >= 1
-    patients = db.execute("SELECT patients.name FROM patients JOIN doctors ON patients.doctor_id=doctors.id WHERE doctors.id=?", [doctor_name_or_id])
-  else
-    patients = db.execute("SELECT patients.name FROM patients JOIN doctors ON patients.doctor_id=doctors.id WHERE doctors.name=?", [doctor_name_or_id])
-  end
+  patients = db.execute("SELECT patients.name FROM patients JOIN doctors ON patients.doctor_id=doctors.id WHERE doctors.id=? OR doctors.name=?", [doctor_name_or_id, doctor_name_or_id])
   patients.each do |hash|
     p hash['name']
   end
 end
 # View all of a doctor's upcoming appointments
 def view_doctor_appointments(db, doctor_name_or_id)
-  if doctor_name_or_id.to_i >= 1
-    appointments = db.execute("SELECT patients.name, patients.next_appt FROM patients JOIN doctors ON patients.doctor_id=doctors.id WHERE doctors.id=?", [doctor_name_or_id])
-  else
-    appointments = db.execute("SELECT patients.name, patients.next_appt FROM patients JOIN doctors ON patients.doctor_id=doctors.id WHERE doctors.name=?", [doctor_name_or_id])
-  end
+  appointments = db.execute("SELECT patients.name, patients.next_appt FROM patients JOIN doctors ON patients.doctor_id=doctors.id WHERE doctors.id=? OR doctors.name=?", [doctor_name_or_id, doctor_name_or_id])
   appointments.each do |hash|
     p parse_date(hash['next_appt']) + " - " + hash['name'] 
   end
@@ -200,11 +141,7 @@ end
 # view one patient's info
 # ID, name, insurance, appointments, and doctor
 def view_one_patient(db, patient_name_or_id)
-  if patient_name_or_id.to_i >= 1
-    patient_data = db.execute("SELECT patients.name, patients.id, doctors.name, patients.next_appt, patients.last_appt FROM doctors JOIN patients ON patients.doctor_id=doctors.id WHERE patients.id=?", [patient_name_or_id])
-  else
-    patient_data = db.execute("SELECT patients.name, patients.id, doctors.name, patients.next_appt, patients.last_appt FROM doctors JOIN patients ON patients.doctor_id=doctors.id WHERE patients.name=?", [patient_name_or_id])
-  end
+  patient_data = db.execute("SELECT patients.name, patients.id, doctors.name, patients.next_appt, patients.last_appt FROM doctors JOIN patients ON patients.doctor_id=doctors.id WHERE patients.id=? OR patients.name=?", [patient_name_or_id, patient_name_or_id])
   puts "-------------------------------------"
   puts "Patient summary for: " + patient_data[0][0]
   puts "Patient ID#: " + patient_data[0]['id'].to_s
@@ -218,11 +155,7 @@ end
 # view one doctor's info
 # ID, name, specialty
 def view_one_doctor(db, doctor_name_or_id)
-  if doctor_name_or_id.to_i >= 1
-    doctor_info = db.execute("SELECT id, name, specialty FROM doctors WHERE id=?", [doctor_name_or_id])
-  else
-    doctor_info = db.execute("SELECT id, name, specialty FROM doctors WHERE name=?", [doctor_name_or_id])
-  end
+  doctor_info = db.execute("SELECT id, name, specialty FROM doctors WHERE id=? OR name=?", [doctor_name_or_id, doctor_name_or_id])
   puts "-------------------------------------"
   puts "Employee Summary for Dr. " + doctor_info[0]['name'] + ":"
   puts "Employee ID#: " + doctor_info[0]['id'].to_s
@@ -231,13 +164,6 @@ def view_one_doctor(db, doctor_name_or_id)
 end
 
 # add a method to verify the data (ID or name exists)
-# one verify_data method
-  # one verify_doctor method
-  # one verify_patient method
-    # verify_data will determine which one to call
-  # check by name or ID
-  # return true if data exists
-  # otherwise, return false
 def verify_data(db, name_or_id, pat_or_doc)
   # I think this is still vulnerable to SQL injection, but when I replace
   # #{pat_or_doc} or #{variable} with ? I get an error:
@@ -261,11 +187,6 @@ def count_doctors(db)
   i
 end
 
-# method to change patient name
-def change_patient_name(db, patient_name, new_name)
-  db.execute("UPDATE patients SET name=? WHERE name=?", [new_name, patient_name])
-end
-
 # search method
   # add to doctor and patient portals
   # enter a name
@@ -274,3 +195,4 @@ end
     # otherwise, say "not found" 
       # loop chopping off last character and searching remaining string until something is returned
         # display result to the user "did you mean [this]?"
+
