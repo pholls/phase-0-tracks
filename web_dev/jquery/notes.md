@@ -47,10 +47,5 @@
 * Get as far as possible while understanding the material
 
 ##Notes
-* *jQuery Fundamentals* seemed to be more of a classroom-guided resource
-* I enjoyed Codecademy's jQuery track
-* W3 Schools was a good resource to explore jQuery in a more self-guided way
-* wrap all jQuery methods inside a document ready event to prevent code from running before the document is finished loading
-  * this also allows you to put your `<script>` tag in the HTML `<head>` tag
-* The best way to learn jQuery will be to practice with it a lot
-* I located a PDF book to download that also contains a lot of useful material
+* *jQuery Fundamentals* seemed to be more of a classroom-guided resource.
+* I enjoyed Codecademy's jQuery track.
