@@ -67,6 +67,10 @@ end
 # A route that uses route parameters to add 
 # two numbers and respond with the result
 
+get '/:number1/plus/:number2' do
+  result = "#{params[:number1]}".to_i + "#{params[:number2]}".to_i
+  result.to_s
+end
 
 #BONUS: route that allows user to search the database somehow
 # (you can simply modify the home page to take a query parameter
