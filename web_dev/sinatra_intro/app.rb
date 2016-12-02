@@ -76,3 +76,12 @@ end
 # (you can simply modify the home page to take a query parameter
 # and filter the students displayed if a query parameter is present)
 
+get '/search/:letters' do
+  search_string = '%' + params[:letters] + '%'
+  returns = db.execute("SELECT name FROM students WHERE name LIKE ?", [search_string])
+  search_results = ""
+  returns.each do |result|
+    search_results << "#{result["name"]}<br>"
+  end
+  search_results
+end
