@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Campuses</title>
+</head>
+<body>
+  <h1>Where People Are Studying</h1>
+  <% @campuses.each do |campus| %>
+    <h2><%= campus['campus'] %></h2>
+    <ul>
+      <% @students.map do |student| %>
+        <% if student['campus'] == campus['campus'] %>
+          <li>
+            <%= student['name'] %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  <% end %>
+</body>
+</html>

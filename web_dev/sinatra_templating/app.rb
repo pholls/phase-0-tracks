@@ -25,3 +25,9 @@ post '/students' do
 end
 
 # add static resources
+
+get '/campus' do
+  @campuses = db.execute("SELECT DISTINCT campus FROM students")
+  @students = db.execute("SELECT * FROM students")
+  erb :campus
+end
