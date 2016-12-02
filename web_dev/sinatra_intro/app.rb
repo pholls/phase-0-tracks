@@ -55,6 +55,14 @@ end
 # (not a route parameter) and says "Good job, [name]!"
 # If query parameter is missing, route just says "Good job!"
 
+get '/great_job/:name' do
+  name = db.execute("SELECT name FROM students WHERE name=?", [params[:name]])[0]["name"]
+  if name
+    "Good job, #{name}!"
+  else
+    "Good job!"
+  end
+end
 
 # A route that uses route parameters to add 
 # two numbers and respond with the result
